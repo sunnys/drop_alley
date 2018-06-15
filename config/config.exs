@@ -44,6 +44,10 @@ config :coherence, DropAlleyWeb.Coherence.Mailer,
   api_key: "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"
 # %% End Coherence Configuration %%
 
+config :drop_alley, DropAlley.Mailer,
+  adapter: Swoosh.Adapters.Sendgrid,
+  api_key: "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"
+
 config :coherence_assent, :providers, [
   github: [
     client_id: "2473782e816711935193",

@@ -20,7 +20,7 @@ defmodule DropAlley.Mixfile do
   def application do
     [
       mod: {DropAlley.Application, []},
-      extra_applications: [:logger, :runtime_tools, :coherence, :gettext]
+      extra_applications: [:logger, :runtime_tools, :coherence, :gettext, :swoosh, :phoenix_swoosh]
     ]
   end
 
@@ -42,7 +42,9 @@ defmodule DropAlley.Mixfile do
       {:cowboy, "~> 1.0"},
       {:gettext, "~>0.15.0"},
       {:coherence, "~> 0.5"},
-      {:coherence_assent, "~> 0.2"}
+      {:coherence_assent, "~> 0.2"},
+      {:swoosh, "~> 0.15"},
+      {:phoenix_swoosh, "~> 0.2"}
     ]
   end
 

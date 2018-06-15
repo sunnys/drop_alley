@@ -44,7 +44,8 @@ defmodule DropAlley.Mixfile do
       {:coherence, "~> 0.5"},
       {:coherence_assent, "~> 0.2"},
       {:swoosh, "~> 0.15"},
-      {:phoenix_swoosh, "~> 0.2"}
+      {:phoenix_swoosh, "~> 0.2"},
+      {:torch, "~> 2.0.0-rc.1"}
     ]
   end
 

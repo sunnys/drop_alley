@@ -40,6 +40,13 @@ defmodule DropAlleyWeb.Router do
     # Add public routes below
   end
 
+  scope "/admin", DropAlleyWeb do
+    pipe_through :protected
+    resources "/users", UserController
+    resources "/user_identities", UserIdentityController
+    resources "/invitations", InvitationController
+  end
+
   scope "/", DropAlleyWeb do
     pipe_through :protected
     # Add protected routes below

@@ -1,0 +1,203 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "New User", to: DropAlleyWeb.Router.Helpers.user_path(@conn, :new) %>
+  </div>
+</section>
+<section id="torch-index-content">
+  <div class="torch-container">
+    <section id="torch-filters">
+      <h3>Find Users</h3>
+      <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
+        
+          <div class="field">
+            <label>Name</label>
+            <%= filter_select(:user, :name, @conn.params) %>
+            <%= filter_string_input(:user, :name, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Email</label>
+            <%= filter_select(:user, :email, @conn.params) %>
+            <%= filter_string_input(:user, :email, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Password hash</label>
+            <%= filter_select(:user, :password_hash, @conn.params) %>
+            <%= filter_string_input(:user, :password_hash, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Reset password token</label>
+            <%= filter_select(:user, :reset_password_token, @conn.params) %>
+            <%= filter_string_input(:user, :reset_password_token, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Current sign in ip</label>
+            <%= filter_select(:user, :current_sign_in_ip, @conn.params) %>
+            <%= filter_string_input(:user, :current_sign_in_ip, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Last sign in ip</label>
+            <%= filter_select(:user, :last_sign_in_ip, @conn.params) %>
+            <%= filter_string_input(:user, :last_sign_in_ip, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Unlock token</label>
+            <%= filter_select(:user, :unlock_token, @conn.params) %>
+            <%= filter_string_input(:user, :unlock_token, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Confirmation token</label>
+            <%= filter_select(:user, :confirmation_token, @conn.params) %>
+            <%= filter_string_input(:user, :confirmation_token, @conn.params) %>
+          </div>
+        
+        
+        
+          <div class="field">
+            <label>Reset password sent at</label>
+            <%= filter_date_input(:user, :reset_password_sent_at, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Locked at</label>
+            <%= filter_date_input(:user, :locked_at, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Current sign in at</label>
+            <%= filter_date_input(:user, :current_sign_in_at, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Last sign in at</label>
+            <%= filter_date_input(:user, :last_sign_in_at, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Confirmed at</label>
+            <%= filter_date_input(:user, :confirmed_at, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Confirmation sent at</label>
+            <%= filter_date_input(:user, :confirmation_sent_at, @conn.params) %>
+          </div>
+        
+        
+          <div class="field">
+            <label>Failed attempts</label>
+            <%= number_filter_select(:user, :failed_attempts, @conn.params) %>
+            <%= filter_number_input(:user, :failed_attempts, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Sign in count</label>
+            <%= number_filter_select(:user, :sign_in_count, @conn.params) %>
+            <%= filter_number_input(:user, :sign_in_count, @conn.params) %>
+          </div>
+        
+        <button type="submit" class="torch-button">Search</button>
+        <%= link "Clear Filters", to: DropAlleyWeb.Router.Helpers.user_path(@conn, :index) %>
+      <% end %>
+
+    </section>
+
+    <section id="torch-table">
+    <%= if length(@users) > 0 do %>
+      <table>
+        <thead>
+          <tr>
+            
+              <th><%= table_link(@conn, "Name", :name) %></th>
+            
+              <th><%= table_link(@conn, "Email", :email) %></th>
+            
+              <th><%= table_link(@conn, "Password hash", :password_hash) %></th>
+            
+              <th><%= table_link(@conn, "Reset password token", :reset_password_token) %></th>
+            
+              <th><%= table_link(@conn, "Reset password sent at", :reset_password_sent_at) %></th>
+            
+              <th><%= table_link(@conn, "Failed attempts", :failed_attempts) %></th>
+            
+              <th><%= table_link(@conn, "Locked at", :locked_at) %></th>
+            
+              <th><%= table_link(@conn, "Sign in count", :sign_in_count) %></th>
+            
+              <th><%= table_link(@conn, "Current sign in at", :current_sign_in_at) %></th>
+            
+              <th><%= table_link(@conn, "Last sign in at", :last_sign_in_at) %></th>
+            
+              <th><%= table_link(@conn, "Current sign in ip", :current_sign_in_ip) %></th>
+            
+              <th><%= table_link(@conn, "Last sign in ip", :last_sign_in_ip) %></th>
+            
+              <th><%= table_link(@conn, "Unlock token", :unlock_token) %></th>
+            
+              <th><%= table_link(@conn, "Confirmation token", :confirmation_token) %></th>
+            
+              <th><%= table_link(@conn, "Confirmed at", :confirmed_at) %></th>
+            
+              <th><%= table_link(@conn, "Confirmation sent at", :confirmation_sent_at) %></th>
+            
+            <th><span>Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for user <- @users do %>
+            <tr>
+              
+                <td><%= user.name %></td>
+              
+                <td><%= user.email %></td>
+              
+                <td><%= user.password_hash %></td>
+              
+                <td><%= user.reset_password_token %></td>
+              
+                <td><%= user.reset_password_sent_at %></td>
+              
+                <td><%= user.failed_attempts %></td>
+              
+                <td><%= user.locked_at %></td>
+              
+                <td><%= user.sign_in_count %></td>
+              
+                <td><%= user.current_sign_in_at %></td>
+              
+                <td><%= user.last_sign_in_at %></td>
+              
+                <td><%= user.current_sign_in_ip %></td>
+              
+                <td><%= user.last_sign_in_ip %></td>
+              
+                <td><%= user.unlock_token %></td>
+              
+                <td><%= user.confirmation_token %></td>
+              
+                <td><%= user.confirmed_at %></td>
+              
+                <td><%= user.confirmation_sent_at %></td>
+              
+              <td class="torch-actions">
+                <span><%= link "Show", to: DropAlleyWeb.Router.Helpers.user_path(@conn, :show, user) %></span>
+                <span><%= link "Edit", to: DropAlleyWeb.Router.Helpers.user_path(@conn, :edit, user) %></span>
+                <span><%= link "Delete", to: DropAlleyWeb.Router.Helpers.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render Torch.PaginationView, "_pagination.html", assigns %>
+    <% else %>
+      <p class="torch-no-data">No Users match your search.</p>
+    <% end %>
+    </section>
+  </div>
+</section>

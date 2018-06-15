@@ -1,0 +1,110 @@
+<%= form_for @changeset, @action, [multipart: true, id: "torch-form"], fn f -> %>
+  <fieldset class="torch-panel">
+    <legend>
+      <span>Details</span>
+    </legend>
+    <%= if @changeset.action do %>
+      <p class="torch-form-error">Oops, something went wrong! Please check the errors below.</p>
+    <% end %>
+  
+    <div class="torch-form-group">
+      <%= label f, :name, class: "control-label" %>
+      <%= text_input f, :name, class: "form-control" %>
+      <%= error_tag f, :name %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :email, class: "control-label" %>
+      <%= text_input f, :email, class: "form-control" %>
+      <%= error_tag f, :email %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :password_hash, class: "control-label" %>
+      <%= text_input f, :password_hash, class: "form-control" %>
+      <%= error_tag f, :password_hash %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :reset_password_token, class: "control-label" %>
+      <%= text_input f, :reset_password_token, class: "form-control" %>
+      <%= error_tag f, :reset_password_token %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :reset_password_sent_at, class: "control-label" %>
+      <%= datetime_select f, :reset_password_sent_at, class: "form-control" %>
+      <%= error_tag f, :reset_password_sent_at %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :failed_attempts, class: "control-label" %>
+      <%= number_input f, :failed_attempts, class: "form-control" %>
+      <%= error_tag f, :failed_attempts %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :locked_at, class: "control-label" %>
+      <%= datetime_select f, :locked_at, class: "form-control" %>
+      <%= error_tag f, :locked_at %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :sign_in_count, class: "control-label" %>
+      <%= number_input f, :sign_in_count, class: "form-control" %>
+      <%= error_tag f, :sign_in_count %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :current_sign_in_at, class: "control-label" %>
+      <%= datetime_select f, :current_sign_in_at, class: "form-control" %>
+      <%= error_tag f, :current_sign_in_at %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :last_sign_in_at, class: "control-label" %>
+      <%= datetime_select f, :last_sign_in_at, class: "form-control" %>
+      <%= error_tag f, :last_sign_in_at %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :current_sign_in_ip, class: "control-label" %>
+      <%= text_input f, :current_sign_in_ip, class: "form-control" %>
+      <%= error_tag f, :current_sign_in_ip %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :last_sign_in_ip, class: "control-label" %>
+      <%= text_input f, :last_sign_in_ip, class: "form-control" %>
+      <%= error_tag f, :last_sign_in_ip %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :unlock_token, class: "control-label" %>
+      <%= text_input f, :unlock_token, class: "form-control" %>
+      <%= error_tag f, :unlock_token %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :confirmation_token, class: "control-label" %>
+      <%= text_input f, :confirmation_token, class: "form-control" %>
+      <%= error_tag f, :confirmation_token %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :confirmed_at, class: "control-label" %>
+      <%= datetime_select f, :confirmed_at, class: "form-control" %>
+      <%= error_tag f, :confirmed_at %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :confirmation_sent_at, class: "control-label" %>
+      <%= datetime_select f, :confirmation_sent_at, class: "form-control" %>
+      <%= error_tag f, :confirmation_sent_at %>
+    </div>
+  
+    <div class="torch-submit-form">
+      <%= submit "Submit", class: "torch-submit-button" %>
+    </div>
+  </fieldset>
+<% end %>

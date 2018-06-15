@@ -1,0 +1,97 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "Edit", to: DropAlleyWeb.Router.Helpers.user_path(@conn, :edit, @user), class: "torch-button" %>
+    <%= link "Back", to: DropAlleyWeb.Router.Helpers.user_path(@conn, :index), class: "torch-button" %>
+  </div>
+</section>
+
+<section id="torch-header-and-content">
+  <div class="torch-container">
+    <div class="header">
+      <h3>User Details</h3>
+    </div>
+    <ul>
+      
+        <li>
+          <div class="torch-show-label">Name:</div>
+          <div class="torch-show-data"><%= @user.name %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Email:</div>
+          <div class="torch-show-data"><%= @user.email %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Password hash:</div>
+          <div class="torch-show-data"><%= @user.password_hash %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Reset password token:</div>
+          <div class="torch-show-data"><%= @user.reset_password_token %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Reset password sent at:</div>
+          <div class="torch-show-data"><%= @user.reset_password_sent_at %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Failed attempts:</div>
+          <div class="torch-show-data"><%= @user.failed_attempts %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Locked at:</div>
+          <div class="torch-show-data"><%= @user.locked_at %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Sign in count:</div>
+          <div class="torch-show-data"><%= @user.sign_in_count %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Current sign in at:</div>
+          <div class="torch-show-data"><%= @user.current_sign_in_at %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Last sign in at:</div>
+          <div class="torch-show-data"><%= @user.last_sign_in_at %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Current sign in ip:</div>
+          <div class="torch-show-data"><%= @user.current_sign_in_ip %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Last sign in ip:</div>
+          <div class="torch-show-data"><%= @user.last_sign_in_ip %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Unlock token:</div>
+          <div class="torch-show-data"><%= @user.unlock_token %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Confirmation token:</div>
+          <div class="torch-show-data"><%= @user.confirmation_token %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Confirmed at:</div>
+          <div class="torch-show-data"><%= @user.confirmed_at %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Confirmation sent at:</div>
+          <div class="torch-show-data"><%= @user.confirmation_sent_at %></div>
+        </li>
+      
+    </ul>
+  </div>
+</section>

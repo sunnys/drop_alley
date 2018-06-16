@@ -89,11 +89,9 @@ defmodule DropAlleyWeb.Router do
     # Add protected routes below
   end
 
-  scope "/", DropAlleyWeb do
+  scope "/api/v1", DropAlleyWeb.API.V1 do
     pipe_through :api
-    scope "/v1" do
-      post "/sessions", SessionsController, :create
-      options "/sessions", SessionsController, :options
-    end
+      post "/sessions", SessionController, :create
+      options "/sessions", SessionController, :options
   end
 end

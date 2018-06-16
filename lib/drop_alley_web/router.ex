@@ -10,7 +10,6 @@ defmodule DropAlleyWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Coherence.Authentication.Session  # Add this
   end
 
   pipeline :protected do
@@ -19,7 +18,21 @@ defmodule DropAlleyWeb.Router do
 
 
   pipeline :api do
+    plug CORSPlug, origin: "*"
+    plug :accepts, ["json"  ]
+  end
+  
+  pipeline :api_auth do
+    plug CORSPlug, origin: "*"
     plug :accepts, ["json"]
+    plug DropAlley.Auth.AuthAccessPipeline
+  end
+  
+  pipeline :ensure_auth do
+    plug CORSPlug, origin: "*"
+    plug :accepts, ["json"]
+    plug DropAlley.Auth.AuthAccessPipeline
+    plug Guardian.Plug.EnsureAuthenticated, module: DropAlley.Auth.Guardian, error_handler: DropAlley.Auth.AuthErrorHandler
   end
 
   pipeline :public do
@@ -76,8 +89,11 @@ defmodule DropAlleyWeb.Router do
     # Add protected routes below
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", DropAlleyWeb do
-  #   pipe_through :api
-  # end
+  scope "/", DropAlleyWeb do
+    pipe_through :api
+    scope "/v1" do
+      post "/sessions", SessionsController, :create
+      options "/sessions", SessionsController, :options
+    end
+  end
 end

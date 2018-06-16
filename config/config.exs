@@ -75,10 +75,23 @@ config :coherence_assent, :providers, [
   ]
 ]
 
-
 config :phoenix_oauth2_provider, PhoenixOauth2Provider,
   module: DropAlley,
   current_resource_owner: :current_user,
   repo: DropAlley.Repo,
   resource_owner: DropAlley.Coherencece.User
+
+##### Guardian Configurations #########
+# Configures Elixir's Guardian package for authentication
+config :drop_alley, DropAlley.Auth.Guardian,
+  issuer: "drop_alley",
+  ttl: {30, :days},
+  verify_issuer: true,
+  serializer: DropAlley.GuardianSerializer,
+  secret_key: "TU9gi5B2tqO5IY8qvARHcNYzX2n6EatS6Xp6iTLE/4+hUMGnjJd"
+
+config :drop_alley, DropAlley.Auth.AuthAccessPipeline,
+  module: DropAlley.Auth.Guardian,
+  error_handler: DropAlley.Auth.AuthErrorHandler,
+  confirmable: true
 

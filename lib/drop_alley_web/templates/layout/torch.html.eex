@@ -35,6 +35,7 @@
             <a href="/admin/partners">Partner</a>
             <a href="/admin/orders">Order</a>
             <a href="/admin/carts">Cart</a>
+            <a href="/admin/buckets">Bucket</a>
           </nav>
         </div>
       </section>

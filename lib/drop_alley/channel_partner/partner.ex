@@ -12,6 +12,7 @@ defmodule DropAlley.ChannelPartner.Partner do
     field :verified, :boolean, default: false
     # field :user_id, :id
     belongs_to :user, DropAlley.Coherence.User, foreign_key: :user_id
+    many_to_many :bucket_products, DropAlley.Store.Product, join_through: "buckets"
     timestamps()
   end
 

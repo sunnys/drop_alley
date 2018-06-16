@@ -17,6 +17,9 @@ defmodule DropAlley.Store.Product do
     belongs_to :return_consumer, DropAlley.Store.ReturnConsumer , foreign_key: :return_consumer_id
     belongs_to :order, DropAlley.Purchase.Order, foreign_key: :order_id
     belongs_to :cart, DropAlley.Purchase.Order, foreign_key: :cart_id
+    
+    many_to_many :selling_partners, DropAlley.ChannelPartner.Partner , join_through: "buckets"
+
     timestamps()
   end
 

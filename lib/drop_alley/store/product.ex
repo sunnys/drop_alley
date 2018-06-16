@@ -15,13 +15,18 @@ defmodule DropAlley.Store.Product do
     belongs_to :owner, DropAlley.Coherence.User, foreign_key: :owner_id
     belongs_to :retailer, DropAlley.Store.Retailer, foreign_key: :retailer_id
     belongs_to :return_consumer, DropAlley.Store.ReturnConsumer , foreign_key: :return_consumer_id
+    belongs_to :order, DropAlley.Purchase.Order, foreign_key: :order_id
+    belongs_to :cart, DropAlley.Purchase.Order, foreign_key: :cart_id
+    
+    many_to_many :selling_partners, DropAlley.ChannelPartner.Partner , join_through: "buckets"
+
     timestamps()
   end
 
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [:name, :description, :prprice, :state, :inspection_process, :owner_id, :retailer_id, :return_code, :return_consumer_id])
+    |> cast(attrs, [:name, :description, :prprice, :state, :inspection_process, :owner_id, :retailer_id, :return_code, :return_consumer_id, :order_id, :cart_id])
     |> validate_required([:name, :description, :prprice, :state, :retailer_id])
     |> put_return_code
   end

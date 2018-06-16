@@ -7,6 +7,7 @@ defmodule DropAlley.Store.Buyer do
     field :active, :boolean, default: false
 
     belongs_to :user, DropAlley.Coherence.User, foreign_key: :user_id
+    has_many :orders, DropAlley.Purchase.Order, foreign_key: :buyer_id
     timestamps()
   end
 

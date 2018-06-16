@@ -1,0 +1,105 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "New Order", to: DropAlleyWeb.Router.Helpers.order_path(@conn, :new) %>
+  </div>
+</section>
+<section id="torch-index-content">
+  <div class="torch-container">
+    <section id="torch-filters">
+      <h3>Find Orders</h3>
+      <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
+        
+          <div class="field">
+            <label>State</label>
+            <%= filter_select(:order, :state, @conn.params) %>
+            <%= filter_string_input(:order, :state, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Payment type</label>
+            <%= filter_select(:order, :payment_type, @conn.params) %>
+            <%= filter_string_input(:order, :payment_type, @conn.params) %>
+          </div>
+        
+        
+          <div class="field">
+            <label>Active</label>
+            <%= filter_boolean_input(:order, :active, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Trial</label>
+            <%= filter_boolean_input(:order, :trial, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Purchase</label>
+            <%= filter_boolean_input(:order, :purchase, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Paid</label>
+            <%= filter_boolean_input(:order, :paid, @conn.params) %>
+          </div>
+        
+        
+        
+        <button type="submit" class="torch-button">Search</button>
+        <%= link "Clear Filters", to: DropAlleyWeb.Router.Helpers.order_path(@conn, :index) %>
+      <% end %>
+
+    </section>
+
+    <section id="torch-table">
+    <%= if length(@orders) > 0 do %>
+      <table>
+        <thead>
+          <tr>
+            
+              <th><%= table_link(@conn, "State", :state) %></th>
+            
+              <th><%= table_link(@conn, "Active", :active) %></th>
+            
+              <th><%= table_link(@conn, "Trial", :trial) %></th>
+            
+              <th><%= table_link(@conn, "Purchase", :purchase) %></th>
+            
+              <th><%= table_link(@conn, "Payment type", :payment_type) %></th>
+            
+              <th><%= table_link(@conn, "Paid", :paid) %></th>
+            
+            <th><span>Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for order <- @orders do %>
+            <tr>
+              
+                <td><%= order.state %></td>
+              
+                <td><%= order.active %></td>
+              
+                <td><%= order.trial %></td>
+              
+                <td><%= order.purchase %></td>
+              
+                <td><%= order.payment_type %></td>
+              
+                <td><%= order.paid %></td>
+              
+              <td class="torch-actions">
+                <span><%= link "Show", to: DropAlleyWeb.Router.Helpers.order_path(@conn, :show, order) %></span>
+                <span><%= link "Edit", to: DropAlleyWeb.Router.Helpers.order_path(@conn, :edit, order) %></span>
+                <span><%= link "Delete", to: DropAlleyWeb.Router.Helpers.order_path(@conn, :delete, order), method: :delete, data: [confirm: "Are you sure?"] %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render Torch.PaginationView, "_pagination.html", assigns %>
+    <% else %>
+      <p class="torch-no-data">No Orders match your search.</p>
+    <% end %>
+    </section>
+  </div>
+</section>

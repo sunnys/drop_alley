@@ -1,0 +1,68 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "New Cart", to: DropAlleyWeb.Router.Helpers.cart_path(@conn, :new) %>
+  </div>
+</section>
+<section id="torch-index-content">
+  <div class="torch-container">
+    <section id="torch-filters">
+      <h3>Find Carts</h3>
+      <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
+        
+          <div class="field">
+            <label>State</label>
+            <%= filter_select(:cart, :state, @conn.params) %>
+            <%= filter_string_input(:cart, :state, @conn.params) %>
+          </div>
+        
+        
+          <div class="field">
+            <label>Active</label>
+            <%= filter_boolean_input(:cart, :active, @conn.params) %>
+          </div>
+        
+        
+        
+        <button type="submit" class="torch-button">Search</button>
+        <%= link "Clear Filters", to: DropAlleyWeb.Router.Helpers.cart_path(@conn, :index) %>
+      <% end %>
+
+    </section>
+
+    <section id="torch-table">
+    <%= if length(@carts) > 0 do %>
+      <table>
+        <thead>
+          <tr>
+            
+              <th><%= table_link(@conn, "State", :state) %></th>
+            
+              <th><%= table_link(@conn, "Active", :active) %></th>
+            
+            <th><span>Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for cart <- @carts do %>
+            <tr>
+              
+                <td><%= cart.state %></td>
+              
+                <td><%= cart.active %></td>
+              
+              <td class="torch-actions">
+                <span><%= link "Show", to: DropAlleyWeb.Router.Helpers.cart_path(@conn, :show, cart) %></span>
+                <span><%= link "Edit", to: DropAlleyWeb.Router.Helpers.cart_path(@conn, :edit, cart) %></span>
+                <span><%= link "Delete", to: DropAlleyWeb.Router.Helpers.cart_path(@conn, :delete, cart), method: :delete, data: [confirm: "Are you sure?"] %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render Torch.PaginationView, "_pagination.html", assigns %>
+    <% else %>
+      <p class="torch-no-data">No Carts match your search.</p>
+    <% end %>
+    </section>
+  </div>
+</section>

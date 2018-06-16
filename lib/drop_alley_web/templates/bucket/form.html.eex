@@ -1,0 +1,69 @@
+<%= form_for @changeset, @action, [multipart: true, id: "torch-form"], fn f -> %>
+  <fieldset class="torch-panel">
+    <legend>
+      <span>Details</span>
+    </legend>
+    <%= if @changeset.action do %>
+      <p class="torch-form-error">Oops, something went wrong! Please check the errors below.</p>
+    <% end %>
+  
+    <div class="torch-form-group">
+      <%= label f, :state, class: "control-label" %>
+      <%= text_input f, :state, class: "form-control" %>
+      <%= error_tag f, :state %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :active, class: "control-label" %>
+      <%= checkbox f, :active, class: "checkbox" %>
+      <%= error_tag f, :active %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :assigned_time, class: "control-label" %>
+      <%= datetime_select f, :assigned_time, class: "form-control" %>
+      <%= error_tag f, :assigned_time %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :pickup_time, class: "control-label" %>
+      <%= datetime_select f, :pickup_time, class: "form-control" %>
+      <%= error_tag f, :pickup_time %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :pick_up_location, class: "control-label" %>
+      <%= text_input f, :pick_up_location, class: "form-control" %>
+      <%= error_tag f, :pick_up_location %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :drop_time, class: "control-label" %>
+      <%= datetime_select f, :drop_time, class: "form-control" %>
+      <%= error_tag f, :drop_time %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :drop_location, class: "control-label" %>
+      <%= text_input f, :drop_location, class: "form-control" %>
+      <%= error_tag f, :drop_location %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :product_id, class: "control-label" %>
+      <%= text_input f, :product_id, class: "form-control" %>
+      <%= error_tag f, :product_id %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :partner_id, class: "control-label" %>
+      <%= text_input f, :partner_id, class: "form-control" %>
+      <%= error_tag f, :partner_id %>
+    </div>
+  
+
+    <div class="torch-submit-form">
+      <%= submit "Submit", class: "torch-submit-button" %>
+    </div>
+  </fieldset>
+<% end %>

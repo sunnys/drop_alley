@@ -1,0 +1,103 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "New Bucket", to: DropAlleyWeb.Router.Helpers.bucket_path(@conn, :new) %>
+  </div>
+</section>
+<section id="torch-index-content">
+  <div class="torch-container">
+    <section id="torch-filters">
+      <h3>Find Buckets</h3>
+      <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
+        
+          <div class="field">
+            <label>State</label>
+            <%= filter_select(:bucket, :state, @conn.params) %>
+            <%= filter_string_input(:bucket, :state, @conn.params) %>
+          </div>
+        
+        
+          <div class="field">
+            <label>Active</label>
+            <%= filter_boolean_input(:bucket, :active, @conn.params) %>
+          </div>
+        
+        
+          <div class="field">
+            <label>Assigned time</label>
+            <%= filter_date_input(:bucket, :assigned_time, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Pickup time</label>
+            <%= filter_date_input(:bucket, :pickup_time, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Drop time</label>
+            <%= filter_date_input(:bucket, :drop_time, @conn.params) %>
+          </div>
+        
+        
+        <button type="submit" class="torch-button">Search</button>
+        <%= link "Clear Filters", to: DropAlleyWeb.Router.Helpers.bucket_path(@conn, :index) %>
+      <% end %>
+
+    </section>
+
+    <section id="torch-table">
+    <%= if length(@buckets) > 0 do %>
+      <table>
+        <thead>
+          <tr>
+            
+              <th><%= table_link(@conn, "State", :state) %></th>
+            
+              <th><%= table_link(@conn, "Active", :active) %></th>
+            
+              <th><%= table_link(@conn, "Assigned time", :assigned_time) %></th>
+            
+              <th><%= table_link(@conn, "Pickup time", :pickup_time) %></th>
+            
+              <th><%= table_link(@conn, "Pick up location", :pick_up_location) %></th>
+            
+              <th><%= table_link(@conn, "Drop time", :drop_time) %></th>
+            
+              <th><%= table_link(@conn, "Drop location", :drop_location) %></th>
+            
+            <th><span>Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for bucket <- @buckets do %>
+            <tr>
+              
+                <td><%= bucket.state %></td>
+              
+                <td><%= bucket.active %></td>
+              
+                <td><%= bucket.assigned_time %></td>
+              
+                <td><%= bucket.pickup_time %></td>
+              
+                <td><%= bucket.pick_up_location %></td>
+              
+                <td><%= bucket.drop_time %></td>
+              
+                <td><%= bucket.drop_location %></td>
+              
+              <td class="torch-actions">
+                <span><%= link "Show", to: DropAlleyWeb.Router.Helpers.bucket_path(@conn, :show, bucket) %></span>
+                <span><%= link "Edit", to: DropAlleyWeb.Router.Helpers.bucket_path(@conn, :edit, bucket) %></span>
+                <span><%= link "Delete", to: DropAlleyWeb.Router.Helpers.bucket_path(@conn, :delete, bucket), method: :delete, data: [confirm: "Are you sure?"] %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render Torch.PaginationView, "_pagination.html", assigns %>
+    <% else %>
+      <p class="torch-no-data">No Buckets match your search.</p>
+    <% end %>
+    </section>
+  </div>
+</section>

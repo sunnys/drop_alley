@@ -70,6 +70,7 @@ defmodule DropAlleyWeb.Router do
     resources "/return_consumers", ReturnConsumerController
     resources "/retailers", RetailerController
     resources "/partners", PartnerController
+    resources "/orders", OrderController
   end
 
   # Add all the protected here to provide authentication.
@@ -93,6 +94,7 @@ defmodule DropAlleyWeb.Router do
     resources "/return_consumers", ReturnConsumerController
     resources "/retailers", RetailerController
     resources "/partners", PartnerController
+    resources "/orders", OrderController
   end
 
 end

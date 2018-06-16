@@ -1,0 +1,50 @@
+<%= form_for @changeset, @action, [multipart: true, id: "torch-form"], fn f -> %>
+  <fieldset class="torch-panel">
+    <legend>
+      <span>Details</span>
+    </legend>
+    <%= if @changeset.action do %>
+      <p class="torch-form-error">Oops, something went wrong! Please check the errors below.</p>
+    <% end %>
+  
+    <div class="torch-form-group">
+      <%= label f, :state, class: "control-label" %>
+      <%= text_input f, :state, class: "form-control" %>
+      <%= error_tag f, :state %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :active, class: "control-label" %>
+      <%= checkbox f, :active, class: "checkbox" %>
+      <%= error_tag f, :active %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :trial, class: "control-label" %>
+      <%= checkbox f, :trial, class: "checkbox" %>
+      <%= error_tag f, :trial %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :purchase, class: "control-label" %>
+      <%= checkbox f, :purchase, class: "checkbox" %>
+      <%= error_tag f, :purchase %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :payment_type, class: "control-label" %>
+      <%= text_input f, :payment_type, class: "form-control" %>
+      <%= error_tag f, :payment_type %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :paid, class: "control-label" %>
+      <%= checkbox f, :paid, class: "checkbox" %>
+      <%= error_tag f, :paid %>
+    </div>
+  
+    <div class="torch-submit-form">
+      <%= submit "Submit", class: "torch-submit-button" %>
+    </div>
+  </fieldset>
+<% end %>

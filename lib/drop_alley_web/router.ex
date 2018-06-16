@@ -64,6 +64,12 @@ defmodule DropAlleyWeb.Router do
     resources "/users", UserController
     resources "/user_identities", UserIdentityController
     resources "/invitations", InvitationController
+    resources "/products", ProductController
+    resources "/buyers", BuyerController
+    resources "/addresses", AddressController
+    resources "/return_consumers", ReturnConsumerController
+    resources "/retailers", RetailerController
+    resources "/partners", PartnerController
   end
 
   # Add all the protected here to provide authentication.
@@ -81,6 +87,12 @@ defmodule DropAlleyWeb.Router do
   scope "/api/v1", DropAlleyWeb.API.V1 do
     pipe_through :api_auth
     resources "/users", UserController
+    resources "/products", ProductController
+    resources "/buyers", BuyerController
+    resources "/addresses", AddressController
+    resources "/return_consumers", ReturnConsumerController
+    resources "/retailers", RetailerController
+    resources "/partners", PartnerController
   end
 
 end

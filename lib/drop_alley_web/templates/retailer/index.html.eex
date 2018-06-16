@@ -1,0 +1,82 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "New Retailer", to: DropAlleyWeb.Router.Helpers.retailer_path(@conn, :new) %>
+  </div>
+</section>
+<section id="torch-index-content">
+  <div class="torch-container">
+    <section id="torch-filters">
+      <h3>Find Retailers</h3>
+      <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
+        
+          <div class="field">
+            <label>Name</label>
+            <%= filter_select(:retailer, :name, @conn.params) %>
+            <%= filter_string_input(:retailer, :name, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Api key</label>
+            <%= filter_select(:retailer, :api_key, @conn.params) %>
+            <%= filter_string_input(:retailer, :api_key, @conn.params) %>
+          </div>
+        
+        
+          <div class="field">
+            <label>Active</label>
+            <%= filter_boolean_input(:retailer, :active, @conn.params) %>
+          </div>
+        
+        
+        
+        <button type="submit" class="torch-button">Search</button>
+        <%= link "Clear Filters", to: DropAlleyWeb.Router.Helpers.retailer_path(@conn, :index) %>
+      <% end %>
+
+    </section>
+
+    <section id="torch-table">
+    <%= if length(@retailers) > 0 do %>
+      <table>
+        <thead>
+          <tr>
+            
+              <th><%= table_link(@conn, "Name", :name) %></th>
+            
+              <th><%= table_link(@conn, "Api key", :api_key) %></th>
+            
+              <th><%= table_link(@conn, "Details", :details) %></th>
+            
+              <th><%= table_link(@conn, "Active", :active) %></th>
+            
+            <th><span>Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for retailer <- @retailers do %>
+            <tr>
+              
+                <td><%= retailer.name %></td>
+              
+                <td><%= retailer.api_key %></td>
+              
+                <td><%= retailer.details %></td>
+              
+                <td><%= retailer.active %></td>
+              
+              <td class="torch-actions">
+                <span><%= link "Show", to: DropAlleyWeb.Router.Helpers.retailer_path(@conn, :show, retailer) %></span>
+                <span><%= link "Edit", to: DropAlleyWeb.Router.Helpers.retailer_path(@conn, :edit, retailer) %></span>
+                <span><%= link "Delete", to: DropAlleyWeb.Router.Helpers.retailer_path(@conn, :delete, retailer), method: :delete, data: [confirm: "Are you sure?"] %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render Torch.PaginationView, "_pagination.html", assigns %>
+    <% else %>
+      <p class="torch-no-data">No Retailers match your search.</p>
+    <% end %>
+    </section>
+  </div>
+</section>

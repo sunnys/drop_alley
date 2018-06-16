@@ -12,6 +12,8 @@ defmodule DropAlley.Coherence.User do
     coherence_schema()
     coherence_assent_schema()
 
+    has_many :products, DropAlley.Store.Product, foreign_key: :owner_id
+    has_many :addresses, DropAlley.UserInformation.Address , foreign_key: :user_id
     timestamps()
   end
 

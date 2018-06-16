@@ -1,0 +1,52 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "Edit", to: DropAlleyWeb.Router.Helpers.address_path(@conn, :edit, @address), class: "torch-button" %>
+    <%= link "Back", to: DropAlleyWeb.Router.Helpers.address_path(@conn, :index), class: "torch-button" %>
+  </div>
+</section>
+
+<section id="torch-header-and-content">
+  <div class="torch-container">
+    <div class="header">
+      <h3>Address Details</h3>
+    </div>
+    <ul>
+      
+        <li>
+          <div class="torch-show-label">Active:</div>
+          <div class="torch-show-data"><%= @address.active %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Addr:</div>
+          <div class="torch-show-data"><%= @address.addr %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Street:</div>
+          <div class="torch-show-data"><%= @address.street %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">City:</div>
+          <div class="torch-show-data"><%= @address.city %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">State:</div>
+          <div class="torch-show-data"><%= @address.state %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Pincode:</div>
+          <div class="torch-show-data"><%= @address.pincode %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Contact no:</div>
+          <div class="torch-show-data"><%= @address.contact_no %></div>
+        </li>
+      
+    </ul>
+  </div>
+</section>

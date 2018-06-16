@@ -27,6 +27,12 @@
             <a href="/admin/users">User</a>
             <a href="/admin/user_identities">UserIdentity</a>
             <a href="/admin/invitations">Invitation</a>
+            <a href="/admin/products">Product</a>
+            <a href="/admin/buyers">Buyer</a>
+            <a href="/admin/addresses">Address</a>
+            <a href="/admin/return_consumers">Consumer</a>
+            <a href="/admin/retailers">Retailer</a>
+            <a href="/admin/partners">Partner</a>
           </nav>
         </div>
       </section>

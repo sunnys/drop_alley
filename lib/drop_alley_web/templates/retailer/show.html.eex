@@ -1,0 +1,37 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "Edit", to: DropAlleyWeb.Router.Helpers.retailer_path(@conn, :edit, @retailer), class: "torch-button" %>
+    <%= link "Back", to: DropAlleyWeb.Router.Helpers.retailer_path(@conn, :index), class: "torch-button" %>
+  </div>
+</section>
+
+<section id="torch-header-and-content">
+  <div class="torch-container">
+    <div class="header">
+      <h3>Retailer Details</h3>
+    </div>
+    <ul>
+      
+        <li>
+          <div class="torch-show-label">Name:</div>
+          <div class="torch-show-data"><%= @retailer.name %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Api key:</div>
+          <div class="torch-show-data"><%= @retailer.api_key %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Details:</div>
+          <div class="torch-show-data"><%= @retailer.details %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Active:</div>
+          <div class="torch-show-data"><%= @retailer.active %></div>
+        </li>
+      
+    </ul>
+  </div>
+</section>

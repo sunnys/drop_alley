@@ -34,6 +34,7 @@
             <a href="/admin/retailers">Retailer</a>
             <a href="/admin/partners">Partner</a>
             <a href="/admin/orders">Order</a>
+            <a href="/admin/carts">Cart</a>
           </nav>
         </div>
       </section>

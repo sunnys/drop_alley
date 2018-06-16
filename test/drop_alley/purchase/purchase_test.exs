@@ -168,4 +168,83 @@ defmodule DropAlley.PurchaseTest do
       assert %Ecto.Changeset{} = Purchase.change_or_cart(or_cart)
     end
   end
+
+  describe "carts" do
+    alias DropAlley.Purchase.Cart
+
+    @valid_attrs %{active: true, state: "some state"}
+    @update_attrs %{active: false, state: "some updated state"}
+    @invalid_attrs %{active: nil, state: nil}
+
+    def cart_fixture(attrs \\ %{}) do
+      {:ok, cart} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Purchase.create_cart()
+
+      cart
+    end
+
+    test "paginate_carts/1 returns paginated list of carts" do
+      for _ <- 1..20 do
+        cart_fixture()
+      end
+
+      {:ok, %{carts: carts} = page} = Purchase.paginate_carts(%{})
+
+      assert length(carts) == 15
+      assert page.page_number == 1
+      assert page.page_size == 15
+      assert page.total_pages == 2
+      assert page.total_entries == 20
+      assert page.distance == 5
+      assert page.sort_field == "inserted_at"
+      assert page.sort_direction == "desc"
+    end
+
+    test "list_carts/0 returns all carts" do
+      cart = cart_fixture()
+      assert Purchase.list_carts() == [cart]
+    end
+
+    test "get_cart!/1 returns the cart with given id" do
+      cart = cart_fixture()
+      assert Purchase.get_cart!(cart.id) == cart
+    end
+
+    test "create_cart/1 with valid data creates a cart" do
+      assert {:ok, %Cart{} = cart} = Purchase.create_cart(@valid_attrs)
+      assert cart.active == true
+      assert cart.state == "some state"
+    end
+
+    test "create_cart/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Purchase.create_cart(@invalid_attrs)
+    end
+
+    test "update_cart/2 with valid data updates the cart" do
+      cart = cart_fixture()
+      assert {:ok, cart} = Purchase.update_cart(cart, @update_attrs)
+      assert %Cart{} = cart
+      assert cart.active == false
+      assert cart.state == "some updated state"
+    end
+
+    test "update_cart/2 with invalid data returns error changeset" do
+      cart = cart_fixture()
+      assert {:error, %Ecto.Changeset{}} = Purchase.update_cart(cart, @invalid_attrs)
+      assert cart == Purchase.get_cart!(cart.id)
+    end
+
+    test "delete_cart/1 deletes the cart" do
+      cart = cart_fixture()
+      assert {:ok, %Cart{}} = Purchase.delete_cart(cart)
+      assert_raise Ecto.NoResultsError, fn -> Purchase.get_cart!(cart.id) end
+    end
+
+    test "change_cart/1 returns a cart changeset" do
+      cart = cart_fixture()
+      assert %Ecto.Changeset{} = Purchase.change_cart(cart)
+    end
+  end
 end

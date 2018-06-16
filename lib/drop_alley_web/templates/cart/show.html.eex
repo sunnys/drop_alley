@@ -1,0 +1,27 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "Edit", to: DropAlleyWeb.Router.Helpers.cart_path(@conn, :edit, @cart), class: "torch-button" %>
+    <%= link "Back", to: DropAlleyWeb.Router.Helpers.cart_path(@conn, :index), class: "torch-button" %>
+  </div>
+</section>
+
+<section id="torch-header-and-content">
+  <div class="torch-container">
+    <div class="header">
+      <h3>Cart Details</h3>
+    </div>
+    <ul>
+      
+        <li>
+          <div class="torch-show-label">State:</div>
+          <div class="torch-show-data"><%= @cart.state %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Active:</div>
+          <div class="torch-show-data"><%= @cart.active %></div>
+        </li>
+      
+    </ul>
+  </div>
+</section>

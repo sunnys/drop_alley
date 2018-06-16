@@ -1,0 +1,50 @@
+<%= form_for @changeset, @action, [multipart: true, id: "torch-form"], fn f -> %>
+  <fieldset class="torch-panel">
+    <legend>
+      <span>Details</span>
+    </legend>
+    <%= if @changeset.action do %>
+      <p class="torch-form-error">Oops, something went wrong! Please check the errors below.</p>
+    <% end %>
+  
+    <div class="torch-form-group">
+      <%= label f, :name, class: "control-label" %>
+      <%= text_input f, :name, class: "form-control" %>
+      <%= error_tag f, :name %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :description, class: "control-label" %>
+      <%= text_input f, :description, class: "form-control" %>
+      <%= error_tag f, :description %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :prprice, class: "control-label" %>
+      <%= number_input f, :prprice, step: "any", class: "form-control" %>
+      <%= error_tag f, :prprice %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :state, class: "control-label" %>
+      <%= text_input f, :state, class: "form-control" %>
+      <%= error_tag f, :state %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :inspection_process, class: "control-label" %>
+      <%= text_input f, :inspection_process, class: "form-control" %>
+      <%= error_tag f, :inspection_process %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :retailer_id, class: "control-label" %>
+      <%= text_input f, :retailer_id, class: "form-control" %>
+      <%= error_tag f, :retailer_id %>
+    </div>
+  
+    <div class="torch-submit-form">
+      <%= submit "Submit", class: "torch-submit-button" %>
+    </div>
+  </fieldset>
+<% end %>

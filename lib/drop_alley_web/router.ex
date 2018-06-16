@@ -2,7 +2,6 @@ defmodule DropAlleyWeb.Router do
   use DropAlleyWeb, :router
   use Coherence.Router         # Add this
   use CoherenceAssent.Router 
-  use PhoenixOauth2Provider.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -39,21 +38,6 @@ defmodule DropAlleyWeb.Router do
     plug Coherence.Authentication.Session
   end
 
-  pipeline :api_auth do
-    plug ExOauth2Provider.Plug.VerifyHeader, realm: "Bearer"
-    plug ExOauth2Provider.Plug.EnsureAuthenticated
-  end
-
-  pipeline :oauth_public do
-    plug :put_secure_browser_headers
-  end
-
-
-  scope "/" do
-    pipe_through :oauth_public
-    oauth_routes :public
-  end
-
   # Add this block
   scope "/" do
     pipe_through [:browser, :public]
@@ -65,7 +49,6 @@ defmodule DropAlleyWeb.Router do
   scope "/" do
     pipe_through [:browser, :protected]
     coherence_routes :protected
-    oauth_routes :protected
   end
 
   # Add all the public routes here
@@ -81,6 +64,12 @@ defmodule DropAlleyWeb.Router do
     resources "/users", UserController
     resources "/user_identities", UserIdentityController
     resources "/invitations", InvitationController
+    resources "/products", ProductController
+    resources "/buyers", BuyerController
+    resources "/addresses", AddressController
+    resources "/return_consumers", ReturnConsumerController
+    resources "/retailers", RetailerController
+    resources "/partners", PartnerController
   end
 
   # Add all the protected here to provide authentication.
@@ -94,4 +83,16 @@ defmodule DropAlleyWeb.Router do
       post "/sessions", SessionController, :create
       options "/sessions", SessionController, :options
   end
+
+  scope "/api/v1", DropAlleyWeb.API.V1 do
+    pipe_through :api_auth
+    resources "/users", UserController
+    resources "/products", ProductController
+    resources "/buyers", BuyerController
+    resources "/addresses", AddressController
+    resources "/return_consumers", ReturnConsumerController
+    resources "/retailers", RetailerController
+    resources "/partners", PartnerController
+  end
+
 end

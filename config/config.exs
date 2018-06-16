@@ -75,11 +75,11 @@ config :coherence_assent, :providers, [
   ]
 ]
 
-config :phoenix_oauth2_provider, PhoenixOauth2Provider,
-  module: DropAlley,
-  current_resource_owner: :current_user,
-  repo: DropAlley.Repo,
-  resource_owner: DropAlley.Coherencece.User
+# config :phoenix_oauth2_provider, PhoenixOauth2Provider,
+#   module: DropAlley,
+#   current_resource_owner: :current_user,
+#   repo: DropAlley.Repo,
+#   resource_owner: DropAlley.Coherencece.User
 
 ##### Guardian Configurations #########
 # Configures Elixir's Guardian package for authentication

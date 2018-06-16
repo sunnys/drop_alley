@@ -1,0 +1,56 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "Edit", to: DropAlleyWeb.Router.Helpers.product_path(@conn, :edit, @product), class: "torch-button" %>
+    <%= link "Back", to: DropAlleyWeb.Router.Helpers.product_path(@conn, :index), class: "torch-button" %>
+  </div>
+</section>
+
+<section id="torch-header-and-content">
+  <div class="torch-container">
+    <div class="header">
+      <h3>Product Details</h3>
+    </div>
+    <ul>
+      
+        <li>
+          <div class="torch-show-label">Name:</div>
+          <div class="torch-show-data"><%= @product.name %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Description:</div>
+          <div class="torch-show-data"><%= @product.description %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Prprice:</div>
+          <div class="torch-show-data"><%= @product.prprice %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">State:</div>
+          <div class="torch-show-data"><%= @product.state %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Inspection process:</div>
+          <div class="torch-show-data"><%= @product.inspection_process %></div>
+        </li>
+      
+        <li>
+          <div class="torch-show-label">Retailer:</div>
+          <div class="torch-show-data"><%= @product.retailer_id %></div>
+        </li>
+
+        <li>
+          <div class="torch-show-label">Return Code:</div>
+          <div class="torch-show-data"><%= @product.return_code %></div>
+        </li>
+
+        <li>
+          <div class="torch-show-label">Return Consumer:</div>
+          <div class="torch-show-data"><%= @product.return_consumer_id %></div>
+        </li>
+    </ul>
+  </div>
+</section>

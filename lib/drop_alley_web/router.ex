@@ -85,6 +85,9 @@ defmodule DropAlleyWeb.Router do
     pipe_through :api
       post "/sessions", SessionController, :create
       options "/sessions", SessionController, :options
+
+      post "/auth/:provider", SessionController, :oauth_create
+      options "/auth/:provider", SessionController, :options
   end
 
   scope "/api/v1", DropAlleyWeb.API.V1 do

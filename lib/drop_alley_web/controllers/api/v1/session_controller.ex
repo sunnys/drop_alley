@@ -21,6 +21,24 @@ defmodule DropAlleyWeb.API.V1.SessionController do
     end
   end
 
+  def oauth_create(conn, params) do
+    case DropAlley.Auth.authenticate_user(params) do
+        {:ok, user} ->
+            {:ok, token, claims} = DropAlley.Auth.generate_token(user)
+            exp = Map.get(claims, "exp") #Extract expiry from claims to add as a response header
+            conn
+            |> put_status(:created)
+            |> put_resp_header("authorization", "bearer #{token}")
+            |> put_resp_header("x-expires", "#{exp}")
+            |> render("show.json", user: user, jwt: token)
+
+        {:error, _reason} ->
+            conn
+            |> put_status(:unauthorized)
+            |> render("error.json")
+    end
+  end
+
   def delete(conn, _) do
       conn
       |> DropAlley.Auth.logout()

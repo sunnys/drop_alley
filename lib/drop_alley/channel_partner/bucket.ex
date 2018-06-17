@@ -22,6 +22,6 @@ defmodule DropAlley.ChannelPartner.Bucket do
   def changeset(bucket, attrs) do
     bucket
     |> cast(attrs, [:state, :active, :assigned_time, :pickup_time, :pick_up_location, :drop_time, :drop_location, :partner_id, :product_id])
-    |> validate_required([:state, :active, :assigned_time, :pickup_time, :drop_time])
+    |> validate_required([:state, :active, :assigned_time, :pickup_time,   :drop_time])
   end
 end

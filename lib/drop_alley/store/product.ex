@@ -1,5 +1,6 @@
 defmodule DropAlley.Store.Product do
   use Ecto.Schema
+  use Arc.Ecto.Schema
   import Ecto.Changeset
 
 
@@ -10,6 +11,7 @@ defmodule DropAlley.Store.Product do
     field :prprice, :float
     field :state, :string
     field :return_code, :string
+    field :image, DropAlley.ImageUploader.Type
     
     
     belongs_to :owner, DropAlley.Coherence.User, foreign_key: :owner_id
@@ -19,6 +21,8 @@ defmodule DropAlley.Store.Product do
     belongs_to :cart, DropAlley.Purchase.Order, foreign_key: :cart_id
     
     many_to_many :selling_partners, DropAlley.ChannelPartner.Partner , join_through: "buckets"
+    has_many :product_images, DropAlley.Store.ProductImage
+    has_many :product_reviews, DropAlley.Store.ProductReview
 
     timestamps()
   end
@@ -27,6 +31,7 @@ defmodule DropAlley.Store.Product do
   def changeset(product, attrs) do
     product
     |> cast(attrs, [:name, :description, :prprice, :state, :inspection_process, :owner_id, :retailer_id, :return_code, :return_consumer_id, :order_id, :cart_id])
+    |> cast_attachments(attrs, [:image])
     |> validate_required([:name, :description, :prprice, :state, :retailer_id])
     |> put_return_code
   end

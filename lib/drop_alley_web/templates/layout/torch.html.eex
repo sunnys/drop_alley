@@ -36,6 +36,8 @@
             <a href="/admin/orders">Order</a>
             <a href="/admin/carts">Cart</a>
             <a href="/admin/buckets">Bucket</a>
+            <a href="/admin/product_images">Product Image</a>
+            <a href="/admin/product_reviews">Product Review</a>
           </nav>
         </div>
       </section>

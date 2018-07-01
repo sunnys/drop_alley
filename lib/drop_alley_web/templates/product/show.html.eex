@@ -51,6 +51,11 @@
           <div class="torch-show-label">Return Consumer:</div>
           <div class="torch-show-data"><%= @product.return_consumer_id %></div>
         </li>
+
+        <li>
+          <div class="torch-show-label">Image:</div>
+          <div class="torch-show-data"><img src="<%= DropAlley.ImageUploader.url({@product.image, @product})%>"></div>
+        </li>
     </ul>
   </div>
 </section>

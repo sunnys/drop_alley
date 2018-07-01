@@ -16,6 +16,9 @@ defmodule DropAlleyWeb.Endpoint do
     from: {:torch, "priv/static"},
     gzip: true,
     cache_control_for_etags: "public, max-age=86400"
+
+  plug Plug.Static, 
+    at: "/uploads", from: Path.expand('./uploads'), gzip: false
   
 
   # Code reloading can be explicitly enabled under the

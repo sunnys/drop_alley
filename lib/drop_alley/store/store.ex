@@ -91,6 +91,8 @@ Raises `Ecto.NoResultsError` if the Product does not exist.
 """
 def get_product!(id), do: Repo.get!(Product, id)
 
+def get_product_with_detail!(id), do: Repo.get!(Product, id) |> Repo.preload([:product_images, :product_reviews])
+
 @doc """
 Gets a single product by return code.
 

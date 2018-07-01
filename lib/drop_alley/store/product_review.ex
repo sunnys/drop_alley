@@ -18,7 +18,7 @@ defmodule DropAlley.Store.ProductReview do
   @doc false
   def changeset(product_review, attrs) do
     product_review
-    |> cast(attrs, [:name, :rating, :comment])
+    |> cast(attrs, [:name, :rating, :comment, :image, :product_id])
     |> cast_attachments(attrs, [:image])
     |> validate_required([:name, :rating])
   end

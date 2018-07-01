@@ -14,7 +14,7 @@ defmodule DropAlley.Store.ProductImage do
   @doc false
   def changeset(product_image, attrs) do
     product_image
-    |> cast(attrs, [:image])
+    |> cast(attrs, [:image, :product_id])
     |> cast_attachments(attrs, [:image])
   end
 end

@@ -57,7 +57,7 @@ defmodule RetailerSeed do
     end
 
     def create_product(r) do
-        Product.changeset(%Product{}, %{name: Faker.Commerce.product, description: Faker.Lorem.sentence, prprice: Enum.random(1..100), price: Enum.random(1..100), state: Faker.Address.street_address, retailer_id: r.id}) |> Repo.insert!
+        Product.changeset(%Product{}, %{image: FakerElixir.Avatar.robohash, name: Faker.Commerce.product, description: Faker.Lorem.sentence, prprice: Enum.random(1..100), price: Enum.random(1..100), state: Faker.Address.street_address, retailer_id: r.id}) |> Repo.insert!
     end
 
     def create_product_images(p) do

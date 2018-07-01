@@ -12,6 +12,10 @@ defmodule DropAlley.Store.Product do
     field :state, :string
     field :return_code, :string
     field :image, DropAlley.ImageUploader.Type
+    field :availability, :boolean
+    field :price, :float
+    field :size, :string
+    field :detail, :map
     
     
     belongs_to :owner, DropAlley.Coherence.User, foreign_key: :owner_id

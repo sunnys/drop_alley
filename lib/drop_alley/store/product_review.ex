@@ -8,6 +8,7 @@ defmodule DropAlley.Store.ProductReview do
     field :image, DropAlley.ImageUploader.Type
     field :name, :string
     field :rating, :integer
+    field :comment, :string
     # field :product_id, :id
     belongs_to :product, DropAlley.Store.Product, foreign_key: :product_id
 
@@ -17,7 +18,7 @@ defmodule DropAlley.Store.ProductReview do
   @doc false
   def changeset(product_review, attrs) do
     product_review
-    |> cast(attrs, [:name, :rating])
+    |> cast(attrs, [:name, :rating, :comment])
     |> cast_attachments(attrs, [:image])
     |> validate_required([:name, :rating])
   end

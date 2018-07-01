@@ -21,8 +21,8 @@ defmodule DropAlley.Store.Product do
     belongs_to :cart, DropAlley.Purchase.Order, foreign_key: :cart_id
     
     many_to_many :selling_partners, DropAlley.ChannelPartner.Partner , join_through: "buckets"
-    has_many :product_images, DropAlley.Store.ProductImage
-    has_many :product_reviews, DropAlley.Store.ProductReview
+    has_many :product_images, DropAlley.Store.ProductImage, on_delete: :delete_all
+    has_many :product_reviews, DropAlley.Store.ProductReview, on_delete: :delete_all
 
     timestamps()
   end

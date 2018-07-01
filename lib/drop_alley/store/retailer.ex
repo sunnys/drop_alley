@@ -10,14 +10,14 @@ defmodule DropAlley.Store.Retailer do
     field :name, :string
     # field :user_id, :id
     belongs_to :user, DropAlley.Coherence.User, foreign_key: :user_id
-    has_many :products, DropAlley.Store.Product, foreign_key: :retailer_id
+    has_many :products, DropAlley.Store.Product, foreign_key: :retailer_id, on_delete: :delete_all
     timestamps()
   end
 
   @doc false
   def changeset(retailer, attrs) do
     retailer
-    |> cast(attrs, [:name, :api_key, :details, :active, :user_id, :retailer_id])
+    |> cast(attrs, [:name, :api_key, :details, :active, :user_id])
     |> validate_required([:name, :api_key, :active])
   end
 end

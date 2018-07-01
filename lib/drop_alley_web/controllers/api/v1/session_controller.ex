@@ -22,7 +22,7 @@ defmodule DropAlleyWeb.API.V1.SessionController do
   end
 
   def oauth_create(conn, params) do
-    case DropAlley.Auth.authenticate_user(params) do
+    case DropAlley.Auth.authenticate_user_omniauth(%{"provider" => params["provider"], "profile" => params["profile"]}) do 
         {:ok, user} ->
             {:ok, token, claims} = DropAlley.Auth.generate_token(user)
             exp = Map.get(claims, "exp") #Extract expiry from claims to add as a response header

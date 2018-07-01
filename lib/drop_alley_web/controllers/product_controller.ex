@@ -65,4 +65,16 @@ defmodule DropAlleyWeb.ProductController do
     |> put_flash(:info, "Product deleted successfully.")
     |> redirect(to: DropAlleyWeb.Router.Helpers.product_path(conn, :index))
   end
+
+  def product_index(conn, params) do
+    conn = put_layout conn, {DropAlleyWeb.LayoutView, "product.html"}
+    case Store.paginate_products(params) do
+      {:ok, assigns} ->
+        render(conn, "product_index.html", assigns)
+      error ->
+        conn
+        |> put_flash(:error, "There was an error rendering Products. #{inspect(error)}")
+        |> redirect(to: DropAlleyWeb.Router.Helpers.product_path(conn, :index))
+    end
+  end
 end

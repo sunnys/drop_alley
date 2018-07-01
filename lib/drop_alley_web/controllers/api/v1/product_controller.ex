@@ -38,4 +38,11 @@ defmodule DropAlleyWeb.API.V1.ProductController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  def get_product_by_returning_code(conn, %{"return_code" => return_code}) do
+    product = Store.get_product_by_return_code!(return_code)
+    with {:ok, %Product{} = product} <- Store.update_product(product, %{}) do
+      render(conn, "show.json", product: product)
+    end
+  end
 end

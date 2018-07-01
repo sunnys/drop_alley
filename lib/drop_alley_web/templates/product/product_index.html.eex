@@ -1,0 +1,493 @@
+<div class="container-fluid limited">
+  <div class="row">
+
+    <!-- Filter Widget -->
+    <div class="col-lg-3 col-md-4 mb-3">
+      <button class="btn btn-light btn-block dropdown-toggle d-md-none" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+        Filter Data
+      </button>
+      <div class="collapse d-md-block" id="collapseFilter">
+        <div class="filter-sidebar mt-3 mt-md-0">
+          <div class="title"><span>Filters</span></div>
+          <ul>
+              <li>Categories: Men's Shoes <a href="#" class="remove-filter"><i class="material-icons md-1">close</i></a></li>
+              <li>Availability: In Stock <a href="#" class="remove-filter"><i class="material-icons md-1">close</i></a></li>
+              <li>Brand: Clarks <a href="#" class="remove-filter"><i class="material-icons md-1">close</i></a></li>
+          </ul>
+        </div>
+        <div class="filter-sidebar">
+          <div class="title"><span>Categories</span></div>
+          <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+            <div class="list-group-collapse sub-men">
+              <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Shoes <small class="text-muted">(60)</small></a>
+              <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
+                <div class="list-group">
+                  <a href="shop.html" class="list-group-item list-group-item-action active">Men's Shoes <small class="text-muted">(10)</small></a>
+                  <a href="shop.html" class="list-group-item list-group-item-action">Moccasin <small class="text-muted">(11)</small></a>
+                  <a href="shop.html" class="list-group-item list-group-item-action">Sneakers <small class="text-muted">(12)</small></a>
+                  <a href="shop.html" class="list-group-item list-group-item-action">Men's Sandals <small class="text-muted">(13)</small></a>
+                  <a href="shop.html" class="list-group-item list-group-item-action">Ankle Boots <small class="text-muted">(14)</small></a>
+                </div>
+              </div>
+            </div>
+            <div class="list-group-collapse sub-men">
+              <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Accessories <small class="text-muted">(45)</small></a>
+              <div class="collapse" id="sub-men2" data-parent="#list-group-men">
+                <div class="list-group">
+                  <a href="shop.html" class="list-group-item list-group-item-action">Belts <small class="text-muted">(10)</small></a>
+                  <a href="shop.html" class="list-group-item list-group-item-action">Backpacks <small class="text-muted">(15)</small></a>
+                  <a href="shop.html" class="list-group-item list-group-item-action">Wallets <small class="text-muted">(20)</small></a>
+                  <a href="shop.html" class="list-group-item list-group-item-action">Jackets <small class="text-muted">(20)</small></a>    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="filter-sidebar">
+          <div class="title"><span>Brand</span></div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="filterBrand1" checked="checked">
+            <label class="custom-control-label" for="filterBrand1">Clarks</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="filterBrand2">
+            <label class="custom-control-label" for="filterBrand2">Lotto</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="filterBrand3">
+            <label class="custom-control-label" for="filterBrand3">Camper</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="filterBrand3">
+            <label class="custom-control-label" for="filterBrand3">Londons Life</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="filterBrand3">
+            <label class="custom-control-label" for="filterBrand3">Olympus</label>
+          </div>    
+        </div>
+        
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-12">
+            <div class="filter-sidebar">
+              <div class="title"><span>Price Range</span></div>
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Min : $</span>
+                </div>
+                <input type="text" class="form-control" name="min-price" id="min-price" value="" />
+                <div class="input-group-append input-group-prepend">
+                  <span class="input-group-text">Max : $</span>
+                </div>
+                <input type="text" class="form-control" name="max-price" id="max-price" value="" />
+              </div>
+              <div class="price-range">
+                <div id="price-range-slider"></div>
+              </div>
+            </div>
+          </div>
+          
+        </div>         
+        </div>
+    </div>
+    <!-- /Filter Widget -->
+
+    <div class="col-lg-9 col-md-8">
+      <div class="title"><span>Men's Shoes</span></div>
+
+      <!-- Sorting Bar -->
+      <div class="row mb-3">
+        <div class="mb-2 col-12 col-sm-12 text-center text-sm-right">
+          <span>Sort by</span>
+          <select name="sortby" class="custom-select ml-2 w-auto custom-select-sm">
+            <option value="popularity">Popularity</option>
+            <option value="best-selling">Best Selling</option>
+            <option value="low">Low Price &rarr; High Price</option>
+            <option value="hight">High Price &rarr; High Price</option>
+          </select>
+        </div>
+        
+      </div>
+      <!-- /Sorting Bar -->
+
+      <div class="row compact">
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/shoe1_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="Burberry The Plymouth Duffle Coat">Lotto Grey Sneakers</a></div>
+              <ul class="card-text list-inline pr-2">
+                <li class="list-inline-item"><span class="price">€13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+              </ul>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/shoe2_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="Fendi Bugs Sweater">Fendi Bugs Sweater</a></div>
+              <ul class="card-text list-inline">
+                <li class="list-inline-item"><span class="price">$13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+                <li class="list-inline-item d-none d-sm-inline-block"><span class="badge badge-theme">10% OFF</span></li>
+              </ul>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/shoe3_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="Alexander McQueen Classic Piqué Polo Shirt">Alexander McQueen Classic Piqué Polo Shirt</a></div>
+              <ul class="card-text list-inline">
+                <li class="list-inline-item"><span class="price">$13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+              </ul>
+              <div class="attribute attribute-right">
+                <span class="badge badge-info font-weight-normal">10% OFF</span>
+              </div>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-xl-3 d-block d-sm-none d-md-block d-lg-none d-xl-block">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/shoe4_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="MCQ Alexander McQueen Swallow Badge Polo Shirt">MCQ Alexander McQueen Swallow Badge Polo Shirt</a></div>
+              <ul class="card-text list-inline">
+                <li class="list-inline-item"><span class="price">$13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+                <li class="list-inline-item d-none d-sm-inline-block"><span class="badge badge-secondary">-10%</span></li>
+              </ul>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/shoe5_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="Burberry The Plymouth Duffle Coat">Burberry The Plymouth Duffle Coat</a></div>
+              <ul class="card-text list-inline pr-2">
+                <li class="list-inline-item"><span class="price">$13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+              </ul>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/shoe6_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="Fendi Bugs Sweater">Fendi Bugs Sweater</a></div>
+              <ul class="card-text list-inline">
+                <li class="list-inline-item"><span class="price">$13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+                <li class="list-inline-item d-none d-sm-inline-block"><span class="badge badge-theme">10% OFF</span></li>
+              </ul>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/shoe8_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="Alexander McQueen Classic Piqué Polo Shirt">Alexander McQueen Classic Piqué Polo Shirt</a></div>
+              <ul class="card-text list-inline">
+                <li class="list-inline-item"><span class="price">$13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+              </ul>
+              <div class="attribute attribute-right">
+                <span class="badge badge-info font-weight-normal">10% OFF</span>
+              </div>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-xl-3 d-block d-sm-none d-md-block d-lg-none d-xl-block">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/belt1_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="MCQ Alexander McQueen Swallow Badge Polo Shirt">MCQ Alexander McQueen Swallow Badge Polo Shirt</a></div>
+              <ul class="card-text list-inline">
+                <li class="list-inline-item"><span class="price">$13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+                <li class="list-inline-item d-none d-sm-inline-block"></li>
+              </ul>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/bag1_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="Burberry The Plymouth Duffle Coat">Burberry The Plymouth Duffle Coat</a></div>
+              <ul class="card-text list-inline pr-2">
+                <li class="list-inline-item"><span class="price">$13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+              </ul>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/access1_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="Fendi Bugs Sweater">Fendi Bugs Sweater</a></div>
+              <ul class="card-text list-inline">
+                <li class="list-inline-item"><span class="price">$13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+                <li class="list-inline-item d-none d-sm-inline-block"><span class="badge badge-theme">10% OFF</span></li>
+              </ul>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4 col-xl-3">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/sandal1_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="Alexander McQueen Classic Piqué Polo Shirt">Alexander McQueen Classic Piqué Polo Shirt</a></div>
+              <ul class="card-text list-inline">
+                <li class="list-inline-item"><span class="price">$13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+              </ul>
+              <div class="attribute attribute-right">
+                <span class="badge badge-info font-weight-normal">10% OFF</span>
+              </div>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-xl-3 d-block d-sm-none d-md-block d-lg-none d-xl-block">
+          <div class="card card-product">
+            <a href="detail.html"><img class="card-img-top" src="img/product/shoe2_1.jpg" alt="Card image cap"></a>
+            <div class="card-body">
+              <div class="card-title"><a href="detail.html" title="MCQ Alexander McQueen Swallow Badge Polo Shirt">MCQ Alexander McQueen Swallow Badge Polo Shirt</a></div>
+              <ul class="card-text list-inline">
+                <li class="list-inline-item"><span class="price">$13.50</span></li>
+                <li class="list-inline-item"><del class="text-muted small">$15.00</del></li>
+                <li class="list-inline-item d-none d-sm-inline-block"></li>
+              </ul>
+              <div class="action">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                  
+                  <button class="btn btn-theme">Try & Buy</button>
+                  
+                </div>
+              </div>
+              <div class="small-action d-block d-md-none">
+                <div class="btn-group dropup">
+                  <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>
+                  <div class="dropdown-menu dropdown-menu-right fadeIn">
+                    <a class="dropdown-item" href="#"><i class="material-icons">add_shopping_cart</i> BUY</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">favorite_border</i> Wishlist</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons">compare_arrows</i> Compare</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <nav aria-label="Product Listing Page" class="d-flex justify-content-center mt-3">
+            <ul class="pagination">
+              <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">&laquo;</a></li>
+              <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">&lsaquo;</a></li>
+              <li class="page-item active"><span class="page-link">1</span></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">&rsaquo;</a></li>
+              <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -55,6 +55,9 @@ defmodule DropAlleyWeb.Router do
   scope "/", DropAlleyWeb do
     pipe_through [:browser, :public]
     get "/", PageController, :index
+    get "/products", ProductController, :product_index, as: :product_index
+    get "/products/:id", ProductController, :product_show, as: :product_show
+    get "/products/:id/checkout", ProductController, :product_checkout, as: :product_checkout
     # Add public routes below
   end
 
@@ -73,6 +76,8 @@ defmodule DropAlleyWeb.Router do
     resources "/orders", OrderController
     resources "/carts", CartController
     resources "/buckets", BucketController
+    resources "/product_images", ProductImageController
+    resources "/product_reviews", ProductReviewController
   end
 
   # Add all the protected here to provide authentication.
@@ -85,6 +90,9 @@ defmodule DropAlleyWeb.Router do
     pipe_through :api
       post "/sessions", SessionController, :create
       options "/sessions", SessionController, :options
+
+      post "/auth/:provider", SessionController, :oauth_create
+      options "/auth/:provider", SessionController, :options
   end
 
   scope "/api/v1", DropAlleyWeb.API.V1 do
@@ -99,6 +107,8 @@ defmodule DropAlleyWeb.Router do
     resources "/orders", OrderController
     resources "/carts", CartController
     resources "/buckets", BucketController
+    resources "/product_images", ProductImageController
+    resources "/product_reviews", ProductReviewController
   end
 
 end

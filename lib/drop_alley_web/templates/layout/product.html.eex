@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
+    <title>Grupo Bravo - Try & Buy Shopping</title>
+
+    <!-- Required css -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" href="/css/swiper.min.css">
+    <link rel="stylesheet" href="/css/nouislider.min.css">
+
+    <!-- Template css -->
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+
+    <!-- Top Header -->
+    <div class="top-header">
+      <div class="container-fluid limited">
+        <div class="row">
+          <div class="col">
+            <div class="d-flex justify-content-between">
+              
+              <nav class="nav ml-auto">
+                <a class="nav-link" href="#"><i class="material-icons"></i> </a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Top Header -->
+
+    <!-- Middle Header -->
+    <div class="middle-header" id="middle-header">
+      <div class="container-fluid limited position-relative">
+
+        <div class="input-search-wrapper invisible">
+          <form action="#" method="post">
+            <input type="text" class="form-control" id="input-search" placeholder="Search" aria-label="Search">
+            <span class="rounded-circle bg-dark text-white toggle-search"><i class="small material-icons">close</i></span>
+            <input type="submit" hidden="hidden">
+          </form>
+        </div>
+
+        <div class="row">
+
+          <div class="col-4 d-flex d-md-none align-items-center">
+            <a href="#" class="text-dark" data-toggle="modal" data-target="#menuModal"><i class="material-icons md-2">menu</i></a>
+          </div>
+          <div class="col-4 col-md-auto d-flex align-items-center justify-content-center justify-content-md-start">
+            <a href="https://gbbravo.com" class="logo">
+              <img src="/img/grupologo.png" alt="GrupoBravo" class="d-none d-md-block">
+              <img src="/img/grupologo.png" alt="GrupoBravo" class="d-block d-md-none">
+            </a>
+          </div>
+          <div class="col d-none d-md-block position-static">
+            <nav class="navbar nav main-nav justify-content-center justify-content-md-start position-static p-0">
+              <a class="nav-link" href="/products">HOME</a>
+              <a class="nav-link" href="https://gbbravo.com/tiendas" target="_blank">STORES</a>              
+            </nav>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- /Middle Header -->
+    <div class="breadcrumb-container">
+      <div class="container-fluid limited">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">Try & Buy Shopping</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <main role="main">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+    <!-- Modal Menu -->
+    <div class="modal fade modal-menu" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="menuModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="menuModalLabel">
+              <a href="https://gbbravo.com" class="d-inline-block"><img src="/img/grupologo.png" alt="Mimity" height="35"></a>
+            </h5>
+            <button type="buttonhttps://gbbravo.com" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="list-group list-group-no-border" id="list-menu" data-children=".list-submenu">
+              <a href="index.html" class="list-group-item list-group-item-action">HOME</a>  
+              <a href="https://gbbravo.com/tiendas" target="_blank" class="list-group-item list-group-item-action">STORES</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Cart -->
+    <div class="modal fade modal-cart" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="cartModalLabel">You have 4 items in your bag</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="media">
+              <a href="detail.html" class="mr-2"><img class="img-fluid rounded" src="/img/product/polo1-small.jpg" width="70" alt="Generic placeholder image"></a>
+              <div class="media-body">
+                <div><a href="detail.html" class="text-dark">Burberry The Plymouth Duffle Coat</a></div>
+                <span class="text-secondary"><span class="mr-3">x1</span>$50.00</span>
+                <button class="close text-danger"><i class="material-icons">close</i></button>
+              </div>
+            </div>
+            <div class="media">
+              <a href="detail.html" class="mr-2"><img class="img-fluid rounded" src="/img/product/polo2-small.jpg" width="70" alt="Generic placeholder image"></a>
+              <div class="media-body">
+                <div><a href="detail.html" class="text-dark">Fendi Bugs Sweater</a></div>
+                <span class="text-secondary"><span class="mr-3">x1</span>$50.00</span>
+                <button class="close text-danger"><i class="material-icons">close</i></button>
+              </div>
+            </div>
+            <div class="media">
+              <a href="detail.html" class="mr-2"><img class="img-fluid rounded" src="/img/product/polo3-small.jpg" width="70" alt="Generic placeholder image"></a>
+              <div class="media-body">
+                <div><a href="detail.html" class="text-dark">Alexander McQueen Classic Piqué Polo Shirt</a></div>
+                <span class="text-secondary"><span class="mr-3">x1</span>$50.00</span>
+                <button class="close text-danger"><i class="material-icons">close</i></button>
+              </div>
+            </div>
+            <div class="media">
+              <a href="detail.html" class="mr-2"><img class="img-fluid rounded" src="/img/product/polo4-small.jpg" width="70" alt="Generic placeholder image"></a>
+              <div class="media-body">
+                <div><a href="detail.html" class="text-dark">MCQ Alexander McQueen Swallow Badge Polo Shirt</a></div>
+                <span class="text-secondary"><span class="mr-3">x1</span>$50.00</span>
+                <button class="close text-danger"><i class="material-icons">close</i></button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-center border-top-0">
+            <div class="btn-group" role="group" aria-label="Cart Action">
+              <a href="cart.html" class="btn btn-outline-theme" role="button">VIEW CART</a>
+              <a href="checkout.html" class="btn btn-theme" role="button">CHECKOUT</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Login -->
+    <div class="modal fade modal-login" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Enter Your Information</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="inputUsername">Username</label>
+              <input type="text" class="form-control" id="inputUsername" placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword">Password</label>
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+              <div class="text-right">
+                <a href="#" class="text-secondary"><small>Forgot Password ?</small></a>
+              </div>
+            </div>
+            <div class="custom-control custom-checkbox mt-1">
+              <input type="checkbox" class="custom-control-input" id="checkRemember">
+              <label class="custom-control-label" for="checkRemember">Remember me</label>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <div class="btn-group" role="group" aria-label="Login Action">
+              <a href="register.html" class="btn btn-outline-theme" role="button">I want to Sign Up</a>
+              <button type="submit" class="btn btn-theme">SIGN IN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    <!-- Modal Quikview -->
+    <div class="modal fade modal-quickview" id="quickviewModal" tabindex="-1" role="dialog" aria-labelledby="quickviewModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title font-weight-normal" id="quickviewModalLabel"><a href="detail.html" class="text-dark">U.S. Polo Assn. Green Solid Slim Fit</a></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body px-0">
+            <div class="container-fluid">
+              <div class="row compact">
+                <div class="col col-sm-6">
+                  <div class="swiper-container" id="quickview-slider">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide"><img src="/img/product/polo1.jpg" alt="image" class="w-100"></div>
+                      <div class="swiper-slide"><img src="/img/product/polo2.jpg" alt="image" class="w-100"></div>
+                      <div class="swiper-slide"><img src="/img/product/polo3.jpg" alt="image" class="w-100"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev d-none d-sm-flex" id="quickview-prev"><i class="material-icons md-3">keyboard_arrow_left</i></div>
+                    <div class="swiper-button-next d-none d-sm-flex" id="quickview-next"><i class="material-icons md-3">keyboard_arrow_right</i></div>
+                  </div>
+                </div>
+                <div class="col col-sm-6">
+                  <div class="list-detail">
+                    <div>Price</div>
+                    <div>
+                      <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><span class="price">$13.50</span></li>
+                        <li class="list-inline-item"><del class="small text-muted">$15.00</del></li>
+                        <li class="list-inline-item d-none d-sm-inline-block"><span class="badge badge-secondary">-10%</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="list-detail">
+                    <div>Quantity</div>
+                    <div>
+                      <div class="input-group input-group-sm input-group-qty">
+                        <div class="input-group-prepend"><button class="btn btn-light btn-down" type="button"><i class="material-icons">keyboard_arrow_down</i></button></div>
+                        <input type="text" class="form-control text-center border-light" aria-label="Quantity" value="1" data-min="1" data-max="10">
+                        <div class="input-group-append"><button class="btn btn-light btn-up" type="button"><i class="material-icons">keyboard_arrow_up</i></button></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-detail">
+                    <div>Size</div>
+                    <div>
+                      <select name="size" class="custom-select custom-select-sm w-50">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="list-detail">
+                    <div>Checkbox</div>
+                    <div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="quickviewCheck">
+                        <label class="custom-control-label" for="quickviewCheck">Check this</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-detail">
+                    <div>Radio Options</div>
+                    <div>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="quickviewOption1" name="quickview-option" class="custom-control-input">
+                        <label class="custom-control-label" for="quickviewOption1">Yes</label>
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="quickviewOption2" name="quickview-option" class="custom-control-input">
+                        <label class="custom-control-label" for="quickviewOption2">No</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-detail">
+                    <div class="btn-group btn-group-sm w-100" role="group" aria-label="quickview action">
+                      <button class="btn btn-theme w-75"><i class="material-icons">add_circle</i> Add to Cart</button>
+                      <button class="btn btn-outline-theme w-25"><i class="material-icons">favorite</i></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container-fluid limited">
+        <div class="row">
+          <div class="col-6 col-lg-3">
+            <h6>Shop</h6>
+            <div class="list-group list-group-flush">
+              <a href="contact.html" class="list-group-item list-group-item-action">Help / Support</a>
+              <a href="about.html" class="list-group-item list-group-item-action">About Us</a>
+              <a href="faq.html" class="list-group-item list-group-item-action">FAQ</a>
+              <a href="#" class="list-group-item list-group-item-action">Coupons</a>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <h6>Our Policies</h6>
+            <div class="list-group list-group-flush">
+              <a href="#" class="list-group-item list-group-item-action">Terms &amp; Conditions</a>
+              <a href="#" class="list-group-item list-group-item-action">Privacy Policy</a>
+              <a href="#" class="list-group-item list-group-item-action">Payment Method</a>
+              <a href="#" class="list-group-item list-group-item-action">Shipping Method</a>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    <!-- /Footer -->
+
+    <!-- Copyright -->
+    <div class="copyright">
+      Copyright © 2018 GrupoBravo All right reserved
+    </div>
+    <!-- /Copyright -->
+
+    <a href="#top" class="back-top text-center" id="back-top">
+      <i class="material-icons">expand_less</i>
+    </a>
+    <!-- Required js -->
+    <script src="<%= static_path(@conn, "/js/jquery.min.js") %>"></script>
+    <script src="<%= static_path(@conn, "/bootstrap/js/bootstrap.bundle.min.js")%>"></script>
+    <script src="<%= static_path(@conn, "/js/typeahead.bundle.min.js")%>"></script>
+
+    <!-- Plugins js -->
+    <script src="<%= static_path(@conn, "/js/swiper.min.js")%>"></script>
+    <script src="<%= static_path(@conn, "/js/nouislider.min.js")%>"></script>
+
+    <!-- Template JS -->
+    <script src="<%= static_path(@conn, "/js/script.min.js")%>"></script>
+
+  </body>
+</html>

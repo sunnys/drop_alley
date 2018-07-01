@@ -9,6 +9,22 @@ defmodule DropAlley.Auth do
   alias DropAlley.Coherence.User
   alias DropAlley.Repo
 
+  def authenticate_user_omniauth(%{"provider" => provider, "profile" => profile}) do
+    user_identity =  DropAlley.Account.UserIdentity |> Repo.get_by(%{uid: profile["googleId"]})
+    IO.inspect user_identity
+    case user_identity do
+      nil ->
+        changeset = User.changeset(%User{}, %{email: profile[:email]})
+        user = Repo.insert(changeset)
+        DropAlley.Account.UserIdentity.changeset(%DropAlley.Account.UserIdentity{}, %{provider: provider, uid: profile["googleId"], user_id: user.id})
+        |> Repo.insert
+        {:ok, user}
+      res ->
+        user = Repo.get(User, res.user_id)
+        {:ok, user}
+    end
+  end
+
   def authenticate_user(%{"email" => email, "password" => password}) do
     query = Ecto.Query.from(u in User, where: u.email == ^email)
     Repo.one(query)

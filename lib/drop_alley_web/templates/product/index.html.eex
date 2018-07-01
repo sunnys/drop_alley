@@ -53,6 +53,8 @@
               <th><%= table_link(@conn, "Inspection process", :inspection_process) %></th>
 
               <th><%= table_link(@conn, "Retailer", :retailer_id) %></th>
+
+              <th><%= table_link(@conn, "Image", :image) %></th>
             
             <th><span>Actions</span></th>
           </tr>
@@ -72,6 +74,8 @@
                 <td><%#= product.inspection_process %></td>
 
                 <td><%= product.retailer_id %></td>
+
+                <td><img src="<%= DropAlley.ImageUploader.url({product.image, product})%>"></td>
               
               <td class="torch-actions">
                 <span><%= link "Show", to: DropAlleyWeb.Router.Helpers.product_path(@conn, :show, product) %></span>

@@ -1,0 +1,167 @@
+<div class="container-fluid limited">
+    <div class="row">
+    <div class="col-12 d-block d-md-none">
+        <div class="title"><span><%= @product.name %></span></div>
+    </div>
+    <div class="col-xl-4 col-lg-5 col-md-6">
+        <div class="swiper-container border rounded mb-2" id="detail-slider">
+        <div class="swiper-wrapper">
+            <%= for pi <- @product.product_images do %>
+                <div class="swiper-slide"><img src="<%= DropAlley.ImageUploader.url({pi.image, pi})%>" class="w-100" data-width="1025" data-height="1400" alt="Product"></div>
+            <% end %>
+        </div>
+        <a href="#zoom" class="btn-zoom"><i class="material-icons md-2">zoom_in</i></a>
+        </div>
+        <div class="swiper-container detail-gallery mb-2" id="detail-gallery">
+        <div class="swiper-wrapper">
+            <%= for pi <- @product.product_images do %>
+                <div class="swiper-slide"><a href="#"><img src="<%= DropAlley.ImageUploader.url({pi.image, pi})%>" alt="Product" class="img-thumbnail"></a></div>
+            <% end %>
+        </div>
+        <div class="swiper-button-prev" id="detail-gallery-prev"><i class="material-icons md-3">keyboard_arrow_left</i></div>
+        <div class="swiper-button-next" id="detail-gallery-next"><i class="material-icons md-3">keyboard_arrow_right</i></div>
+        </div>
+        
+        
+    </div>
+    <div class="col-xl-8 col-lg-7 col-md-6">
+        <table class="table table-detail">
+        <tbody>
+            <tr class="d-none d-md-table-row">
+            <td class="border-top-0" colspan="2"><h5><%= @product.name %></h5></td>
+            </tr>
+            <tr>
+            <td>Price</td>
+            <td>
+                <ul class="list-inline mb-0">
+                <li class="list-inline-item"><span class="text-theme h5">€<%= @product.prprice %></span></li>
+                <li class="list-inline-item"><del class="text-muted">€<%= @product.prprice %></del></li>
+                <li class="list-inline-item d-none d-sm-inline-block"><span class="badge badge-secondary">-10%</span></li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td>Availability</td>
+            <td>
+                <span class="badge badge-success">in stock</span>
+            </td>
+            </tr>
+            <tr>
+            <td class="align-middle">Size</td>
+            <td>
+                <div class="row">
+                <div class="col-5 col-sm-3 col-md-6 col-lg-3 col-xl-2">
+                    <select name="size" class="custom-select custom-select-sm">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                </div>
+            </td>
+            </tr>
+            
+        </tbody>
+        </table>
+        
+        
+        <div class="col-md-4 col-sm-4" offset-col-sm-2>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <a href="/products/<%= @product.id %>/checkout"><button type="button" class="btn btn-theme">TRY & BUY</button></a>     </div> 
+            </div>  
+        
+        <br>
+                
+        
+        <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link text-secondary active" id="desc-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-secondary" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Detail</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-secondary" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (<%= @product.product_reviews |> length %>)</a>
+        </li>
+        </ul>
+        <div class="tab-content">
+        <div class="tab-pane border border-top-0 p-3 show active" id="home" role="tabpanel" aria-labelledby="desc-tab">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, molestiae odit? Animi eligendi, optio culpa cupiditate, minus, eaque sint delectus non id accusamus suscipit illum quaerat quibusdam expedita dolore quos distinctio corporis quae. Error molestiae consequatur nostrum placeat architecto maiores commodi ipsam incidunt</p>
+            <p>adipisci tempora ratione soluta aliquam, velit voluptatum dolore reprehenderit quis aut. Obcaecati nam non quis praesentium deserunt qui consequatur illum quae nobis? Optio eos, sit corporis quam distinctio, ad aspernatur quisquam ut, corrupti accusamus saepe labore veritatis sed est rerum. Iste odit reiciendis mollitia culpa illum eligendi, soluta magnam voluptatum ut sequi vitae vel labore quae, ducimus.</p>
+        </div>
+        <div class="tab-pane border border-top-0 p-3" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+            <table class="table table-bordered mb-0 table-sm">
+            <tbody>
+                <tr>
+                <td class="bg-light w-25">Lorem</td>
+                <td>Ipsum</td>
+                </tr>
+                <tr>
+                <td class="bg-light w-25">Dolor</td>
+                <td>Sit Amet</td>
+                </tr>
+                <tr>
+                <td class="bg-light w-25">Consectetur</td>
+                <td>Adipisicing</td>
+                </tr>
+                <tr>
+                <td class="bg-light w-25">Excepteur</td>
+                <td>Occaecat</td>
+                </tr>
+                <tr>
+                <td class="bg-light w-25">Excepteur</td>
+                <td>Occaecat</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        <div class="tab-pane border border-top-0 p-3" id="review" role="tabpanel" aria-labelledby="review-tab">
+            <%= for pr <- @product.product_reviews do %>
+            <div class="media mb-3">
+                <div class="mr-2">
+                    <img class="rounded-circle border p-1" style="width:50px;" src="<%= DropAlley.ImageUploader.url({pr.image, pr})%>" alt="Generic placeholder image">
+                    <div class="rating">
+                    <%= for i <- (1..(pr.rating)) do %>
+                        <i class="material-icons md-1">star</i>
+                    <%end%>
+                    </div>
+                </div>
+                <div class="media-body">
+                    <div class="font-weight-bold"><%= pr.name %></div>
+                    <%= pr.comment %>
+                </div>
+            </div>
+            <% end %>
+            <hr>
+            <h5><a data-toggle="collapse" href="#formReview" role="button" aria-expanded="false" aria-controls="formReview">Add your review</a></h5>
+            <form class="mt-3 collapse" id="formReview">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                <label for="InputName" class="mb-0 font-weight-bold">Name</label>
+                <input type="text" class="form-control" id="InputName" placeholder="Enter Name">
+                </div>
+                <div class="form-group col-md-6">
+                <label for="InputEmail" class="mb-0 font-weight-bold">Email Address</label>
+                <input type="email" class="form-control" id="InputEmail" placeholder="Enter Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="d-block mb-0 font-weight-bold">Rating</label>
+                <div class="rating-review rating"></div>
+            </div>
+            <div class="form-group">
+                <label class="mb-0 font-weight-bold" for="InputReview">Your Review</label>
+                <textarea class="form-control" id="InputReview" rows="4" placeholder="Your Review Here"></textarea>
+            </div>
+            <button type="submit" class="btn btn-theme btn-sm">Submit Review</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <br>
+    
+</div>

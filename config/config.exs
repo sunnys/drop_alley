@@ -95,3 +95,13 @@ config :drop_alley, DropAlley.Auth.AuthAccessPipeline,
   error_handler: DropAlley.Auth.AuthErrorHandler,
   confirmable: true
 
+
+config :drop_alley, :phoenix_swagger,
+  swagger_files: %{
+    "priv/static/swagger.json" => [
+      router: DropAlleyWeb.Router,     # phoenix routes will be converted to swagger paths
+      endpoint: DropAlleyWeb.Endpoint  # (optional) endpoint config used to set host, port and https schemes.
+    ]
+  }
+
+

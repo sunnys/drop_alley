@@ -324,4 +324,162 @@ defmodule DropAlley.StoreTest do
       assert %Ecto.Changeset{} = Store.change_retailer(retailer)
     end
   end
+
+  describe "product_images" do
+    alias DropAlley.Store.ProductImage
+
+    @valid_attrs %{image: "some image"}
+    @update_attrs %{image: "some updated image"}
+    @invalid_attrs %{image: nil}
+
+    def product_image_fixture(attrs \\ %{}) do
+      {:ok, product_image} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Store.create_product_image()
+
+      product_image
+    end
+
+    test "paginate_product_images/1 returns paginated list of product_images" do
+      for _ <- 1..20 do
+        product_image_fixture()
+      end
+
+      {:ok, %{product_images: product_images} = page} = Store.paginate_product_images(%{})
+
+      assert length(product_images) == 15
+      assert page.page_number == 1
+      assert page.page_size == 15
+      assert page.total_pages == 2
+      assert page.total_entries == 20
+      assert page.distance == 5
+      assert page.sort_field == "inserted_at"
+      assert page.sort_direction == "desc"
+    end
+
+    test "list_product_images/0 returns all product_images" do
+      product_image = product_image_fixture()
+      assert Store.list_product_images() == [product_image]
+    end
+
+    test "get_product_image!/1 returns the product_image with given id" do
+      product_image = product_image_fixture()
+      assert Store.get_product_image!(product_image.id) == product_image
+    end
+
+    test "create_product_image/1 with valid data creates a product_image" do
+      assert {:ok, %ProductImage{} = product_image} = Store.create_product_image(@valid_attrs)
+      assert product_image.image == "some image"
+    end
+
+    test "create_product_image/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Store.create_product_image(@invalid_attrs)
+    end
+
+    test "update_product_image/2 with valid data updates the product_image" do
+      product_image = product_image_fixture()
+      assert {:ok, product_image} = Store.update_product_image(product_image, @update_attrs)
+      assert %ProductImage{} = product_image
+      assert product_image.image == "some updated image"
+    end
+
+    test "update_product_image/2 with invalid data returns error changeset" do
+      product_image = product_image_fixture()
+      assert {:error, %Ecto.Changeset{}} = Store.update_product_image(product_image, @invalid_attrs)
+      assert product_image == Store.get_product_image!(product_image.id)
+    end
+
+    test "delete_product_image/1 deletes the product_image" do
+      product_image = product_image_fixture()
+      assert {:ok, %ProductImage{}} = Store.delete_product_image(product_image)
+      assert_raise Ecto.NoResultsError, fn -> Store.get_product_image!(product_image.id) end
+    end
+
+    test "change_product_image/1 returns a product_image changeset" do
+      product_image = product_image_fixture()
+      assert %Ecto.Changeset{} = Store.change_product_image(product_image)
+    end
+  end
+
+  describe "product_reviews" do
+    alias DropAlley.Store.ProductReview
+
+    @valid_attrs %{image: "some image", name: "some name", rating: 42}
+    @update_attrs %{image: "some updated image", name: "some updated name", rating: 43}
+    @invalid_attrs %{image: nil, name: nil, rating: nil}
+
+    def product_review_fixture(attrs \\ %{}) do
+      {:ok, product_review} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Store.create_product_review()
+
+      product_review
+    end
+
+    test "paginate_product_reviews/1 returns paginated list of product_reviews" do
+      for _ <- 1..20 do
+        product_review_fixture()
+      end
+
+      {:ok, %{product_reviews: product_reviews} = page} = Store.paginate_product_reviews(%{})
+
+      assert length(product_reviews) == 15
+      assert page.page_number == 1
+      assert page.page_size == 15
+      assert page.total_pages == 2
+      assert page.total_entries == 20
+      assert page.distance == 5
+      assert page.sort_field == "inserted_at"
+      assert page.sort_direction == "desc"
+    end
+
+    test "list_product_reviews/0 returns all product_reviews" do
+      product_review = product_review_fixture()
+      assert Store.list_product_reviews() == [product_review]
+    end
+
+    test "get_product_review!/1 returns the product_review with given id" do
+      product_review = product_review_fixture()
+      assert Store.get_product_review!(product_review.id) == product_review
+    end
+
+    test "create_product_review/1 with valid data creates a product_review" do
+      assert {:ok, %ProductReview{} = product_review} = Store.create_product_review(@valid_attrs)
+      assert product_review.image == "some image"
+      assert product_review.name == "some name"
+      assert product_review.rating == 42
+    end
+
+    test "create_product_review/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Store.create_product_review(@invalid_attrs)
+    end
+
+    test "update_product_review/2 with valid data updates the product_review" do
+      product_review = product_review_fixture()
+      assert {:ok, product_review} = Store.update_product_review(product_review, @update_attrs)
+      assert %ProductReview{} = product_review
+      assert product_review.image == "some updated image"
+      assert product_review.name == "some updated name"
+      assert product_review.rating == 43
+    end
+
+    test "update_product_review/2 with invalid data returns error changeset" do
+      product_review = product_review_fixture()
+      assert {:error, %Ecto.Changeset{}} = Store.update_product_review(product_review, @invalid_attrs)
+      assert product_review == Store.get_product_review!(product_review.id)
+    end
+
+    test "delete_product_review/1 deletes the product_review" do
+      product_review = product_review_fixture()
+      assert {:ok, %ProductReview{}} = Store.delete_product_review(product_review)
+      assert_raise Ecto.NoResultsError, fn -> Store.get_product_review!(product_review.id) end
+    end
+
+    test "change_product_review/1 returns a product_review changeset" do
+      product_review = product_review_fixture()
+      assert %Ecto.Changeset{} = Store.change_product_review(product_review)
+    end
+  end
 end

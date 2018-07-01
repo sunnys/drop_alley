@@ -91,6 +91,8 @@ Raises `Ecto.NoResultsError` if the Product does not exist.
 """
 def get_product!(id), do: Repo.get!(Product, id)
 
+def get_product_with_detail!(id), do: Repo.get!(Product, id) |> Repo.preload([:product_images, :product_reviews])
+
 @doc """
 Gets a single product by return code.
 
@@ -630,6 +632,316 @@ defp filter_retailer_config(:retailers) do
       text :api_key
        #TODO add config for details of type map
     boolean :active
+      
+  end
+end
+import Torch.Helpers, only: [sort: 1, paginate: 4]
+import Filtrex.Type.Config
+
+alias DropAlley.Store.ProductImage
+
+@pagination [page_size: 15]
+@pagination_distance 5
+
+@doc """
+Paginate the list of product_images using filtrex
+filters.
+
+## Examples
+
+    iex> list_product_images(%{})
+    %{product_images: [%ProductImage{}], ...}
+"""
+@spec paginate_product_images(map) :: {:ok, map} | {:error, any}
+def paginate_product_images(params \\ %{}) do
+  params =
+    params
+    |> Map.put_new("sort_direction", "desc")
+    |> Map.put_new("sort_field", "inserted_at")
+
+  {:ok, sort_direction} = Map.fetch(params, "sort_direction")
+  {:ok, sort_field} = Map.fetch(params, "sort_field")
+
+  with {:ok, filter} <- Filtrex.parse_params(filter_config(:product_images), params["product_image"] || %{}),
+       %Scrivener.Page{} = page <- do_paginate_product_images(filter, params) do
+    {:ok,
+      %{
+        product_images: page.entries,
+        page_number: page.page_number,
+        page_size: page.page_size,
+        total_pages: page.total_pages,
+        total_entries: page.total_entries,
+        distance: @pagination_distance,
+        sort_field: sort_field,
+        sort_direction: sort_direction
+      }
+    }
+  else
+    {:error, error} -> {:error, error}
+    error -> {:error, error}
+  end
+end
+
+defp do_paginate_product_images(filter, params) do
+  ProductImage
+  |> Filtrex.query(filter)
+  |> order_by(^sort(params))
+  |> paginate(Repo, params, @pagination)
+end
+
+@doc """
+Returns the list of product_images.
+
+## Examples
+
+    iex> list_product_images()
+    [%ProductImage{}, ...]
+
+"""
+def list_product_images do
+  Repo.all(ProductImage)
+end
+
+@doc """
+Gets a single product_image.
+
+Raises `Ecto.NoResultsError` if the Product image does not exist.
+
+## Examples
+
+    iex> get_product_image!(123)
+    %ProductImage{}
+
+    iex> get_product_image!(456)
+    ** (Ecto.NoResultsError)
+
+"""
+def get_product_image!(id), do: Repo.get!(ProductImage, id)
+
+@doc """
+Creates a product_image.
+
+## Examples
+
+    iex> create_product_image(%{field: value})
+    {:ok, %ProductImage{}}
+
+    iex> create_product_image(%{field: bad_value})
+    {:error, %Ecto.Changeset{}}
+
+"""
+def create_product_image(attrs \\ %{}) do
+  %ProductImage{}
+  |> ProductImage.changeset(attrs)
+  |> Repo.insert()
+end
+
+@doc """
+Updates a product_image.
+
+## Examples
+
+    iex> update_product_image(product_image, %{field: new_value})
+    {:ok, %ProductImage{}}
+
+    iex> update_product_image(product_image, %{field: bad_value})
+    {:error, %Ecto.Changeset{}}
+
+"""
+def update_product_image(%ProductImage{} = product_image, attrs) do
+  product_image
+  |> ProductImage.changeset(attrs)
+  |> Repo.update()
+end
+
+@doc """
+Deletes a ProductImage.
+
+## Examples
+
+    iex> delete_product_image(product_image)
+    {:ok, %ProductImage{}}
+
+    iex> delete_product_image(product_image)
+    {:error, %Ecto.Changeset{}}
+
+"""
+def delete_product_image(%ProductImage{} = product_image) do
+  Repo.delete(product_image)
+end
+
+@doc """
+Returns an `%Ecto.Changeset{}` for tracking product_image changes.
+
+## Examples
+
+    iex> change_product_image(product_image)
+    %Ecto.Changeset{source: %ProductImage{}}
+
+"""
+def change_product_image(%ProductImage{} = product_image) do
+  ProductImage.changeset(product_image, %{})
+end
+
+defp filter_config(:product_images) do
+  defconfig do
+    text :image
+      
+  end
+end
+import Torch.Helpers, only: [sort: 1, paginate: 4]
+import Filtrex.Type.Config
+
+alias DropAlley.Store.ProductReview
+
+@pagination [page_size: 15]
+@pagination_distance 5
+
+@doc """
+Paginate the list of product_reviews using filtrex
+filters.
+
+## Examples
+
+    iex> list_product_reviews(%{})
+    %{product_reviews: [%ProductReview{}], ...}
+"""
+@spec paginate_product_reviews(map) :: {:ok, map} | {:error, any}
+def paginate_product_reviews(params \\ %{}) do
+  params =
+    params
+    |> Map.put_new("sort_direction", "desc")
+    |> Map.put_new("sort_field", "inserted_at")
+
+  {:ok, sort_direction} = Map.fetch(params, "sort_direction")
+  {:ok, sort_field} = Map.fetch(params, "sort_field")
+
+  with {:ok, filter} <- Filtrex.parse_params(filter_config(:product_reviews), params["product_review"] || %{}),
+       %Scrivener.Page{} = page <- do_paginate_product_reviews(filter, params) do
+    {:ok,
+      %{
+        product_reviews: page.entries,
+        page_number: page.page_number,
+        page_size: page.page_size,
+        total_pages: page.total_pages,
+        total_entries: page.total_entries,
+        distance: @pagination_distance,
+        sort_field: sort_field,
+        sort_direction: sort_direction
+      }
+    }
+  else
+    {:error, error} -> {:error, error}
+    error -> {:error, error}
+  end
+end
+
+defp do_paginate_product_reviews(filter, params) do
+  ProductReview
+  |> Filtrex.query(filter)
+  |> order_by(^sort(params))
+  |> paginate(Repo, params, @pagination)
+end
+
+@doc """
+Returns the list of product_reviews.
+
+## Examples
+
+    iex> list_product_reviews()
+    [%ProductReview{}, ...]
+
+"""
+def list_product_reviews do
+  Repo.all(ProductReview)
+end
+
+@doc """
+Gets a single product_review.
+
+Raises `Ecto.NoResultsError` if the Product review does not exist.
+
+## Examples
+
+    iex> get_product_review!(123)
+    %ProductReview{}
+
+    iex> get_product_review!(456)
+    ** (Ecto.NoResultsError)
+
+"""
+def get_product_review!(id), do: Repo.get!(ProductReview, id)
+
+@doc """
+Creates a product_review.
+
+## Examples
+
+    iex> create_product_review(%{field: value})
+    {:ok, %ProductReview{}}
+
+    iex> create_product_review(%{field: bad_value})
+    {:error, %Ecto.Changeset{}}
+
+"""
+def create_product_review(attrs \\ %{}) do
+  %ProductReview{}
+  |> ProductReview.changeset(attrs)
+  |> Repo.insert()
+end
+
+@doc """
+Updates a product_review.
+
+## Examples
+
+    iex> update_product_review(product_review, %{field: new_value})
+    {:ok, %ProductReview{}}
+
+    iex> update_product_review(product_review, %{field: bad_value})
+    {:error, %Ecto.Changeset{}}
+
+"""
+def update_product_review(%ProductReview{} = product_review, attrs) do
+  product_review
+  |> ProductReview.changeset(attrs)
+  |> Repo.update()
+end
+
+@doc """
+Deletes a ProductReview.
+
+## Examples
+
+    iex> delete_product_review(product_review)
+    {:ok, %ProductReview{}}
+
+    iex> delete_product_review(product_review)
+    {:error, %Ecto.Changeset{}}
+
+"""
+def delete_product_review(%ProductReview{} = product_review) do
+  Repo.delete(product_review)
+end
+
+@doc """
+Returns an `%Ecto.Changeset{}` for tracking product_review changes.
+
+## Examples
+
+    iex> change_product_review(product_review)
+    %Ecto.Changeset{source: %ProductReview{}}
+
+"""
+def change_product_review(%ProductReview{} = product_review) do
+  ProductReview.changeset(product_review, %{})
+end
+
+defp filter_config(:product_reviews) do
+  defconfig do
+    text :name
+      number :rating
+      text :image
       
   end
 end

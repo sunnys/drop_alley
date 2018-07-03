@@ -41,12 +41,12 @@ config :coherence,
 
 config :coherence, DropAlleyWeb.Coherence.Mailer,
   adapter: Swoosh.Adapters.Sendgrid,
-  api_key: "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"
+  api_key: "Secrete_key"
 # %% End Coherence Configuration %%
 
 config :drop_alley, DropAlley.Mailer,
   adapter: Swoosh.Adapters.Sendgrid,
-  api_key: "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"
+  api_key: "Secrete_key"
 
 config :torch,
   otp_app: :drop_alley,

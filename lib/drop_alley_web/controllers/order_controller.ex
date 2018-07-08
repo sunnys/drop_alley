@@ -51,7 +51,7 @@ defmodule DropAlleyWeb.OrderController do
       {:ok, order} ->
         conn
         |> put_flash(:info, "Order updated successfully.")
-        |> redirect(to: DropAlleyWeb.Router.Helpers.order_path(conn, :show, order))
+        |> redirect(to: DropAlleyWeb.Router.Helpers.order_path(conn, :show, order[:order].id))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", order: order, changeset: changeset)
     end

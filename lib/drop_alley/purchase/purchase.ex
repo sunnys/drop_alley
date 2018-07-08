@@ -8,6 +8,7 @@ defmodule DropAlley.Purchase do
   import Torch.Helpers, only: [sort: 1, paginate: 4]
   import Filtrex.Type.Config
   
+  alias Ecto.Multi
   alias DropAlley.Purchase.Order
   alias DropAlley.Purchase.Cart
 
@@ -87,7 +88,7 @@ Raises `Ecto.NoResultsError` if the Order does not exist.
     ** (Ecto.NoResultsError)
 
 """
-def get_order!(id), do: Repo.get!(Order, id)
+def get_order!(id), do: Repo.get!(Order, id) |> Repo.preload([:products, buyer: [user: [:addresses]]])
 
 @doc """
 Creates a order.
@@ -105,6 +106,36 @@ def create_order(attrs \\ %{}) do
   %Order{}
   |> Order.changeset(attrs)
   |> Repo.insert()
+end
+
+def call(order, address, user_changeset, product_id) do
+  case transaction(order, address, user_changeset, product_id) |> Repo.transaction do
+    {:ok, res} -> {:ok, res}
+    {:error, _, reason, _} -> {:error, reason}
+  end
+end
+
+defp transaction(order, address, user_changeset, product_id) do
+  Multi.new
+  |> Multi.insert(:user, DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, user_changeset))
+  |> Multi.run(:buyer, fn %{user: user} ->
+     DropAlley.Store.Buyer.changeset(%DropAlley.Store.Buyer{}, %{user_id: user.id, active: true}) |> Repo.insert 
+    end)
+  |> Multi.run(:address, fn %{user: user} ->
+    DropAlley.UserInformation.Address.changeset(
+      %DropAlley.UserInformation.Address{}, Map.merge(%{user_id: user.id}, address)
+    ) 
+    |> Repo.insert 
+   end)
+  |> Multi.run(:order, fn %{buyer: buyer} -> 
+      Order.changeset(%Order{}, Map.merge(order, %{buyer_id: buyer.id})) |> Repo.insert
+    end)
+  |> Multi.run(:product, fn %{order: order} -> 
+      Repo.get!(DropAlley.Store.Product, product_id)
+      |> DropAlley.Store.change_product
+      |> DropAlley.Store.Product.changeset(%{order_id: order.id})
+      |> Repo.update
+    end)
 end
 
 @doc """

@@ -89,4 +89,40 @@ defmodule DropAlleyWeb.ProductController do
     product = Store.get_product_with_detail!(id)
     render(conn, "product_checkout.html", product: product)
   end
+
+  def book_order(conn, %{"id" => id, "order" => order_params}) do
+    user_changeset = %{
+      name: order_params["first_name"] <> order_params["last_name"], 
+      email: order_params["email"], 
+      password: "secret", 
+      password_confirmation: "secret"
+    }
+    order = %{
+      active: true, 
+      paid: false, 
+      payment_type: "COD", 
+      purchase: true, 
+      state: "new",
+      trail: true
+    }
+    address = %{
+      active: true, 
+      addr: order_params["addr"], 
+      street: order_params["street"],
+      city: order_params["city"],
+      state: order_params["state"], 
+      pincode: order_params["pincode"],
+      country: order_params["country"], 
+      contact_no: order_params["contact_no"]
+    }
+    case DropAlley.Purchase.call(order, address, user_changeset, id) do
+      {:ok, order} ->
+        conn
+        |> put_flash(:info, "Order created successfully.")
+        |> redirect(to: DropAlleyWeb.Router.Helpers.order_path(conn, :show, order[:order]))
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "new.html", changeset: changeset)
+    end
+  end
+
 end

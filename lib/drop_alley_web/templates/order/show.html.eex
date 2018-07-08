@@ -41,7 +41,32 @@
           <div class="torch-show-label">Paid:</div>
           <div class="torch-show-data"><%= @order.paid %></div>
         </li>
-      
+
+        <li>
+          <div class="torch-show-label">Product:</div>
+          <div class="torch-show-data"><%= List.last(@order.products).name %></div>
+        </li>
+        <li>
+          <div class="torch-show-label">Buyer Name:</div>
+          <div class="torch-show-data"><%= @order.buyer.user.name %></div>
+        </li>
+        <li>
+          <div class="torch-show-label">Address:</div>
+          <div class="torch-show-data">
+            <p><%= List.last(@order.buyer.user.addresses).street %></p>
+            <p>
+              <%= List.last(@order.buyer.user.addresses).addr %>, 
+              <%= List.last(@order.buyer.user.addresses).city %>, 
+              <%= List.last(@order.buyer.user.addresses).pincode %>
+              <%= List.last(@order.buyer.user.addresses).state %>
+              <%= List.last(@order.buyer.user.addresses).country %>
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="torch-show-label">Contact Number:</div>
+          <div class="torch-show-data"><%= List.last(@order.buyer.user.addresses).contact_no %></div>
+        </li>
     </ul>
   </div>
 </section>

@@ -11,6 +11,7 @@ defmodule DropAlley.UserInformation.Address do
     field :pincode, :string
     field :state, :string
     field :street, :string
+    field :country, :string
     belongs_to :user, DropAlley.Coherence.User, foreign_key: :user_id
     timestamps()
   end
@@ -18,7 +19,7 @@ defmodule DropAlley.UserInformation.Address do
   @doc false
   def changeset(address, attrs) do
     address
-    |> cast(attrs, [:active, :addr, :street, :city, :state, :pincode, :contact_no, :user_id])
+    |> cast(attrs, [:active, :addr, :street, :city, :state, :pincode, :contact_no, :user_id, :country])
     |> validate_required([:active, :addr, :street, :city, :state, :pincode, :contact_no])
   end
 end

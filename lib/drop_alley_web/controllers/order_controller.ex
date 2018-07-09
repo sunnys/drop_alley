@@ -38,6 +38,12 @@ defmodule DropAlleyWeb.OrderController do
     render(conn, "show.html", order: order)
   end
 
+  def show_order(conn, %{"id" => id}) do
+    conn = put_layout conn, {DropAlleyWeb.LayoutView, "product.html"}
+    order = Purchase.get_order!(id)
+    render(conn, "show_order.html", order: order)
+  end
+
   def edit(conn, %{"id" => id}) do
     order = Purchase.get_order!(id)
     changeset = Purchase.change_order(order)
@@ -51,7 +57,7 @@ defmodule DropAlleyWeb.OrderController do
       {:ok, order} ->
         conn
         |> put_flash(:info, "Order updated successfully.")
-        |> redirect(to: DropAlleyWeb.Router.Helpers.order_path(conn, :show, order))
+        |> redirect(to: DropAlleyWeb.Router.Helpers.order_path(conn, :show, order[:order].id))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", order: order, changeset: changeset)
     end

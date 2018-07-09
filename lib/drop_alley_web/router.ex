@@ -60,6 +60,7 @@ defmodule DropAlleyWeb.Router do
     get "/products/:id/checkout", ProductController, :product_checkout, as: :product_checkout
 
     post "/products/:id/book_order", ProductController, :book_order, as: :book_order
+    get "/orders/:id/show_order", OrderController, :show_order, as: :show_order
     # Add public routes below
   end
 

@@ -119,7 +119,7 @@ defmodule DropAlleyWeb.ProductController do
       {:ok, order} ->
         conn
         |> put_flash(:info, "Order created successfully.")
-        |> redirect(to: DropAlleyWeb.Router.Helpers.order_path(conn, :show, order[:order]))
+        |> redirect(to: DropAlleyWeb.Router.Helpers.show_order_path(conn, :show_order, order[:order]))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

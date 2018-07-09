@@ -1,0 +1,69 @@
+<div class="container-fluid limited mb-5">
+      <div class="row">
+        <div class="col-sm-12 col-md-8">
+          <h4>Review Your Order</h4>
+          <div class="table-responsive mt-3">
+            <table class="table table-cart table-sm">
+              <thead>
+                <tr>
+                  <th scope="col" class="w-75">Item</th>
+                  <th scope="col">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= for product <- @order.products do %>
+                  <tr>
+                    <td>
+                      <div class="media">
+                        <a href="detail.html" class="mr-3"><img style="width:80px;" src="<%= DropAlley.ImageUploader.url({product.image, product})%>" class="img-fluid" alt="product"></a>
+                        <div class="media-body">
+                          <a href="detail.html" class="h6"><%= product.name %></a>
+                          <div class="small">Size: <%= product.size%></div>
+                          <div class="small">Color: <%= "" %></div>
+                          <div class="small">Qty: 1</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="text-theme">$<%= product.prprice%></span></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5 class="mt-5">Shipping to:</h5>
+          <div><%= @order.buyer.user.name %></div>
+          <div><%= List.last(@order.buyer.user.addresses).street %>. <%= List.last(@order.buyer.user.addresses).addr %>, <%= List.last(@order.buyer.user.addresses).city %>, <%= List.last(@order.buyer.user.addresses).pincode %>, <%= List.last(@order.buyer.user.addresses).state %>, <%= List.last(@order.buyer.user.addresses).country %></div>
+          <div><%= @order.buyer.user.email %></div>
+          <div><%= List.last(@order.buyer.user.addresses).contact_no %></div>
+          <hr>
+          <h5>Payment Method</h5>
+          <div><%= @order.payment_type %></div>
+          <hr>
+          <div class="d-flex mt-3">
+            <div>Bag Total</div>
+            <div class="ml-auto font-weight-bold">$<%= List.last(@order.products).prprice %></div>
+          </div>
+          <div class="d-flex">
+            <div>Bag Discount</div>
+            <div class="ml-auto font-weight-bold">$<%= discount = Enum.random(3..7)%></div>
+          </div>
+          <hr class="my-1">
+          <div class="d-flex">
+            <div>Coupon Discount</div>
+            <div class="ml-auto font-weight-bold">-</div>
+          </div>
+          <div class="d-flex">
+            <div>Shipping Cost</div>
+            <div class="ml-auto font-weight-bold">FREE</div>
+          </div>
+          <hr>
+          <div class="d-flex">
+            <h5 class="mb-0">Order Total</h5>
+            <h5 class="mb-0 ml-auto text-theme">$<%= List.last(@order.products).prprice - discount%></h5>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>

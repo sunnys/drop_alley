@@ -1,0 +1,21 @@
+<%= form_for @conn, DropAlleyWeb.Router.Helpers.save_import_product_path(@conn, :save_import), [as: :product, multipart: true], fn f -> %>
+    <fieldset class="torch-panel" style="display:block;">
+        <legend>
+            <span>Product Import</span>
+        </legend>
+        <div class=”form-group”>
+            <%= label f, :file, class: "control-label" %>
+            <%= file_input f, :file, class: "form-control" %>
+            <%= error_tag f, :file %>
+        </div>
+    
+        <div class="torch-submit-form">
+            <%= submit "Submit", class: "torch-submit-button" %>
+        </div>
+    </fieldset>
+    <div class="torch-panel-overlay" style="display:none;height:100%;background:url(/img/loading.gif) no-repeat center center fixed;">
+        It will take a while.
+    </div>
+<% end %>
+<script src="<%= static_path(@conn, "/js/jquery.min.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/import-csv-script.js")%>"></script>

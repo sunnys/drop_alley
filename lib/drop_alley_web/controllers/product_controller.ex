@@ -90,6 +90,25 @@ defmodule DropAlleyWeb.ProductController do
     render(conn, "product_checkout.html", product: product)
   end
 
+  def import(conn, _param) do
+    render(conn, "import.html")  
+  end
+
+  def save_import(conn, params) do
+    file_path = params["product"]["file"].path
+    Store.create_bulk_product(file_path)
+    case Store.paginate_products(%{}) do
+      {:ok, assigns} ->
+        conn
+        |> put_flash(:success, "Product Data imported")
+        |> redirect(to: DropAlleyWeb.Router.Helpers.product_path(conn, :index))
+      error ->
+        conn
+        |> put_flash(:error, "There was an error rendering Products. #{inspect(error)}")
+        |> redirect(to: DropAlleyWeb.Router.Helpers.product_path(conn, :index))
+    end
+  end
+
   def book_order(conn, %{"id" => id, "order" => order_params}) do
     user_changeset = %{
       name: order_params["first_name"] <> order_params["last_name"], 

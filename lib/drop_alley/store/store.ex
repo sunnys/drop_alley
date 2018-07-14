@@ -9,9 +9,12 @@ defmodule DropAlley.Store do
   import Filtrex.Type.Config
   
   alias DropAlley.Store.Product
+  alias DropAlley.Store.ProductImage
   alias DropAlley.Store.Retailer
   alias DropAlley.Store.Buyer
   alias DropAlley.Store.ReturnConsumer
+
+  NimbleCSV.define(MyParser, separator: ",", escape: "\"")
 
   @pagination [page_size: 15]
   @pagination_distance 5
@@ -190,6 +193,37 @@ defp filter_product_config(:products) do
        #TODO add config for inspection_process of type map
     
   end
+end
+
+@doc """
+Create multipple product with csv upload
+"""
+def create_bulk_product(file_name) do
+  file_name 
+  |> 
+  File.stream! 
+  |> MyParser.parse_stream 
+  |> Stream.map(fn[name, image, description, prprice,  price, state, retailer_id, product_image1, product_image2, product_image3, product_image4] -> 
+    Product.changeset(%Product{}, %{
+      name: name, 
+      image: image, 
+      description: description, 
+      prprice: prprice, 
+      price: price, 
+      state: state, 
+      retailer_id: retailer_id, 
+      product_images: [
+        %{image: product_image1}, 
+        %{image: product_image2}, 
+        %{image: product_image3}, 
+        %{image: product_image4}
+      ]
+    }) 
+    |> 
+    Repo.insert! 
+  end) 
+  |> Enum.to_list
+
 end
 
 @doc """

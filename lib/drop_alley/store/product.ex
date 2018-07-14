@@ -37,6 +37,7 @@ defmodule DropAlley.Store.Product do
     |> cast(attrs, [:name, :description, :prprice, :state, :inspection_process, :owner_id, :retailer_id, :return_code, :return_consumer_id, :order_id, :cart_id, :image, :availability, :size, :detail, :price])
     |> cast_attachments(attrs, [:image])
     |> validate_required([:name, :description, :prprice, :state, :retailer_id])
+    |> cast_assoc(:product_images)
     |> put_return_code
   end
 

@@ -1,6 +1,7 @@
 <section id="torch-toolbar">
   <div class="torch-container">
     <%= link "New Product", to: DropAlleyWeb.Router.Helpers.product_path(@conn, :new) %>
+    <%= link "Import Bulk", to: DropAlleyWeb.Router.Helpers.import_product_path(@conn, :import) %>
   </div>
 </section>
 <section id="torch-index-content">

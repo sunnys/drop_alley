@@ -9,9 +9,12 @@ defmodule DropAlley.Store do
   import Filtrex.Type.Config
   
   alias DropAlley.Store.Product
+  alias DropAlley.Store.ProductImage
   alias DropAlley.Store.Retailer
   alias DropAlley.Store.Buyer
   alias DropAlley.Store.ReturnConsumer
+
+  NimbleCSV.define(MyParser, separator: ",", escape: "\"")
 
   @pagination [page_size: 15]
   @pagination_distance 5
@@ -192,6 +195,68 @@ defp filter_product_config(:products) do
   end
 end
 
+@doc """
+Create multipple product with csv upload
+"""
+def create_bulk_product_old(file_name) do
+  file_name 
+  |> 
+  File.stream! 
+  |> MyParser.parse_stream 
+  |> Stream.map(fn[name, image, description, prprice,  price, state, retailer_id, product_image1, product_image2, product_image3, product_image4] -> 
+    Product.changeset(%Product{}, %{
+      name: name, 
+      image: image, 
+      description: description, 
+      prprice: prprice, 
+      price: price, 
+      state: state, 
+      retailer_id: retailer_id, 
+      product_images: [
+        %{image: product_image1}, 
+        %{image: product_image2}, 
+        %{image: product_image3}, 
+        %{image: product_image4}
+      ]
+    }) 
+    |> 
+    Repo.insert! 
+  end) 
+  |> Enum.to_list
+
+end
+
+def create_bulk_product(file_path) do
+  file_path
+  |> 
+  File.stream! 
+  |> MyParser.parse_stream 
+  |> Stream.map(fn[product_id, name, brand, description, images, size, color, material, prprice, price, discount, category, subcategory, stock] -> 
+  Product.changeset(%Product{}, %{
+      prod_id: product_id,
+      name: name, 
+      description: description, 
+      product_images: images |> String.split(",") |> Enum.map(fn(s) -> %{image: String.replace(s, "[", "") |> String.replace("]", "") |> String.trim} end),
+      image: images |> String.split(",") |> Enum.map(fn(s) -> String.replace(s, "[", "") |> String.replace("]", "") end) |> List.first |> String.trim,
+      prprice: prprice, 
+      price: price, 
+      discount: discount,
+      size: size,
+      detail: %{
+          size: size,
+          brand: brand,
+          color: color,
+          material: material,
+          category: category,
+          subcategory: subcategory
+      },
+      stocks: stock |> Poison.decode!
+  }) 
+  |> 
+  Repo.insert! 
+  end) 
+  |> Enum.to_list
+end
 @doc """
 Paginate the list of buyers using filtrex
 filters.

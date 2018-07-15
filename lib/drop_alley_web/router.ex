@@ -67,10 +67,15 @@ defmodule DropAlleyWeb.Router do
   # Add all the admin routes here
   scope "/admin", DropAlleyWeb do
     pipe_through [:browser, :protected]
+    get "/", ProductController, :index
     resources "/users", UserController
     resources "/user_identities", UserIdentityController
     resources "/invitations", InvitationController
     resources "/products", ProductController
+    scope "/products" do
+      get "/bulk/import", ProductController, :import, as: :import_product
+      post "/bulk/save_import", ProductController, :save_import, as: :save_import_product
+    end
     resources "/buyers", BuyerController
     resources "/addresses", AddressController
     resources "/return_consumers", ReturnConsumerController

@@ -16,6 +16,10 @@ defmodule DropAlley.Store.Product do
     field :price, :float
     field :size, :string
     field :detail, :map
+    field :prod_id, :string
+    field :discount, :float
+
+    embeds_many :stocks, DropAlley.Store.Stock, on_replace: :delete
     
     
     belongs_to :owner, DropAlley.Coherence.User, foreign_key: :owner_id
@@ -34,9 +38,10 @@ defmodule DropAlley.Store.Product do
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [:name, :description, :prprice, :state, :inspection_process, :owner_id, :retailer_id, :return_code, :return_consumer_id, :order_id, :cart_id, :image, :availability, :size, :detail, :price])
+    |> cast(attrs, [:name, :description, :prprice, :state, :inspection_process, :owner_id, :retailer_id, :return_code, :return_consumer_id, :order_id, :cart_id, :image, :availability, :size, :detail, :price, :prod_id, :discount])
     |> cast_attachments(attrs, [:image])
-    |> validate_required([:name, :description, :prprice, :state, :retailer_id])
+    |> validate_required([:name, :description, :prprice])
+    |> cast_embed(:stocks)
     |> cast_assoc(:product_images)
     |> put_return_code
   end

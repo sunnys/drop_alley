@@ -56,6 +56,48 @@
           <div class="torch-show-label">Image:</div>
           <div class="torch-show-data"><img src="<%= DropAlley.ImageUploader.url({@product.image, @product})%>"></div>
         </li>
+        <li>
+          <div class="torch-show-label">Details:</div>
+          <div class="torch-show-data">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+                <%= for {k, v} <- @product.detail do %>
+                  <tr>
+                    <th><%= k %></th>
+                    <th><%= v %></th>
+                  </tr>
+                <% end %>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </li>
+        <li>
+          <div class="torch-show-label">Stocks:</div>
+          <div class="torch-show-data">
+            <table>
+              <thead>
+                <tr>
+                  <th>Store Address</th>
+                  <th>Stock</th>
+                </tr>
+              </thead>
+                <%= for ps <- @product.stocks do %>
+                  <tr>
+                    <th><%=  ps.address%></th>
+                    <th><%= ps.stock %></th>
+                  </tr>
+                <% end %>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </li>
     </ul>
   </div>
 </section>

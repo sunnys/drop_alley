@@ -17,9 +17,9 @@ alias DropAlley.Store.ProductImage
 alias DropAlley.Store.ProductReview
 alias DropAlley.Store.Retailer
 
-DropAlley.Repo.delete_all DropAlley.Coherence.User
+# DropAlley.Repo.delete_all DropAlley.Coherence.User
 
-DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, %{name: "Test User", email: "testuser@example.com", password: "secret", password_confirmation: "secret"})
+DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, %{name: "Test User", email: "testuser36@example.com", password: "secret", password_confirmation: "secret"})
 |> DropAlley.Repo.insert!
 |> Coherence.ControllerHelpers.confirm!
 
@@ -32,8 +32,6 @@ defmodule RetailerSeed do
         Repo.delete_all(ProductImage)
         Repo.delete_all(Product)
         Repo.delete_all(Retailer)
-
-        
     end
 
     def seed do
@@ -57,7 +55,37 @@ defmodule RetailerSeed do
     end
 
     def create_product(r) do
-        Product.changeset(%Product{}, %{image: FakerElixir.Avatar.robohash, name: Faker.Commerce.product, description: Faker.Lorem.sentence, prprice: Enum.random(1..100), price: Enum.random(1..100), state: Faker.Address.street_address, retailer_id: r.id}) |> Repo.insert!
+        size = Enum.random(6..15)
+        brand = Enum.random(['Reebok', 'Nike', 'Bata', 'Adidas', 'Puma'])
+        color = Enum.random(['Black', 'Red', 'Gray', 'Green'])
+        material = Enum.random(['Leather', 'Rubber'])
+        category = Enum.random(['Shoes', 'Snikers'])
+        subcategory = Enum.random(['Canvas', 'Sport', 'Slippers'])
+        Product.changeset(%Product{}, %{
+            image: FakerElixir.Avatar.robohash, 
+            name: Faker.Commerce.product, 
+            description: Faker.Lorem.sentence, 
+            prprice: Enum.random(1..100), 
+            price: Enum.random(1..100), 
+            state: Faker.Address.street_address, 
+            retailer_id: r.id, 
+            discount: Enum.random(20..30), 
+            size: Enum.random(6..15) |> Integer.to_string, 
+            brand: brand,
+            color: color,
+            material: material,
+            category: category,
+            subcategory: subcategory, 
+            detail: %{
+                size: size,
+                brand: brand,
+                color: color,
+                material: material,
+                category: category,
+                subcategory: subcategory
+            },
+            stocks: Enum.map((1..4), fn(i) -> %{address: Faker.Address.street_address, stock: Enum.random(0..50)} end)
+        }) |> Repo.insert!
     end
 
     def create_product_images(p) do

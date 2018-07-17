@@ -45,26 +45,12 @@
         </div>
         <div class="filter-sidebar">
           <div class="title"><span>Brand</span></div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="filterBrand1" checked="checked">
-            <label class="custom-control-label" for="filterBrand1">Clarks</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="filterBrand2">
-            <label class="custom-control-label" for="filterBrand2">Lotto</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="filterBrand3">
-            <label class="custom-control-label" for="filterBrand3">Camper</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="filterBrand3">
-            <label class="custom-control-label" for="filterBrand3">Londons Life</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="filterBrand3">
-            <label class="custom-control-label" for="filterBrand3">Olympus</label>
-          </div>    
+          <%= for d <- assigns.brands do %>
+            <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="filter<%= d %>">
+            <label class="custom-control-label" for="filter<%= d %>"><%= d %></label>
+            </div> 
+          <% end %>   
         </div>
         
         <div class="row">

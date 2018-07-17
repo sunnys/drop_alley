@@ -49,7 +49,8 @@ def paginate_products(params \\ %{}) do
         total_entries: page.total_entries,
         distance: @pagination_distance,
         sort_field: sort_field,
-        sort_direction: sort_direction
+        sort_direction: sort_direction,
+        brands: Product |> Repo.all |> Enum.map(fn(e) -> e.detail["brand"] end) |> Enum.uniq
       }
     }
   else
@@ -187,9 +188,15 @@ end
 defp filter_product_config(:products) do
   defconfig do
     text :name
-      text :description
+    text :description
        #TODO add config for prprice of type float
     text :state
+    text :size
+    text :brand
+    text :color
+    text :material
+    text :category
+    text :subcategory
        #TODO add config for inspection_process of type map
     
   end
@@ -242,6 +249,11 @@ def create_bulk_product(file_path) do
       price: price, 
       discount: discount,
       size: size,
+      brand: brand,
+      color: color,
+      material: material,
+      category: category,
+      subcategory: subcategory,
       detail: %{
           size: size,
           brand: brand,

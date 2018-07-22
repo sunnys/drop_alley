@@ -19,7 +19,7 @@ alias DropAlley.Store.Retailer
 
 # DropAlley.Repo.delete_all DropAlley.Coherence.User
 
-DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, %{name: "Test User", email: "testuser36@example.com", password: "secret", password_confirmation: "secret"})
+DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, %{name: "Test User", email: "testuser@example.com", password: "secret", password_confirmation: "secret"})
 |> DropAlley.Repo.insert!
 |> Coherence.ControllerHelpers.confirm!
 
@@ -56,11 +56,11 @@ defmodule RetailerSeed do
 
     def create_product(r) do
         size = Enum.random(6..15)
-        brand = Enum.random(['Reebok', 'Nike', 'Bata', 'Adidas', 'Puma'])
-        color = Enum.random(['Black', 'Red', 'Gray', 'Green'])
-        material = Enum.random(['Leather', 'Rubber'])
-        category = Enum.random(['Shoes', 'Snikers'])
-        subcategory = Enum.random(['Canvas', 'Sport', 'Slippers'])
+        brand = Enum.random(["Reebok", "Nike", "Bata", "Adidas", "Puma"])
+        color = Enum.random(["Black", "Red", "Gray", "Green"])
+        material = Enum.random(["Leather", "Rubber"])
+        category = Enum.random(["Shoes", "Snikers"])
+        subcategory = Enum.random(["Canvas", "Sport", "Slippers"])
         Product.changeset(%Product{}, %{
             image: FakerElixir.Avatar.robohash, 
             name: Faker.Commerce.product, 

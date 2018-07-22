@@ -4,7 +4,7 @@ defmodule DropAlley.Repo.Migrations.CreateProducts do
   def change do
     create table(:products) do
       add :name, :string
-      add :description, :string
+      add :description, :text
       add :prprice, :float
       add :state, :string
       add :inspection_process, :map

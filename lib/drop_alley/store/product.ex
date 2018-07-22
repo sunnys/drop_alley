@@ -18,6 +18,11 @@ defmodule DropAlley.Store.Product do
     field :detail, :map
     field :prod_id, :string
     field :discount, :float
+    field :color, :string 
+    field :material, :string 
+    field :category, :string 
+    field :subcategory, :string
+    field :brand, :string
 
     embeds_many :stocks, DropAlley.Store.Stock, on_replace: :delete
     
@@ -38,7 +43,7 @@ defmodule DropAlley.Store.Product do
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [:name, :description, :prprice, :state, :inspection_process, :owner_id, :retailer_id, :return_code, :return_consumer_id, :order_id, :cart_id, :image, :availability, :size, :detail, :price, :prod_id, :discount])
+    |> cast(attrs, [:name, :description, :prprice, :state, :inspection_process, :owner_id, :retailer_id, :return_code, :return_consumer_id, :order_id, :cart_id, :image, :availability, :size, :detail, :price, :prod_id, :discount, :category, :subcategory, :material, :color, :brand])
     |> cast_attachments(attrs, [:image])
     |> validate_required([:name, :description, :prprice])
     |> cast_embed(:stocks)

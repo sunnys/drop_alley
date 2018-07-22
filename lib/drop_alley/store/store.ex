@@ -50,7 +50,9 @@ def paginate_products(params \\ %{}) do
         distance: @pagination_distance,
         sort_field: sort_field,
         sort_direction: sort_direction,
-        brands: Product |> Repo.all |> Enum.map(fn(e) -> e.detail["brand"] end) |> Enum.uniq
+        brands: page.entries |> Enum.map(fn(e) -> e.detail["brand"] end) |> Enum.uniq,
+        category_group: get_category_group(),
+        filter: filter
       }
     }
   else
@@ -97,6 +99,11 @@ def get_product!(id), do: Repo.get!(Product, id)
 
 def get_product_with_detail!(id), do: Repo.get!(Product, id) |> Repo.preload([:product_images, :product_reviews])
 
+def in_stock?(id) do
+   Repo.get!(Product, id).stocks 
+   |> Enum.map(fn(x) -> x.stock end) 
+   |> Enum.reduce(fn(acc, x) -> x+ acc end) > 0
+end
 @doc """
 Gets a single product by return code.
 
@@ -189,7 +196,6 @@ defp filter_product_config(:products) do
   defconfig do
     text :name
     text :description
-       #TODO add config for prprice of type float
     text :state
     text :size
     text :brand
@@ -197,11 +203,28 @@ defp filter_product_config(:products) do
     text :material
     text :category
     text :subcategory
-       #TODO add config for inspection_process of type map
+    #TODO add config for prprice of type float
+    #TODO add config for inspection_process of type map
     
   end
 end
 
+def get_category_group() do
+  Product 
+  |> Repo.all 
+  |> Enum.map(fn(x) -> x.detail end) 
+  |> Enum.group_by(fn(x) -> x["category"] end) 
+  |> Enum.map(fn({k,v}) -> %{
+    category: k, 
+    count: length(v), 
+    data: Enum.group_by(v, fn(x) -> x["subcategory"] end)
+          |> Enum.map(fn({k, v}) -> %{
+            subcategory: k, 
+            count: length(v)
+          } end) 
+    } 
+    end)
+end
 @doc """
 Create multipple product with csv upload
 """
@@ -244,7 +267,7 @@ def create_bulk_product(file_path) do
       name: name, 
       description: description, 
       product_images: images |> String.split(",") |> Enum.map(fn(s) -> %{image: String.replace(s, "[", "") |> String.replace("]", "") |> String.trim} end),
-      image: images |> String.split(",") |> Enum.map(fn(s) -> String.replace(s, "[", "") |> String.replace("]", "") end) |> List.first |> String.trim,
+      image: images |> String.split(",") |> Enum.map(fn(s) -> String.replace(s, "[", "") |> String.replace("]", "") |> String.trim end),
       prprice: prprice, 
       price: price, 
       discount: discount,
@@ -739,7 +762,7 @@ def paginate_product_images(params \\ %{}) do
   {:ok, sort_direction} = Map.fetch(params, "sort_direction")
   {:ok, sort_field} = Map.fetch(params, "sort_field")
 
-  with {:ok, filter} <- Filtrex.parse_params(filter_config(:product_images), params["product_image"] || %{}),
+  with {:ok, filter} <- Filtrex.parse_params(filter_config_product_images(:product_images), params["product_image"] || %{}),
        %Scrivener.Page{} = page <- do_paginate_product_images(filter, params) do
     {:ok,
       %{
@@ -860,7 +883,7 @@ def change_product_image(%ProductImage{} = product_image) do
   ProductImage.changeset(product_image, %{})
 end
 
-defp filter_config(:product_images) do
+defp filter_config_product_images(:product_images) do
   defconfig do
     text :image
       

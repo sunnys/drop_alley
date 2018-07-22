@@ -54,7 +54,7 @@ defmodule DropAlleyWeb.Router do
   # Add all the public routes here
   scope "/", DropAlleyWeb do
     pipe_through [:browser, :public]
-    get "/", PageController, :index
+    get "/", ProductController, :product_index, as: :index
     get "/products", ProductController, :product_index, as: :product_index
     get "/products/:id", ProductController, :product_show, as: :product_show
     get "/products/:id/checkout", ProductController, :product_checkout, as: :product_checkout

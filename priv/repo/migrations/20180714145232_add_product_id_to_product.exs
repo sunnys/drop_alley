@@ -12,5 +12,8 @@ defmodule DropAlley.Repo.Migrations.AddProductIdToProduct do
       add :subcategory, :string
       add :stocks, :jsonb, default: "[]"
     end
+
+    create unique_index(:products, [:prod_id])
+
   end
 end

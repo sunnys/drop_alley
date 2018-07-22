@@ -268,7 +268,7 @@ def create_bulk_product(file_path) do
       name: name, 
       description: description, 
       product_images: images |> String.split(",") |> Enum.map(fn(s) -> %{image: String.replace(s, "[", "") |> String.replace("]", "") |> String.trim} end),
-      image: images |> String.split(",") |> Enum.map(fn(s) -> String.replace(s, "[", "") |> String.replace("]", "") |> String.trim end) |> List.first,
+      image: images |> String.split(",") |> Enum.map(fn(s) -> String.replace(s, "[", "") |> String.replace("]", "") |> String.trim end) |> Enum.random,
       prprice: prprice, 
       price: price, 
       discount: discount,
@@ -289,7 +289,7 @@ def create_bulk_product(file_path) do
       stocks: stock |> Poison.decode!
   }) 
   |> 
-  Repo.insert! 
+  Repo.insert!(on_conflict: :replace_all, conflict_target: :prod_id)
   end) 
   |> Enum.to_list
 end

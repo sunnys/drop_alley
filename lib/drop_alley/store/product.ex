@@ -45,6 +45,7 @@ defmodule DropAlley.Store.Product do
     product
     |> cast(attrs, [:name, :description, :prprice, :state, :inspection_process, :owner_id, :retailer_id, :return_code, :return_consumer_id, :order_id, :cart_id, :image, :availability, :size, :detail, :price, :prod_id, :discount, :category, :subcategory, :material, :color, :brand])
     |> cast_attachments(attrs, [:image])
+    |> unique_constraint(:prod_id)
     |> validate_required([:name, :description, :prprice])
     |> cast_embed(:stocks)
     |> cast_assoc(:product_images)

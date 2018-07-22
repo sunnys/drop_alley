@@ -34,16 +34,20 @@
             <td>Price</td>
             <td>
                 <ul class="list-inline mb-0">
-                <li class="list-inline-item"><span class="text-theme h5">€<%= @product.prprice %></span></li>
+                <li class="list-inline-item"><span class="text-theme h5">€<%= @product.price %></span></li>
                 <li class="list-inline-item"><del class="text-muted">€<%= @product.prprice %></del></li>
-                <li class="list-inline-item d-none d-sm-inline-block"><span class="badge badge-secondary">-10%</span></li>
+                <li class="list-inline-item d-none d-sm-inline-block"><span class="badge badge-secondary">-<%= @product.discount %>%</span></li>
                 </ul>
             </td>
             </tr>
             <tr>
             <td>Availability</td>
             <td>
-                <span class="badge badge-success">in stock</span>
+                <%= if DropAlley.Store.in_stock?(@product.id) do %>
+                    <span class="badge badge-success">in stock</span>
+                <% else %>
+                    <span class="badge badge-danger">out of stock</span>
+                <% end %>
             </td>
             </tr>
             <tr>
@@ -52,11 +56,7 @@
                 <div class="row">
                 <div class="col-5 col-sm-3 col-md-6 col-lg-3 col-xl-2">
                     <select name="size" class="custom-select custom-select-sm">
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
+                    <option value="<%= @product.size %>"><%= @product.size %></option>
                     </select>
                 </div>
                 </div>
@@ -82,38 +82,26 @@
         <li class="nav-item">
             <a class="nav-link text-secondary" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Detail</a>
         </li>
+        <!--
         <li class="nav-item">
-            <a class="nav-link text-secondary" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (<%= @product.product_reviews |> length %>)</a>
+            <a class="nav-link text-secondary" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (<%#= @product.product_reviews |> length %>)</a>
         </li>
+        -->
         </ul>
         <div class="tab-content">
         <div class="tab-pane border border-top-0 p-3 show active" id="home" role="tabpanel" aria-labelledby="desc-tab">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, molestiae odit? Animi eligendi, optio culpa cupiditate, minus, eaque sint delectus non id accusamus suscipit illum quaerat quibusdam expedita dolore quos distinctio corporis quae. Error molestiae consequatur nostrum placeat architecto maiores commodi ipsam incidunt</p>
-            <p>adipisci tempora ratione soluta aliquam, velit voluptatum dolore reprehenderit quis aut. Obcaecati nam non quis praesentium deserunt qui consequatur illum quae nobis? Optio eos, sit corporis quam distinctio, ad aspernatur quisquam ut, corrupti accusamus saepe labore veritatis sed est rerum. Iste odit reiciendis mollitia culpa illum eligendi, soluta magnam voluptatum ut sequi vitae vel labore quae, ducimus.</p>
+            <p><%= @product.description %></p>
         </div>
         <div class="tab-pane border border-top-0 p-3" id="detail" role="tabpanel" aria-labelledby="detail-tab">
             <table class="table table-bordered mb-0 table-sm">
             <tbody>
+                <%= for {k, v} <- @product.detail do %>
                 <tr>
-                <td class="bg-light w-25">Lorem</td>
-                <td>Ipsum</td>
+                <td class="bg-light w-25"><%= k %></td>
+                <td><%= v %></td>
                 </tr>
-                <tr>
-                <td class="bg-light w-25">Dolor</td>
-                <td>Sit Amet</td>
-                </tr>
-                <tr>
-                <td class="bg-light w-25">Consectetur</td>
-                <td>Adipisicing</td>
-                </tr>
-                <tr>
-                <td class="bg-light w-25">Excepteur</td>
-                <td>Occaecat</td>
-                </tr>
-                <tr>
-                <td class="bg-light w-25">Excepteur</td>
-                <td>Occaecat</td>
-                </tr>
+                <% end %>
+                
             </tbody>
             </table>
         </div>

@@ -10,61 +10,36 @@
         <div class="filter-sidebar mt-3 mt-md-0">
           <div class="title"><span>Filters</span></div>
           <ul>
-              <li>Categories: Men's Shoes <a href="#" class="remove-filter"><i class="material-icons md-1">close</i></a></li>
-              <li>Availability: In Stock <a href="#" class="remove-filter"><i class="material-icons md-1">close</i></a></li>
-              <li>Brand: Clarks <a href="#" class="remove-filter"><i class="material-icons md-1">close</i></a></li>
+              <%= for filter <- assigns.filter.conditions do %>
+                <li><%= filter.column |> String.capitalize %>: <%= filter.comparator %> <%= filter.value %> <a href="#" class="remove-filter" data-column=<%= filter.column %> data-val = <%= filter.value %> data-comp = <%= filter.comparator |> String.replace(" ", "_") %> ><i class="material-icons md-1">close</i></a></li>
+              <% end %>
           </ul>
         </div>
         <div class="filter-sidebar">
           <div class="title"><span>Categories</span></div>
           <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+            <%= for c <- assigns.category_group do %>
             <div class="list-group-collapse sub-men">
-              <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Shoes <small class="text-muted">(60)</small></a>
-              <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
+              <a class="list-group-item list-group-item-action" href="#sub-men-<%= c[:category] %>" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1"><%= c[:category] %> <small class="text-muted">(<%= c[:count] %>)</small></a>
+              <div class="collapse show" id="sub-men-<%= c[:category] %>" data-parent="#list-group-men">
                 <div class="list-group">
-                  <a href="shop.html" class="list-group-item list-group-item-action active">Men's Shoes <small class="text-muted">(10)</small></a>
-                  <a href="shop.html" class="list-group-item list-group-item-action">Moccasin <small class="text-muted">(11)</small></a>
-                  <a href="shop.html" class="list-group-item list-group-item-action">Sneakers <small class="text-muted">(12)</small></a>
-                  <a href="shop.html" class="list-group-item list-group-item-action">Men's Sandals <small class="text-muted">(13)</small></a>
-                  <a href="shop.html" class="list-group-item list-group-item-action">Ankle Boots <small class="text-muted">(14)</small></a>
+                  <%= for sc <- c[:data] do %>
+                    <a href="/products?&filters[]=product[category_contains]&product[category_contains]=<%= c[:category] %>&filters[]=product[subcategory_contains]&product[subcategory_contains]=<%= sc[:subcategory] %>" class="list-group-item list-group-item-action"><%= sc[:subcategory] %> <small class="text-muted">(<%= sc[:count] %>)</small></a>
+                  <% end %>
                 </div>
               </div>
             </div>
-            <div class="list-group-collapse sub-men">
-              <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Accessories <small class="text-muted">(45)</small></a>
-              <div class="collapse" id="sub-men2" data-parent="#list-group-men">
-                <div class="list-group">
-                  <a href="shop.html" class="list-group-item list-group-item-action">Belts <small class="text-muted">(10)</small></a>
-                  <a href="shop.html" class="list-group-item list-group-item-action">Backpacks <small class="text-muted">(15)</small></a>
-                  <a href="shop.html" class="list-group-item list-group-item-action">Wallets <small class="text-muted">(20)</small></a>
-                  <a href="shop.html" class="list-group-item list-group-item-action">Jackets <small class="text-muted">(20)</small></a>    
-                </div>
-              </div>
-            </div>
+            <% end %>
           </div>
         </div>
         <div class="filter-sidebar">
           <div class="title"><span>Brand</span></div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="filterBrand1" checked="checked">
-            <label class="custom-control-label" for="filterBrand1">Clarks</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="filterBrand2">
-            <label class="custom-control-label" for="filterBrand2">Lotto</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="filterBrand3">
-            <label class="custom-control-label" for="filterBrand3">Camper</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="filterBrand3">
-            <label class="custom-control-label" for="filterBrand3">Londons Life</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="filterBrand3">
-            <label class="custom-control-label" for="filterBrand3">Olympus</label>
-          </div>    
+          <%= for d <- assigns.brands do %>
+            <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input brand-filter" data-val= <%= d %> id="filter<%= d %>">
+            <label class="custom-control-label" for="filter<%= d %>"><%= d %></label>
+            </div> 
+          <% end %>   
         </div>
         
         <div class="row">
@@ -82,7 +57,7 @@
                 <input type="text" class="form-control" name="max-price" id="max-price" value="" />
               </div>
               <div class="price-range">
-                <div id="price-range-slider"></div>
+                <div id="price-range-slider-new"></div>
               </div>
             </div>
           </div>
@@ -118,7 +93,7 @@
             <div class="card-body">
               <div class="card-title"><a href="detail.html" title="Burberry The Plymouth Duffle Coat"><%= product.name %></a></div>
               <ul class="card-text list-inline pr-2">
-                <li class="list-inline-item"><span class="price">€<%= product.prprice %></span></li>
+                <li class="list-inline-item"><span class="price">€<%= product.price %></span></li>
                 <li class="list-inline-item"><del class="text-muted small">$<%= product.prprice %></del></li>
               </ul>
               <div class="action">
@@ -160,3 +135,5 @@
     </div>
   </div>
 </div>
+<script src="<%= static_path(@conn, "/js/jquery.min.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/product-index-script.js")%>"></script>

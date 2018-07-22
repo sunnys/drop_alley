@@ -285,6 +285,7 @@ $(function() {
     });
     priceRange.noUiSlider.on('update', function(values, handle) {
       var value = values[handle];
+      console.log(value)
       handle ? $('#max-price').val(Math.round(value)).attr('value', Math.round(value)) : $('#min-price').val(Math.round(value)).attr('value', Math.round(value));
     });
     $('#max-price').on('change', function() {

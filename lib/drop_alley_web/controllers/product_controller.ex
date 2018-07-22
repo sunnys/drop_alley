@@ -70,6 +70,7 @@ defmodule DropAlleyWeb.ProductController do
     conn = put_layout conn, {DropAlleyWeb.LayoutView, "product.html"}
     case Store.paginate_products(params) do
       {:ok, assigns} ->
+        IO.inspect assigns.filter.conditions
         render(conn, "product_index.html", assigns)
       error ->
         conn
@@ -81,7 +82,8 @@ defmodule DropAlleyWeb.ProductController do
   def product_show(conn, %{"id" => id}) do
     conn = put_layout conn, {DropAlleyWeb.LayoutView, "product.html"}
     product = Store.get_product_with_detail!(id)
-    render(conn, "product_show.html", product: product)
+    is_available = true
+    render(conn, "product_show.html", [product: product, is_available: is_available])
   end
 
   def product_checkout(conn, %{"id" => id}) do

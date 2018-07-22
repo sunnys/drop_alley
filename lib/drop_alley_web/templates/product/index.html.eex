@@ -23,11 +23,16 @@
           </div>
         
           <div class="field">
-            <label>State</label>
-            <%= filter_select(:product, :state, @conn.params) %>
-            <%= filter_string_input(:product, :state, @conn.params) %>
+            <label>Category</label>
+            <%= filter_select(:product, :category, @conn.params) %>
+            <%= filter_string_input(:product, :category, @conn.params) %>
           </div>
         
+          <div class="field">
+            <label>Subcategory</label>
+            <%= filter_select(:product, :subcategory, @conn.params) %>
+            <%= filter_string_input(:product, :subcategory, @conn.params) %>
+          </div>
         
         
         

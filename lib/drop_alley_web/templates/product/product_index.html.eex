@@ -11,7 +11,7 @@
           <div class="title"><span>Filters</span></div>
           <ul>
               <%= for filter <- assigns.filter.conditions do %>
-                <li><%= filter.column |> String.capitalize %>: <%= filter.value %> <a href="#" class="remove-filter" data-column=<%= filter.column %> data-val = <%= filter.value %> ><i class="material-icons md-1">close</i></a></li>
+                <li><%= filter.column |> String.capitalize %>: <%= filter.comparator %> <%= filter.value %> <a href="#" class="remove-filter" data-column=<%= filter.column %> data-val = <%= filter.value %> data-comp = <%= filter.comparator |> String.replace(" ", "_") %> ><i class="material-icons md-1">close</i></a></li>
               <% end %>
           </ul>
         </div>
@@ -57,7 +57,7 @@
                 <input type="text" class="form-control" name="max-price" id="max-price" value="" />
               </div>
               <div class="price-range">
-                <div id="price-range-slider"></div>
+                <div id="price-range-slider-new"></div>
               </div>
             </div>
           </div>

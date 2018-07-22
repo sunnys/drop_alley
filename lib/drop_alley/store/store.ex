@@ -203,6 +203,7 @@ defp filter_product_config(:products) do
     text :material
     text :category
     text :subcategory
+    number :price
     #TODO add config for prprice of type float
     #TODO add config for inspection_process of type map
     

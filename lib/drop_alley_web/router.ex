@@ -57,7 +57,7 @@ defmodule DropAlleyWeb.Router do
     get "/", ProductController, :product_index, as: :index
     get "/products", ProductController, :product_index, as: :product_index
     get "/products/:id", ProductController, :product_show, as: :product_show
-    get "/products/:id/checkout", ProductController, :product_checkout, as: :product_checkout
+    get "/products/:id/checkout/:size", ProductController, :product_checkout, as: :product_checkout
 
     post "/products/:id/book_order", ProductController, :book_order, as: :book_order
     get "/orders/:id/show_order", OrderController, :show_order, as: :show_order

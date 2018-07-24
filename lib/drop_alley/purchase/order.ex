@@ -9,6 +9,7 @@ defmodule DropAlley.Purchase.Order do
     field :payment_type, :string
     field :purchase, :boolean, default: false
     field :state, :string
+    field :size, :string 
     field :trial, :boolean, default: false
     # field :product_id, :id
     belongs_to :buyer , DropAlley.Store.Buyer, foreign_key: :buyer_id
@@ -19,7 +20,7 @@ defmodule DropAlley.Purchase.Order do
   @doc false
   def changeset(order, attrs) do
     order
-    |> cast(attrs, [:state, :active, :trial, :purchase, :payment_type, :paid, :buyer_id])
+    |> cast(attrs, [:state, :active, :trial, :purchase, :payment_type, :paid, :buyer_id, :size])
     |> validate_required([:state, :active, :trial, :purchase, :payment_type, :paid])
   end
 end

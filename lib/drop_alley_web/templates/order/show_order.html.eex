@@ -18,13 +18,13 @@
                         <a href="detail.html" class="mr-3"><img style="width:80px;" src="<%= DropAlley.ImageUploader.url({product.image, product})%>" class="img-fluid" alt="product"></a>
                         <div class="media-body">
                           <a href="detail.html" class="h6"><%= product.name %></a>
-                          <div class="small">Size: <%= product.size%></div>
+                          <div class="small">Size: <%= @order.size%></div>
                           <div class="small">Color: <%= "" %></div>
                           <div class="small">Qty: 1</div>
                         </div>
                       </div>
                     </td>
-                    <td><span class="text-theme">$<%= product.prprice%></span></td>
+                    <td><span class="text-theme">$<%= product.price%></span></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -43,11 +43,11 @@
           <hr>
           <div class="d-flex mt-3">
             <div>Bag Total</div>
-            <div class="ml-auto font-weight-bold">$<%= List.last(@order.products).prprice %></div>
+            <div class="ml-auto font-weight-bold">€<%= List.last(@order.products).prprice %></div>
           </div>
           <div class="d-flex">
             <div>Bag Discount</div>
-            <div class="ml-auto font-weight-bold">$<%= discount = Enum.random(3..7)%></div>
+            <div class="ml-auto font-weight-bold">-<%= List.last(@order.products).discount %>%</div>
           </div>
           <hr class="my-1">
           <div class="d-flex">
@@ -61,7 +61,7 @@
           <hr>
           <div class="d-flex">
             <h5 class="mb-0">Order Total</h5>
-            <h5 class="mb-0 ml-auto text-theme">$<%= List.last(@order.products).prprice - discount%></h5>
+            <h5 class="mb-0 ml-auto text-theme">€<%= (List.last(@order.products).price) |> Float.round(2) %></h5>
           </div>
           <hr>
         </div>

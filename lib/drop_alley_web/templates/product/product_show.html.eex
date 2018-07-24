@@ -7,7 +7,7 @@
         <div class="swiper-container border rounded mb-2" id="detail-slider">
         <div class="swiper-wrapper">
             <%= for pi <- @product.product_images do %>
-                <div class="swiper-slide"><img src="<%= DropAlley.ImageUploader.url({pi.image, pi})%>" class="w-100" data-width="1025" data-height="1400" alt="Product"></div>
+                <div class="swiper-slide"><img src="<%= DropAlley.ProductImageUploader.url({pi.image, pi})%>" class="w-100" data-width="1025" data-height="1400" alt="Product"></div>
             <% end %>
         </div>
         <a href="#zoom" class="btn-zoom"><i class="material-icons md-2">zoom_in</i></a>
@@ -15,7 +15,7 @@
         <div class="swiper-container detail-gallery mb-2" id="detail-gallery">
         <div class="swiper-wrapper">
             <%= for pi <- @product.product_images do %>
-                <div class="swiper-slide"><a href="#"><img src="<%= DropAlley.ImageUploader.url({pi.image, pi})%>" alt="Product" class="img-thumbnail"></a></div>
+                <div class="swiper-slide"><a href="#"><img src="<%= DropAlley.ProductImageUploader.url({pi.image, pi})%>" alt="Product" class="img-thumbnail"></a></div>
             <% end %>
         </div>
         <div class="swiper-button-prev" id="detail-gallery-prev"><i class="material-icons md-3">keyboard_arrow_left</i></div>
@@ -55,8 +55,10 @@
             <td>
                 <div class="row">
                 <div class="col-5 col-sm-3 col-md-6 col-lg-3 col-xl-2">
-                    <select name="size" class="custom-select custom-select-sm">
-                    <option value="<%= @product.size %>"><%= @product.size %></option>
+                    <select name="size" id="product-size" class="custom-select custom-select-sm">
+                    <%= for size <- @product.sizes do %>
+                        <option value="<%= size %>"><%= size %></option>
+                    <% end %>
                     </select>
                 </div>
                 </div>
@@ -69,7 +71,7 @@
         
         <div class="col-md-4 col-sm-4" offset-col-sm-2>
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                <a href="/products/<%= @product.id %>/checkout"><button type="button" class="btn btn-theme">TRY & BUY</button></a>     </div> 
+                <a href="#" id="trynbuy" data-val= <%= @product.id %> ><button type="button" class="btn btn-theme">TRY & BUY</button></a>     </div> 
             </div>  
         
         <br>
@@ -153,3 +155,5 @@
     <br>
     
 </div>
+<script src="<%= static_path(@conn, "/js/jquery.min.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/product-show-script.js")%>"></script>

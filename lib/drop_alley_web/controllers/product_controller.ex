@@ -86,8 +86,9 @@ defmodule DropAlleyWeb.ProductController do
     render(conn, "product_show.html", [product: product, is_available: is_available])
   end
 
-  def product_checkout(conn, %{"id" => id}) do
+  def product_checkout(conn, %{"id" => id, "size" => size}) do
     conn = put_layout conn, {DropAlleyWeb.LayoutView, "product.html"}
+    IO.inspect conn
     product = Store.get_product_with_detail!(id)
     render(conn, "product_checkout.html", product: product)
   end
@@ -124,7 +125,8 @@ defmodule DropAlleyWeb.ProductController do
       payment_type: "COD", 
       purchase: true, 
       state: "new",
-      trail: true
+      trail: true,
+      size: order_params["size"]
     }
     address = %{
       active: true, 

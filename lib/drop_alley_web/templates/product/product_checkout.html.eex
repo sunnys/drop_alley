@@ -5,6 +5,7 @@
             <h4>Shipping Address</h4>
             <hr>
             <div class="form-row">
+            <%= hidden_input f, :size, class: "form-control", value: @conn.params["size"] %>
             <div class="form-group col-md-6">
                 <%= label f, :first_name, class: "control-label" %>
                 <%= text_input f, :first_name, class: "form-control" %>

@@ -46,6 +46,12 @@
           <div class="torch-show-label">Product:</div>
           <div class="torch-show-data"><%= List.last(@order.products).name %></div>
         </li>
+
+        <li>
+          <div class="torch-show-label">Size:</div>
+          <div class="torch-show-data"><%= @order.size %></div>
+        </li>
+
         <li>
           <div class="torch-show-label">Buyer Name:</div>
           <div class="torch-show-data"><%= @order.buyer.user.name %></div>

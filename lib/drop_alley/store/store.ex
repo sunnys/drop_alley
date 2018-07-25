@@ -268,7 +268,7 @@ def create_bulk_product(file_path) do
       name: name, 
       description: description, 
       product_images: images |> String.split(",") |> Enum.map(fn(s) -> %{uuid: UUID.uuid1, image: String.replace(s, "[", "") |> String.replace("]", "") |> String.trim} end),
-      image: images |> String.split(",") |> Enum.map(fn(s) -> String.replace(s, "[", "") |> String.replace("]", "") |> String.trim end) |> Enum.random,
+      image: images |> String.split(",") |> Enum.map(fn(s) -> String.replace(s, "[", "") |> String.replace("]", "") |> String.trim end) |> List.first,
       prprice: prprice, 
       price: price, 
       discount: discount,

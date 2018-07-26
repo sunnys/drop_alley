@@ -48,11 +48,11 @@
               <div class="title"><span>Price Range</span></div>
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Min : $</span>
+                  <span class="input-group-text">Min : €</span>
                 </div>
                 <input type="text" class="form-control" name="min-price" id="min-price" value="" />
                 <div class="input-group-append input-group-prepend">
-                  <span class="input-group-text">Max : $</span>
+                  <span class="input-group-text">Max : €</span>
                 </div>
                 <input type="text" class="form-control" name="max-price" id="max-price" value="" />
               </div>

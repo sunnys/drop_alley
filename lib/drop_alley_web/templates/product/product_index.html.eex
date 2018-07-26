@@ -71,7 +71,7 @@
       <div class="title" style="text-align:center"><span><strong>Fase 1:</strong> Pedir un producto en casa <strong>Fase 2:</strong> Pruebe el producto <strong>Fase 3:</strong> Compra solo si te gusta</span></div>
 
       <!-- Sorting Bar -->
-    <!--<div class="row mb-3">
+      <div class="row mb-3">
         <div class="mb-2 col-12 col-sm-12 text-center text-sm-right">
           <span>Sort by</span>
           <select name="sortby" class="custom-select ml-2 w-auto custom-select-sm">
@@ -80,7 +80,7 @@
             <option value="low">Low Price &rarr; High Price</option>
             <option value="hight">High Price &rarr; High Price</option>
           </select>
-        </div> -->
+        </div>
       </div>
       <!-- /Sorting Bar -->
 
@@ -93,15 +93,15 @@
               <div class="card-title"><a href="detail.html" title="Burberry The Plymouth Duffle Coat"><%= product.name %></a></div>
               <ul class="card-text list-inline pr-2">
                 <li class="list-inline-item"><span class="price">€<%= product.price %></span></li>
-                <li class="list-inline-item"><del class="text-muted small">$<%= product.prprice %></del></li>
+                <li class="list-inline-item"><del class="text-muted small">€<%= product.prprice %></del></li>
               </ul>
-              <div class="action">
+          <!--    <div class="action">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Action">
                   
                   <button class="btn btn-theme">Try & Buy</button>
                   
                 </div>
-              </div>
+              </div> -->
               <div class="small-action d-block d-md-none">
                 <div class="btn-group dropup">
                   <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>

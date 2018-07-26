@@ -311,8 +311,8 @@
           <div class="col-6 col-lg-3">
             <h6>Nuestras Politicas</h6>
             <div class="list-group list-group-flush">
-              <a href="https://gbbravo.com/content/2-privacidad" class="list-group-item list-group-item-action">Política de privacidad</a>
-              <a href="https://gbbravo.com/" class="list-group-item list-group-item-action">GB Bravo</a>
+              <a href="https://gbbravo.com/content/2-privacidad" target="_blank" class="list-group-item list-group-item-action">Política de privacidad</a>
+              <a href="http://tc.dropalley.com" target="_blank" class="list-group-item list-group-item-action">Términos y condiciones de uso</a>
               
             </div>
           </div>

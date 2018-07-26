@@ -1,12 +1,12 @@
 <div class="container-fluid limited mb-5">
       <div class="row">
         <div class="col-sm-12 col-md-8">
-          <h4>Review Your Order</h4>
+          <h4>Su Pedido</h4>
           <div class="table-responsive mt-3">
             <table class="table table-cart table-sm">
               <thead>
                 <tr>
-                  <th scope="col" class="w-75">Item</th>
+                  <th scope="col" class="w-75">Producto</th>
                   <th scope="col">Subtotal</th>
                 </tr>
               </thead>
@@ -24,7 +24,7 @@
                         </div>
                       </div>
                     </td>
-                    <td><span class="text-theme">$<%= product.price%></span></td>
+                    <td><span class="text-theme">€<%= product.price%></span></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -32,28 +32,28 @@
           </div>
         </div>
         <div class="col-md-4">
-          <h5 class="mt-5">Shipping to:</h5>
+          <h5 class="mt-5">Envio A:</h5>
           <div><%= @order.buyer.user.name %></div>
           <div><%= List.last(@order.buyer.user.addresses).street %>. <%= List.last(@order.buyer.user.addresses).addr %>, <%= List.last(@order.buyer.user.addresses).city %>, <%= List.last(@order.buyer.user.addresses).pincode %>, <%= List.last(@order.buyer.user.addresses).state %>, <%= List.last(@order.buyer.user.addresses).country %></div>
           <div><%= @order.buyer.user.email %></div>
           <div><%= List.last(@order.buyer.user.addresses).contact_no %></div>
           <hr>
-          <h5>Payment Method</h5>
+          <h5>Forma De Pago</h5>
           <div><%= @order.payment_type %></div>
           <hr>
           <div class="d-flex mt-3">
-            <div>Bag Total</div>
+            <div>Bolsa Total</div>
             <div class="ml-auto font-weight-bold">€<%= List.last(@order.products).prprice %></div>
           </div>
           <div class="d-flex">
-            <div>Bag Discount</div>
+            <div>Descuento Bolsa</div>
             <div class="ml-auto font-weight-bold">-<%= List.last(@order.products).discount %>%</div>
           </div>
           <hr class="my-1">
-          <div class="d-flex">
+      <!--  <div class="d-flex">
             <div>Coupon Discount</div>
             <div class="ml-auto font-weight-bold">-</div>
-          </div>
+          </div> -->
           <div class="d-flex">
             <div>Shipping Cost</div>
             <div class="ml-auto font-weight-bold">FREE</div>

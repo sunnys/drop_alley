@@ -8,7 +8,7 @@
       </button>
       <div class="collapse d-md-block" id="collapseFilter">
         <div class="filter-sidebar mt-3 mt-md-0">
-          <div class="title"><span>Filters</span></div>
+          <div class="title"><span>Filtros</span></div>
           <ul>
               <%= for filter <- assigns.filter.conditions do %>
                 <li><%= filter.column |> String.capitalize %>: <%= filter.comparator %> <%= filter.value %> <a href="#" class="remove-filter" data-column=<%= filter.column %> data-val = <%= filter.value %> data-comp = <%= filter.comparator |> String.replace(" ", "_") %> ><i class="material-icons md-1">close</i></a></li>
@@ -16,7 +16,7 @@
           </ul>
         </div>
         <div class="filter-sidebar">
-          <div class="title"><span>Categories</span></div>
+          <div class="title"><span>Categorías</span></div>
           <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
             <%= for c <- assigns.category_group do %>
             <div class="list-group-collapse sub-men">
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="filter-sidebar">
-          <div class="title"><span>Brand</span></div>
+          <div class="title"><span>Marca</span></div>
           <%= for d <- assigns.brands do %>
             <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input brand-filter" data-val= <%= d %> id="filter<%= d %>">
@@ -45,14 +45,14 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-md-12">
             <div class="filter-sidebar">
-              <div class="title"><span>Price Range</span></div>
+              <div class="title"><span>Precios</span></div>
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Min : $</span>
+                  <span class="input-group-text">Min : €</span>
                 </div>
                 <input type="text" class="form-control" name="min-price" id="min-price" value="" />
                 <div class="input-group-append input-group-prepend">
-                  <span class="input-group-text">Max : $</span>
+                  <span class="input-group-text">Max : €</span>
                 </div>
                 <input type="text" class="form-control" name="max-price" id="max-price" value="" />
               </div>
@@ -68,7 +68,7 @@
     <!-- /Filter Widget -->
 
     <div class="col-lg-9 col-md-8">
-      <div class="title"><span>Men's Shoes</span></div>
+      <div class="title" style="text-align:center"><span><strong>Fase 1:</strong> Pedir un producto en casa <strong>Fase 2:</strong> Pruebe el producto <strong>Fase 3:</strong> Compra solo si te gusta</span></div>
 
       <!-- Sorting Bar -->
       <div class="row mb-3">
@@ -81,7 +81,6 @@
             <option value="hight">High Price &rarr; High Price</option>
           </select>
         </div>
-        
       </div>
       <!-- /Sorting Bar -->
 
@@ -94,15 +93,15 @@
               <div class="card-title"><a href="detail.html" title="Burberry The Plymouth Duffle Coat"><%= product.name %></a></div>
               <ul class="card-text list-inline pr-2">
                 <li class="list-inline-item"><span class="price">€<%= product.price %></span></li>
-                <li class="list-inline-item"><del class="text-muted small">$<%= product.prprice %></del></li>
+                <li class="list-inline-item"><del class="text-muted small">€<%= product.prprice %></del></li>
               </ul>
-              <div class="action">
+          <!--    <div class="action">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Action">
                   
                   <button class="btn btn-theme">Try & Buy</button>
                   
                 </div>
-              </div>
+              </div> -->
               <div class="small-action d-block d-md-none">
                 <div class="btn-group dropup">
                   <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#10247;</span>

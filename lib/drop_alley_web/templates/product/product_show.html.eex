@@ -31,7 +31,7 @@
             <td class="border-top-0" colspan="2"><h5><%= @product.name %></h5></td>
             </tr>
             <tr>
-            <td>Price</td>
+            <td>Precio</td>
             <td>
                 <ul class="list-inline mb-0">
                 <li class="list-inline-item"><span class="text-theme h5">€<%= @product.price %></span></li>
@@ -41,7 +41,7 @@
             </td>
             </tr>
             <tr>
-            <td>Availability</td>
+            <td>Disponibilidad</td>
             <td>
                 <%= if DropAlley.Store.in_stock?(@product.id) do %>
                     <span class="badge badge-success">in stock</span>
@@ -51,7 +51,7 @@
             </td>
             </tr>
             <tr>
-            <td class="align-middle">Size</td>
+            <td class="align-middle">Talla</td>
             <td>
                 <div class="row">
                 <div class="col-5 col-sm-3 col-md-6 col-lg-3 col-xl-2">
@@ -79,10 +79,13 @@
         
         <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link text-secondary active" id="desc-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+            <a class="nav-link text-secondary active" id="desc-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Descripción</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-secondary" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Detail</a>
+            <a class="nav-link text-secondary" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Detalle</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-secondary" id="detail-tab" data-toggle="tab" href="#sizechart" role="tab" aria-controls="detail" aria-selected="false">Guia de tallas</a>
         </li>
         <!--
         <li class="nav-item">
@@ -104,6 +107,79 @@
                 </tr>
                 <% end %>
                 
+            </tbody>
+            </table>
+        </div>
+        <div class="tab-pane border border-top-0 p-3" id="sizechart" role="tabpanel" aria-labelledby="sizechart">
+            <table class="table table-bordered mb-0 table-sm">
+            <tbody>
+                <tr>   
+                    <td>EU</td>
+                    <td>36</td>
+                    <td>36.5</td>
+                    <td>37</td>
+                    <td>37.5</td>
+                    <td>38</td>
+                    <td>38.5</td>
+                    <td>39</td>
+                    <td>40</td>
+                    <td>41</td>
+                    <td>41.5</td>
+                    <td>42</td>
+                    <td>42.5</td>
+                    <td>43</td>
+                    <td>44</td>
+                    <td>45</td>
+                    <td>45.5</td>
+                    <td>46</td>
+                    <td>46.5</td>
+                    <td>47</td>
+                </tr>
+                <tr>   
+                    <td>UK</td>
+                    <td>3</td>
+                    <td>3.5</td>
+                    <td>4</td>
+                    <td>4.5</td>
+                    <td>5</td>
+                    <td>5.5</td>
+                    <td>6</td>
+                    <td>6.5</td>
+                    <td>7</td>
+                    <td>7.5</td>
+                    <td>8</td>
+                    <td>8.5</td>
+                    <td>9</td>
+                    <td>9.5</td>
+                    <td>10</td>
+                    <td>10.5</td>
+                    <td>11</td>
+                    <td>11.5</td>
+                    <td>12</td>
+                </tr>
+                <tr>   
+                    <td>Clarks.es</td>
+                    <td>35.5</td>
+                    <td>36</td>
+                    <td>37</td>
+                    <td>37.5</td>
+                    <td>38</td>
+                    <td>39</td>
+                    <td>39.5</td>
+                    <td>40</td>
+                    <td>41</td>
+                    <td>41.5</td>
+                    <td>42</td>
+                    <td>42.5</td>
+                    <td>43</td>
+                    <td>44</td>
+                    <td>44.5</td>
+                    <td>45</td>
+                    <td>46</td>
+                    <td>46.5</td>
+                    <td>47</td>
+                </tr>
+
             </tbody>
             </table>
         </div>

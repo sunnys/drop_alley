@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :drop_alley, DropAlley.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "quodeck",
-  password: "ptotem123",
+  username: "postgres",
+  password: "slashisgod0109",
   database: "drop_alley_dev",
   hostname: "localhost",
   pool_size: 10

@@ -8,7 +8,7 @@
       </button>
       <div class="collapse d-md-block" id="collapseFilter">
         <div class="filter-sidebar mt-3 mt-md-0">
-          <div class="title"><span>Filters</span></div>
+          <div class="title"><span>Filtros</span></div>
           <ul>
               <%= for filter <- assigns.filter.conditions do %>
                 <li><%= filter.column |> String.capitalize %>: <%= filter.comparator %> <%= filter.value %> <a href="#" class="remove-filter" data-column=<%= filter.column %> data-val = <%= filter.value %> data-comp = <%= filter.comparator |> String.replace(" ", "_") %> ><i class="material-icons md-1">close</i></a></li>
@@ -16,7 +16,7 @@
           </ul>
         </div>
         <div class="filter-sidebar">
-          <div class="title"><span>Categories</span></div>
+          <div class="title"><span>Categorías</span></div>
           <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
             <%= for c <- assigns.category_group do %>
             <div class="list-group-collapse sub-men">
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="filter-sidebar">
-          <div class="title"><span>Brand</span></div>
+          <div class="title"><span>Marca</span></div>
           <%= for d <- assigns.brands do %>
             <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input brand-filter" data-val= <%= d %> id="filter<%= d %>">
@@ -45,7 +45,7 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-md-12">
             <div class="filter-sidebar">
-              <div class="title"><span>Price Range</span></div>
+              <div class="title"><span>Precios</span></div>
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text">Min : €</span>
@@ -68,10 +68,10 @@
     <!-- /Filter Widget -->
 
     <div class="col-lg-9 col-md-8">
-      <div class="title"><span>Men's Shoes</span></div>
+      <div class="title" style="text-align:center"><span><strong>Fase 1:</strong> Pedir un producto en casa <strong>Fase 2:</strong> Pruebe el producto <strong>Fase 3:</strong> Compra solo si te gusta</span></div>
 
       <!-- Sorting Bar -->
-      <div class="row mb-3">
+    <!--<div class="row mb-3">
         <div class="mb-2 col-12 col-sm-12 text-center text-sm-right">
           <span>Sort by</span>
           <select name="sortby" class="custom-select ml-2 w-auto custom-select-sm">
@@ -80,8 +80,7 @@
             <option value="low">Low Price &rarr; High Price</option>
             <option value="hight">High Price &rarr; High Price</option>
           </select>
-        </div>
-        
+        </div> -->
       </div>
       <!-- /Sorting Bar -->
 

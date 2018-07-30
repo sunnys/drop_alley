@@ -68,7 +68,7 @@
     <!-- /Filter Widget -->
 
     <div class="col-lg-9 col-md-8">
-      <div class="title" style="text-align:center"><span><strong>Fase 1:</strong> Pedir un producto en casa <strong>Fase 2:</strong> Pruebe el producto <strong>Fase 3:</strong> Compra solo si te gusta</span></div>
+      <div class="title" style="text-align:center; font-size:17px;"><span><strong>Fase 1:</strong> Recibe tu pedido en casa. Entrega en dos 2hrs (Opcional) <strong>Fase 2:</strong> Pruebe el producto <strong>Fase 3:</strong> Compra solo si te gusta</span></div>
 
       <!-- Sorting Bar -->
       <div class="row mb-3">

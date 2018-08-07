@@ -116,8 +116,9 @@ def call(order, address, user_changeset, product_id) do
 end
 
 defp transaction(order, address, user_changeset, product_id) do
+  on_conflict = [set: [email: "updated"]]
   Multi.new
-  |> Multi.insert(:user, DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, user_changeset))
+  |> Multi.insert(:user, DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, user_changeset), on_conflict: on_conflict, conflict_target: :email)
   |> Multi.run(:buyer, fn %{user: user} ->
      DropAlley.Store.Buyer.changeset(%DropAlley.Store.Buyer{}, %{user_id: user.id, active: true}) |> Repo.insert 
     end)

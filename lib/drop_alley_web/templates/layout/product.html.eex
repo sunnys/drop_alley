@@ -86,15 +86,15 @@
             <a href="#" class="text-dark" data-toggle="modal" data-target="#menuModal"><i class="material-icons md-2">menu</i></a>
           </div>
           <div class="col-4 col-md-auto d-flex align-items-center justify-content-center justify-content-md-start">
-            <a href="https://gbbravo.com" class="logo">
+            <a href="https://www.quodeck.com" class="logo">
               <img src="/img/grupologo.png" alt="GrupoBravo" class="d-none d-md-block">
               <img src="/img/grupologo.png" alt="GrupoBravo" class="d-block d-md-none">
             </a>
           </div>
           <div class="col d-none d-md-block position-static">
             <nav class="navbar nav main-nav justify-content-center justify-content-md-start position-static p-0">
-              <a class="nav-link" href="/products">INICIO</a>
-              <a class="nav-link" href="https://gbbravo.com/tiendas" target="_blank">TIENDAS</a>              
+              <a class="nav-link" href="/products">List</a>
+              <!-- <a class="nav-link" href="https://gbbravo.com/tiendas" target="_blank">TIENDAS</a> -->             
             </nav>
           </div>
 
@@ -106,7 +106,7 @@
       <div class="container-fluid limited">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">COMPRAS DE TRY & BUY</li>
+            <li class="breadcrumb-item">TRY & BUY PURCHASES</li>
           </ol>
         </nav>
       </div>
@@ -326,17 +326,17 @@
       <div class="container-fluid limited">
         <div class="row">
           <div class="col-6 col-lg-3">
-            <h6>Tienda</h6>
+            <h6>Store</h6>
             <div class="list-group list-group-flush">
-              <a href="https://gbbravo.com/content/9-que-es-gbbravo" target="_blank" class="list-group-item list-group-item-action">¿Qué es gbbravo.com?</a>
-              <a href="https://gbbravo.com/content/6-preguntas-frecuentes" target="_blank" class="list-group-item list-group-item-action">Preguntas frecuentes</a>
+              <a href="https://gbbravo.com/content/9-que-es-gbbravo" target="_blank" class="list-group-item list-group-item-action">What is QuoDeck?</a>
+              <a href="https://gbbravo.com/content/6-preguntas-frecuentes" target="_blank" class="list-group-item list-group-item-action">Frequent questions</a>
             </div>
           </div>
           <div class="col-6 col-lg-3">
-            <h6>Nuestras Politicas</h6>
+            <h6>Our Policies</h6>
             <div class="list-group list-group-flush">
-              <a href="https://gbbravo.com/content/2-privacidad" target="_blank" class="list-group-item list-group-item-action">Política de privacidad</a>
-              <a href="http://tc.dropalley.com" target="_blank" class="list-group-item list-group-item-action">Términos y condiciones de uso</a>
+              <a href="https://gbbravo.com/content/2-privacidad" target="_blank" class="list-group-item list-group-item-action">Privacy Policies</a>
+              <a href="http://tc.dropalley.com" target="_blank" class="list-group-item list-group-item-action">Terms and conditions of use</a>
               
             </div>
           </div>
@@ -349,7 +349,7 @@
 
     <!-- Copyright -->
     <div class="copyright">
-      Copyright © 2018 Grupo GB Bravo All right reserved
+      Copyright © 2018 QuoDeck All right reserved
     </div>
     <!-- /Copyright -->
 

@@ -24,18 +24,46 @@
       <%= number_input f, :prprice, step: "any", class: "form-control" %>
       <%= error_tag f, :prprice %>
     </div>
+
+    <div class="torch-form-group">
+      <%= label f, :price, class: "control-label" %>
+      <%= number_input f, :price, step: "any", class: "form-control" %>
+      <%= error_tag f, :price %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :category, class: "control-label" %>
+      <%= text_input f, :category, step: "any", class: "form-control" %>
+      <%= error_tag f, :category %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :subcategory, class: "control-label" %>
+      <%= text_input f, :subcategory, step: "any", class: "form-control" %>
+      <%= error_tag f, :subcategory %>
+    </div>
   
+    <div class="torch-form-group">
+      <%= label f, :detail_category, class: "control-label" %>
+      <%= text_input f, :detail_category, name: "product[detail][category]", class: "form-control" %>
+      <%= error_tag f, :detail %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :detail_subcategory, class: "control-label" %>
+      <%= text_input f, :detail_subcategory, name: "product[detail][subcategory]", class: "form-control" %>
+      <%= error_tag f, :detail %>
+    </div>
+
+
+
     <div class="torch-form-group">
       <%= label f, :state, class: "control-label" %>
       <%= text_input f, :state, class: "form-control" %>
       <%= error_tag f, :state %>
     </div>
   
-    <div class="torch-form-group">
-      <%= label f, :inspection_process, class: "control-label" %>
-      <%= text_input f, :inspection_process, class: "form-control" %>
-      <%= error_tag f, :inspection_process %>
-    </div>
+   
 
     <div class="torch-form-group">
       <%= label f, :retailer_id, class: "control-label" %>

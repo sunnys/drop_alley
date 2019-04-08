@@ -100,9 +100,17 @@ def get_product!(id), do: Repo.get!(Product, id)
 def get_product_with_detail!(id), do: Repo.get!(Product, id) |> Repo.preload([:product_images, :product_reviews])
 
 def in_stock?(id) do
-   Repo.get!(Product, id).stocks 
-   |> Enum.map(fn(x) -> x.stock end) 
-   |> Enum.reduce(fn(acc, x) -> x+ acc end) > 0
+   stocks = Repo.get!(Product, id).stocks 
+   case stocks do 
+    nil ->
+      false
+    [] ->
+      false
+    _ ->
+      stocks
+      |> Enum.map(fn(x) -> x.stock end) 
+      |> Enum.reduce(fn(acc, x) -> x+ acc end) > 0
+   end
 end
 @doc """
 Gets a single product by return code.

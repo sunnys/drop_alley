@@ -87,8 +87,8 @@
           </div>
           <div class="col-4 col-md-auto d-flex align-items-center justify-content-center justify-content-md-start">
             <a href="https://www.quodeck.com" class="logo">
-              <img src="/img/grupologo.png" alt="GrupoBravo" class="d-none d-md-block">
-              <img src="/img/grupologo.png" alt="GrupoBravo" class="d-block d-md-none">
+              <img src="/img/barlogo.png" alt="GrupoBravo" class="d-none d-md-block">
+              <img src="/img/barlogo.png" alt="GrupoBravo" class="d-block d-md-none">
             </a>
           </div>
           <div class="col d-none d-md-block position-static">

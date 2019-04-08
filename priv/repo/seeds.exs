@@ -97,8 +97,8 @@ defmodule RetailerSeed do
     end
 end
 
-RetailerSeed.delete_retailers
-RetailerSeed.seed       
+# RetailerSeed.delete_retailers
+# RetailerSeed.seed       
 
 # "/home/sunny/Desktop/drop_alley_random.csv" |> File.stream! |> MyParser.parse_stream |> Stream.map(fn[name, image, description, prprice,  price, state, retailer_id, product_image1, product_image2, product_image3, product_image4] -> Product.changeset(%Product{}, %{name: name, image: image, description: description, prprice: prprice, price: price, state: state, retailer_id: retailer_id, product_images: [%{image: product_image1}, %{image: product_image2}, %{image: product_image3}, %{image: product_image4}]}) |> Repo.insert! end) |> Enum.to_list
 

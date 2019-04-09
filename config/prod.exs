@@ -18,9 +18,17 @@ config :drop_alley, DropAlleyWeb.Endpoint,
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
-# Do not print debug messages in production
-config :logger, level: :info
+config :logger,
+  backends: [{LoggerFileBackend, :info},
+             {LoggerFileBackend, :error}]
 
+config :logger, :info,
+  path: "log/production.log",
+  level: :info
+
+config :logger, :error,
+  path: "log/production.log",
+  level: :error
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

@@ -20,7 +20,7 @@ defmodule DropAlley.Mixfile do
   def application do
     [
       mod: {DropAlley.Application, []},
-      extra_applications: [:logger, :runtime_tools, :coherence, :gettext, :swoosh, :phoenix_swoosh, :arc_ecto, :faker_elixir_octopus, :edeliver]
+      extra_applications: [:logger, :runtime_tools, :coherence, :gettext, :swoosh, :phoenix_swoosh, :arc_ecto, :faker_elixir_octopus, :edeliver, :logger_file_backend]
     ]
   end
 
@@ -56,7 +56,8 @@ defmodule DropAlley.Mixfile do
       {:edeliver, "~> 1.4.3"},
       {:distillery, "~> 1.4"},
       {:arc_ecto, "~> 0.10.0"}, #and this
-      {:nimble_csv, "~> 0.3"}
+      {:nimble_csv, "~> 0.3"},
+      {:logger_file_backend, "~>0.0.10"},
     ]
   end
 

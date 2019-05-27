@@ -29,10 +29,10 @@ defmodule DropAlleyWeb.Coherence do
       import Plug.Conn
       import DropAlleyWeb.Router.Helpers
       import DropAlleyWeb.Gettext
-      import Coherence.ControllerHelpers
+      import Coherence.Controller
 
       alias Coherence.Config
-      alias Coherence.ControllerHelpers, as: Helpers
+      alias Coherence.Controller
 
       require Redirects
     end

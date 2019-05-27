@@ -56,7 +56,8 @@ defmodule DropAlley.Mixfile do
       {:edeliver, "~> 1.4.3"},
       {:distillery, "~> 1.4"},
       {:arc_ecto, "~> 0.10.0"}, #and this
-      {:nimble_csv, "~> 0.3"}
+      {:nimble_csv, "~> 0.3"},
+      {:plug_cowboy, "~> 1.0"}
     ]
   end
 

@@ -24,6 +24,7 @@ defmodule DropAlleyWeb.Coherence.Messages do
   def account_already_confirmed, do: dgettext(@domain, "Account already confirmed.")
   def account_is_not_locked, do: dgettext(@domain, "Account is not locked.")
   def account_updated_successfully, do: dgettext(@domain, "Account updated successfully.")
+  def account_created_successfully, do: dgettext(@domain, "Account created successfully.")
   def already_confirmed, do: dgettext(@domain, "already confirmed")
   def already_locked, do: dgettext(@domain, "already locked")
   def already_logged_in, do: dgettext(@domain, "Already logged in.")
@@ -69,17 +70,10 @@ defmodule DropAlleyWeb.Coherence.Messages do
   def you_must_confirm_your_account, do: dgettext(@domain, "You must confirm your account before you can login.")
   def your_account_has_been_unlocked, do: dgettext(@domain, "Your account has been unlocked")
   def your_account_is_not_locked, do: dgettext(@domain, "Your account is not locked.")
-  def verify_user_token(opts), do: dgettext(@domain, "Invalid %{user_token} error: %{error}", opts)
-  def you_are_using_an_invalid_security_token, do: dgettext(@domain, "You are using an invalid security token for this site! This security violation has been logged.\n")
+  def verify_user_token(opts),
+    do: dgettext(@domain, "Invalid %{user_token} error: %{error}", opts)
+  def you_are_using_an_invalid_security_token,
+    do: dgettext(@domain, "You are using an invalid security token for this site! This security\nviolation has been logged.\n")
   def mailer_required, do: dgettext(@domain, "Mailer configuration required!")
   def account_is_inactive(), do: dgettext(@domain, "Account is inactive!")
-
-  @behaviour CoherenceAssent.Messages
-
-  def could_not_sign_in, do: dgettext("coherence_assent", "Could not sign in. Please try again.")
-  def identity_cannot_be_removed_missing_user_password, do: dgettext("coherence_assent", "Authentication cannot be removed until you've entered a password for your account.")
-  def account_already_bound_to_other_user(opts), do: dgettext("coherence_assent", "The %{provider} account is already bound to another user.", opts)
-  def login_with_provider(opts), do: dgettext("coherence_assent", "Sign in with %{provider}", opts)
-  def remove_provider_authentication(opts), do: dgettext("coherence_assent", "Remove %{provider} authentication", opts)
-  def authentication_has_been_removed(opts), do: dgettext("coherence_assent", "Authentication with %{provider} has been removed", opts)
 end

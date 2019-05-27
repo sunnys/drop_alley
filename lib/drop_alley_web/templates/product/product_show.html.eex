@@ -87,16 +87,18 @@
         <li class="nav-item">
             <a class="nav-link text-secondary" id="detail-tab" data-toggle="tab" href="#sizechart" role="tab" aria-controls="detail" aria-selected="false">Guia de tallas</a>
         </li>
-        <!--
+        
         <li class="nav-item">
             <a class="nav-link text-secondary" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (<%#= @product.product_reviews |> length %>)</a>
         </li>
-        -->
+        
         </ul>
         <div class="tab-content">
-        <div class="tab-pane border border-top-0 p-3 show active" id="home" role="tabpanel" aria-labelledby="desc-tab">
-            <p><%= @product.description %></p>
-        </div>
+        <!--
+            <div class="tab-pane border border-top-0 p-3 show active" id="home" role="tabpanel" aria-labelledby="desc-tab">
+                <p><%= @product.description %></p>
+            </div>
+        -->
         <div class="tab-pane border border-top-0 p-3" id="detail" role="tabpanel" aria-labelledby="detail-tab">
             <table class="table table-bordered mb-0 table-sm">
             <tbody>

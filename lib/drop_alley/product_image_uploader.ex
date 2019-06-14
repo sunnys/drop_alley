@@ -32,7 +32,7 @@ defmodule DropAlley.ProductImageUploader do
     end
   
     # Override the storage directory:
-    def storage_dir(version, {file, scope}) do
+    def storage_dir(version, {_, scope}) do
       "uploads/product_images/#{scope.uuid}"
     end
   

@@ -26,22 +26,30 @@ config :logger, :console,
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
 
-# %% Coherence Configuration %%   Don't remove this line
-config :coherence,
-  user_schema: DropAlley.Coherence.User,
-  repo: DropAlley.Repo,
-  module: DropAlley,
-  web_module: DropAlleyWeb,
-  router: DropAlleyWeb.Router,
-  messages_backend: DropAlleyWeb.Coherence.Messages,
-  logged_out_url: "/",
-  email_from_name: "Your Name",
-  email_from_email: "yourname@example.com",
-  opts: [:authenticatable, :recoverable, :lockable, :trackable, :unlockable_with_token, :confirmable, :registerable, :invitable]
+# # %% Coherence Configuration %%   Don't remove this line
+# config :coherence,
+#   user_schema: DropAlley.Coherence.User,
+#   repo: DropAlley.Repo,
+#   module: DropAlley,
+#   web_module: DropAlleyWeb,
+#   router: DropAlleyWeb.Router,
+#   messages_backend: DropAlleyWeb.Coherence.Messages,
+#   logged_out_url: "/",
+#   email_from_name: "Your Name",
+#   email_from_email: "yourname@example.com",
+#   opts: [:authenticatable, :recoverable, :lockable, :trackable, :unlockable_with_token, :confirmable, :registerable, :invitable]
 
-config :coherence, DropAlleyWeb.Coherence.Mailer,
-  adapter: Swoosh.Adapters.Sendgrid,
-  api_key: "Secrete_key"
+config :drop_alley, :pow,
+  repo: DropAlley.Repo,
+  user: DropAlley.Coherence.User,
+  web_module: DropAlleyWeb,
+  # extensions: [PowEmailConfirmation, PowResetPassword],
+  controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
+  mailer_backend: DropAlleyWeb.PowMailer
+
+# config :coherence, DropAlleyWeb.Coherence.Mailer,
+#   adapter: Swoosh.Adapters.Sendgrid,
+#   api_key: "Secrete_key"
 # %% End Coherence Configuration %%
 
 config :drop_alley, DropAlley.Mailer,
@@ -52,28 +60,28 @@ config :torch,
   otp_app: :drop_alley,
   template_format: "eex" || "slim"
 
-config :coherence_assent, :providers, [
-  github: [
-    client_id: "2473782e816711935193",
-    client_secret: "cfed959ab42a925f6af2ae438bddcbb0a15dceb7",
-    strategy: CoherenceAssent.Strategy.Github
-  ],
-  facebook: [
-    client_id: "1870582576567423",
-    client_secret: "bdac38d5b3df57a541da8f3dc4a6ed69",
-    strategy: CoherenceAssent.Strategy.Facebook
-  ],
-  twitter: [
-    client_id: "jRbSRBGPvrFrO4QJIBHX0QgtW",
-    client_secret: "8u7zgCvrAYXpAkBgrtN9Y05jm2LSmWqr6bgYFfPDgFXVwqAcc7",
-    strategy: CoherenceAssent.Strategy.Twitter
-  ],
-  google: [
-    client_id: "762029072380-444gurofrhj6ngqn9d5u5fh53smjg980.apps.googleusercontent.com",
-    client_secret: "L0LlbnOvE1expwfrx5Ih3BUL",
-    strategy: CoherenceAssent.Strategy.Google
-  ]
-]
+# config :coherence_assent, :providers, [
+#   github: [
+#     client_id: "2473782e816711935193",
+#     client_secret: "cfed959ab42a925f6af2ae438bddcbb0a15dceb7",
+#     strategy: CoherenceAssent.Strategy.Github
+#   ],
+#   facebook: [
+#     client_id: "1870582576567423",
+#     client_secret: "bdac38d5b3df57a541da8f3dc4a6ed69",
+#     strategy: CoherenceAssent.Strategy.Facebook
+#   ],
+#   twitter: [
+#     client_id: "jRbSRBGPvrFrO4QJIBHX0QgtW",
+#     client_secret: "8u7zgCvrAYXpAkBgrtN9Y05jm2LSmWqr6bgYFfPDgFXVwqAcc7",
+#     strategy: CoherenceAssent.Strategy.Twitter
+#   ],
+#   google: [
+#     client_id: "762029072380-444gurofrhj6ngqn9d5u5fh53smjg980.apps.googleusercontent.com",
+#     client_secret: "L0LlbnOvE1expwfrx5Ih3BUL",
+#     strategy: CoherenceAssent.Strategy.Google
+#   ]
+# ]
 
 # config :phoenix_oauth2_provider, PhoenixOauth2Provider,
 #   module: DropAlley,

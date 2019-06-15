@@ -20,7 +20,8 @@ defmodule DropAlley.Mixfile do
   def application do
     [
       mod: {DropAlley.Application, []},
-      extra_applications: [:logger, :runtime_tools, :coherence, :gettext, :swoosh, :phoenix_swoosh, :arc_ecto, :faker_elixir_octopus, :edeliver]
+      extra_applications: [:logger, :runtime_tools, :gettext, :swoosh, :phoenix_swoosh, :arc_ecto, :faker_elixir_octopus, :edeliver]
+      # extra_applications: [:logger, :runtime_tools, :coherence, :gettext, :swoosh, :phoenix_swoosh, :arc_ecto, :faker_elixir_octopus, :edeliver]
     ]
   end
 
@@ -33,31 +34,34 @@ defmodule DropAlley.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.3.0"},
+      {:ecto, "~>3.1.5"},
+      {:phoenix, "~> 1.4.0"},
       {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_ecto, "~> 3.2"},
+      {:phoenix_ecto, "~> 4.0"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:cowboy, "~> 1.0"},
       {:gettext, "~>0.15.0"},
-      {:coherence, "~> 0.5"},
-      {:coherence_assent, "~> 0.2"},
+      # {:coherence, "~> 0.5"},
+      # {:coherence_assent, "~> 0.2"},
+      {:pow, "~> 1.0.9"},
       {:swoosh, "~> 0.15"},
       {:phoenix_swoosh, "~> 0.2"},
       {:torch, "~> 2.0.0-rc.1"},
       # {:phoenix_oauth2_provider, "~> 0.3"},
       {:guardian, "~> 1.0"},
       {:cors_plug, "~> 1.5"},
-      {:arc, "~> 0.10.0"},
+      {:arc, "~> 0.11.0"},
       {:faker_elixir_octopus, "~> 1.0.2"},
       {:phoenix_swagger, "~> 0.8"},
       {:ex_json_schema, "~> 0.5"},
       {:edeliver, "~> 1.4.3"},
       {:distillery, "~> 1.4"},
-      {:arc_ecto, "~> 0.10.0"}, #and this
+      {:arc_ecto, "~> 0.11.2"}, #and this
       {:nimble_csv, "~> 0.6"},
-      {:plug_cowboy, "~> 1.0"}
+      {:plug_cowboy, "~> 1.0"},
+      {:comeonin, "~> 3.0"}
     ]
   end
 

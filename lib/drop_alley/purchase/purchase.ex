@@ -119,19 +119,19 @@ defp transaction(order, address, user_changeset, product_id) do
   on_conflict = [set: [email: "updated"]]
   Multi.new
   |> Multi.insert(:user, DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, user_changeset), on_conflict: on_conflict, conflict_target: :email)
-  |> Multi.run(:buyer, fn %{user: user} ->
+  |> Multi.run(:buyer, fn _repo, %{user: user} ->
      DropAlley.Store.Buyer.changeset(%DropAlley.Store.Buyer{}, %{user_id: user.id, active: true}) |> Repo.insert 
     end)
-  |> Multi.run(:address, fn %{user: user} ->
+  |> Multi.run(:address, fn _repo, %{user: user} ->
     DropAlley.UserInformation.Address.changeset(
       %DropAlley.UserInformation.Address{}, Map.merge(%{user_id: user.id}, address)
     ) 
     |> Repo.insert 
    end)
-  |> Multi.run(:order, fn %{buyer: buyer} -> 
+  |> Multi.run(:order, fn _repo, %{buyer: buyer} -> 
       Order.changeset(%Order{}, Map.merge(order, %{buyer_id: buyer.id})) |> Repo.insert
     end)
-  |> Multi.run(:product, fn %{order: order} -> 
+  |> Multi.run(:product, fn _repo, %{order: order} -> 
       Repo.get!(DropAlley.Store.Product, product_id)
       |> DropAlley.Store.change_product
       |> DropAlley.Store.Product.changeset(%{order_id: order.id})

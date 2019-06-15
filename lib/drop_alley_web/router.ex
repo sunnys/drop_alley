@@ -1,7 +1,8 @@
 defmodule DropAlleyWeb.Router do
   use DropAlleyWeb, :router
-  use Coherence.Router         # Add this
-  use CoherenceAssent.Router 
+  use Pow.Phoenix.Router
+  # use Pow.Extension.Phoenix.Router, otp_app: :drop_alley
+  use Pow.Extension.Phoenix.Router, otp_app: :drop_alley
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -12,7 +13,9 @@ defmodule DropAlleyWeb.Router do
   end
 
   pipeline :protected do
-    plug Coherence.Authentication.Session, protected: true  # Add this
+    # plug Coherence.Authentication.Session, protected: true  # Add this
+    plug Pow.Plug.RequireAuthenticated,
+        error_handler: Pow.Phoenix.PlugErrorHandler
   end
 
 
@@ -35,20 +38,24 @@ defmodule DropAlleyWeb.Router do
   end
 
   pipeline :public do
-    plug Coherence.Authentication.Session
+    # plug Coherence.Authentication.Session
   end
 
   # Add this block
   scope "/" do
     pipe_through [:browser, :public]
-    coherence_routes()
-    coherence_assent_routes() 
+    # coherence_routes()
+    # coherence_assent_routes() 
+    pow_routes()
+    # pow_extension_routes()
   end
 
   # Add this block
   scope "/" do
     pipe_through [:browser, :protected]
-    coherence_routes :protected
+    # coherence_routes :protected
+    # plug Pow.Plug.RequireAuthenticated,
+        # error_handler: Pow.Phoenix.PlugErrorHandler
   end
 
   # Add all the public routes here

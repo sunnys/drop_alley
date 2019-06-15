@@ -47,6 +47,8 @@ defmodule DropAlleyWeb.Endpoint do
     store: :cookie,
     key: "_drop_alley_key",
     signing_salt: "xjOk8mU3"
+  
+  plug Pow.Plug.Session, otp_app: :drop_alley
 
   plug DropAlleyWeb.Router
 

@@ -116,8 +116,8 @@ defmodule DropAlleyWeb.ProductController do
     user_changeset = %{
       name: order_params["first_name"] <> order_params["last_name"], 
       email: order_params["email"], 
-      password: "secret", 
-      password_confirmation: "secret"
+      password: "secret12345", 
+      confirm_password: "secret12345"
     }
     order = %{
       active: true, 

@@ -1,5 +1,5 @@
 defmodule DropAlley.Repo do
-  use Ecto.Repo, otp_app: :drop_alley
+  use Ecto.Repo, otp_app: :drop_alley, adapter: Ecto.Adapters.Postgres
 
   @doc """
   Dynamically loads the repository url from the

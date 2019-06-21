@@ -1,5 +1,4 @@
 FROM elixir:1.7.4-alpine
-LABEL maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
 
 RUN apk update && apk add inotify-tools postgresql-dev make 
 

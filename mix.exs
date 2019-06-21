@@ -5,10 +5,12 @@ defmodule DropAlley.Mixfile do
     [
       app: :drop_alley,
       version: "0.0.1",
-      elixir: "~> 1.4",
+      elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
+      build_path: "/elixir/_build",
+      deps_path: "/elixir/deps",
       aliases: aliases(),
       deps: deps()
     ]
@@ -60,8 +62,8 @@ defmodule DropAlley.Mixfile do
       {:distillery, "~> 1.4"},
       {:arc_ecto, "~> 0.11.2"}, #and this
       {:nimble_csv, "~> 0.6"},
-      {:plug_cowboy, "~> 1.0"},
-      {:comeonin, "~> 3.0"}
+      {:plug_cowboy, "~> 1.0"}#,
+      # {:comeonin, "~> 3.0"}
     ]
   end
 

@@ -1,14 +1,18 @@
 defmodule DropAlleyWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :drop_alley
 
-  socket "/socket", DropAlleyWeb.UserSocket
+  socket "/socket", DropAlleyWeb.UserSocket,
+    websocket: true,
+    longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :drop_alley, gzip: false,
+    at: "/", 
+    from: :drop_alley, 
+    gzip: false,
     only: ~w(css fonts images js img bootstrap favicon.ico robots.txt)
 
   plug Plug.Static,

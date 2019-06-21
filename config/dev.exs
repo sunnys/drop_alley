@@ -7,12 +7,11 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :drop_alley, DropAlleyWeb.Endpoint,
-  http: [port: 4001],
+  http: [port: System.get_env("PORT")],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../assets", __DIR__)]]
+  watchers: []
 
 # ## SSL Support
 #
@@ -50,9 +49,8 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :drop_alley, DropAlley.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "quodeck",
-  password: "ptotem123",
-  database: "drop_alley_dev",
-  hostname: "localhost",
+  username: System.get_env("POSTGRES_USER"),
+  password: System.get_env("POSTGRES_PASSWORD"),
+  database: System.get_env("POSTGRES_DB"),
+  hostname: "postgres",
   pool_size: 10

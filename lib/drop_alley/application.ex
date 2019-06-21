@@ -4,14 +4,17 @@ defmodule DropAlley.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
-    import Supervisor.Spec
+    # import Supervisor.Spec
 
     # Define workers and child supervisors to be supervised
     children = [
       # Start the Ecto repository
-      supervisor(DropAlley.Repo, []),
+      # supervisor(DropAlley.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(DropAlleyWeb.Endpoint, []),
+      # supervisor(DropAlleyWeb.Endpoint, []),
+
+      DropAlley.Repo,
+      DropAlleyWeb.Endpoint
       # Start your own worker by calling: DropAlley.Worker.start_link(arg1, arg2, arg3)
       # worker(DropAlley.Worker, [arg1, arg2, arg3]),
     ]

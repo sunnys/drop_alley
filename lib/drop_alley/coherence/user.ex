@@ -4,10 +4,10 @@ defmodule DropAlley.Coherence.User do
   # use Coherence.Schema
   # use CoherenceAssent.Schema
   use Pow.Ecto.Schema
-  use Pow.Extension.Ecto.Schema,
+  use Pow.Extension.Ecto.Schema#,
     # extensions: [PowEmailConfirmation, PowResetPassword],
-    password_hash_methods: {&Comeonin.Bcrypt.hashpwsalt/1,
-                            &Comeonin.Bcrypt.checkpw/2}
+    # password_hash_methods: {&Comeonin.Bcrypt.hashpwsalt/1,
+                            # &Comeonin.Bcrypt.checkpw/2}
 
   
 

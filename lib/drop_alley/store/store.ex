@@ -14,7 +14,7 @@ defmodule DropAlley.Store do
   alias DropAlley.Store.Buyer
   alias DropAlley.Store.ReturnConsumer
 
-  # NimbleCSV.define(MyParser, separator: ",", escape: "\"")
+  NimbleCSV.define(MyParser, separator: ",", escape: "\"")
 
   @pagination [page_size: 15]
   @pagination_distance 5

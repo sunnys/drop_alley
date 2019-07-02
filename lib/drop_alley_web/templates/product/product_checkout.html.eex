@@ -2,66 +2,63 @@
     <div class="container-fluid limited mb-5">
         <div class="row">
         <div class="col-sm-12 col-md-8 offset-md-2">
-            <h4>Dirección De Try & Buy</h4>
-            <div>
-                <p><strong>Disponible sólo para los siguientes códigos postales:</strong><br> 28029, 28036, 28046, 28039, 28016, 28020, 28002, 28003, 28015, 28010, 28006, 28028, 28008, 28004, 28001, 28013, 28014, 28009, 28007, 28012, 28005, 28045</p>
-            </div>
+            <h4>Please enter your details here</h4>
             <hr>
             <div class="form-row">
             <%= hidden_input f, :size, class: "form-control", value: @conn.params["size"] %>
             <div class="form-group col-md-6">
-                <%= label f, :first_name,"Nombre*", class: "control-label" %>
+                <%= label f, :first_name,"First Name", class: "control-label" %>
                 <%= text_input f, :first_name, class: "form-control" %>
                 <%= error_tag f, :first_name %>
             </div>
             <div class="form-group col-md-6">
-                <%= label f, :last_name,"Apellido*", class: "control-label" %>
+                <%= label f, :last_name,"Last Name", class: "control-label" %>
                 <%= text_input f, :last_name, class: "form-control" %>
                 <%= error_tag f, :last_name %>
             </div>
             <div class="form-group col-md-6">
-                <%= label f, :addr,"Dirección*", class: "control-label" %>
+                <%= label f, :addr,"Address", class: "control-label" %>
                 <%= text_input f, :addr, class: "form-control" %>
                 <%= error_tag f, :addr %>
             </div>
             <div class="form-group col-md-6">
-                <%= label f, :street,"Calle*", class: "control-label" %>
+                <%= label f, :street,"Street", class: "control-label" %>
                 <%= text_input f, :street, class: "form-control" %>
                 <%= error_tag f, :street %>
             </div>
             <div class="form-group col-md-6">
-                <%= label f, :country,"País*", class: "control-label" %>
+                <%= label f, :country,"Country", class: "control-label" %>
                 <%= text_input f, :country, class: "form-control" %>
                 <%= error_tag f, :country %>
             </div>
             <div class="form-group col-md-6">
-                <%= label f, :pincode,"Código postal*", class: "control-label" %>
+                <%= label f, :pincode,"Pincode", class: "control-label" %>
                 <%= text_input f, :pincode, class: "form-control" %>
                 <%= error_tag f, :pincode %>
             </div>
             <div class="form-group col-md-6">
-                <%= label f, :city,"Ciudad*", class: "control-label" %>
+                <%= label f, :city,"City", class: "control-label" %>
                 <%= text_input f, :city, class: "form-control" %>
                 <%= error_tag f, :city %>
             </div>
             <div class="form-group col-md-6">
-                <%= label f, :state,"Provincia*", class: "control-label" %>
+                <%= label f, :state,"State", class: "control-label" %>
                 <%= text_input f, :state, class: "form-control" %>
                 <%= error_tag f, :state %>
             </div>
             <div class="form-group col-md-6">
-                <%= label f, :contact_no,"Número de Móvil*", class: "control-label" %>
+                <%= label f, :contact_no,"Contact Number", class: "control-label" %>
                 <%= text_input f, :contact_no, class: "form-control" %>
                 <%= error_tag f, :contact_no %>
             </div>
             <div class="form-group col-md-6">
-                <%= label f, :email,"ID de correo electrónico*", class: "control-label" %>
+                <%= label f, :email,"Email", class: "control-label" %>
                 <%= text_input f, :email, class: "form-control" %>
                 <%= error_tag f, :email %>
             </div>
             <div class="form-group col-12 text-right">
                 <%= submit class: "btn btn-theme"  do %>
-                    Try & Buy<i class="material-icons">arrow_forward</i>
+                    Bid & Buy<i class="material-icons">arrow_forward</i>
                 <% end %>
             </div>
             </div>

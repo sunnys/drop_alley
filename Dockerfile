@@ -8,7 +8,9 @@ COPY mix* ./
 RUN mix local.hex --force 
 RUN mix local.rebar --force 
 RUN HEX_HTTP_CONCURRENCY=1 HEX_HTTP_TIMEOUT=120 mix deps.get 
+RUN mix deps.get
 RUN mix compile
+
 CMD ["mix", "ecto.create"]
 CMD ["mix", "ecto.migrate"]
 CMD ["mix", "phoenix.digest"]

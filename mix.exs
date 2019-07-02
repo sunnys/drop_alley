@@ -52,6 +52,7 @@ defmodule DropAlley.Mixfile do
       {:phoenix_swoosh, "~> 0.2"},
       {:torch, "~> 2.0.0-rc.1"},
       # {:phoenix_oauth2_provider, "~> 0.3"},
+      { :uuid, "~> 1.1" },
       {:guardian, "~> 1.0"},
       {:cors_plug, "~> 1.5"},
       {:arc, "~> 0.11.0"},
@@ -77,7 +78,7 @@ defmodule DropAlley.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end

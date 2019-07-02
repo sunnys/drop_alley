@@ -19,7 +19,7 @@ alias DropAlley.Store.Retailer
 
 # DropAlley.Repo.delete_all DropAlley.Coherence.User
 
-DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, %{name: "Test User", email: "testuser@example.com", password: "secret", password_confirmation: "secret"})
+DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, %{name: "Test User", email: "testuser@example.com", password: "password123", confirm_password: "password123"})
 |> DropAlley.Repo.insert!
 |> Coherence.ControllerHelpers.confirm!
 
@@ -47,7 +47,7 @@ defmodule RetailerSeed do
     end
 
     def create_user do
-        DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, %{name: "Test User", email: Faker.Internet.email, password: "secret", password_confirmation: "secret"}) |> Repo.insert!
+        DropAlley.Coherence.User.changeset(%DropAlley.Coherence.User{}, %{name: "Test User", email: Faker.Internet.email, password: "password123", confirm_password: "password123"}) |> Repo.insert!
     end
 
     def create_retailer(u) do

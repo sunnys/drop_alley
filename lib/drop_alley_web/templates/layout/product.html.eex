@@ -86,17 +86,12 @@
             <a href="#" class="text-dark" data-toggle="modal" data-target="#menuModal"><i class="material-icons md-2">menu</i></a>
           </div>
           <div class="col-4 col-md-auto d-flex align-items-center justify-content-center justify-content-md-start">
-            <a href="https://gbbravo.com" class="logo">
+            <a href="http://www.techknowzeal.com" class="logo">
               <img src="/img/grupologo.png" alt="GrupoBravo" class="d-none d-md-block">
               <img src="/img/grupologo.png" alt="GrupoBravo" class="d-block d-md-none">
             </a>
           </div>
-          <div class="col d-none d-md-block position-static">
-            <nav class="navbar nav main-nav justify-content-center justify-content-md-start position-static p-0">
-              <a class="nav-link" href="/products">INICIO</a>
-              <a class="nav-link" href="https://gbbravo.com/tiendas" target="_blank">TIENDAS</a>              
-            </nav>
-          </div>
+          
 
         </div>
       </div>
@@ -106,7 +101,7 @@
       <div class="container-fluid limited">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">COMPRAS DE TRY & BUY</li>
+            <li class="breadcrumb-item">Bid and Buy</li>
           </ol>
         </nav>
       </div>
@@ -322,6 +317,7 @@
       </div>
     </div>
     <!-- Footer -->
+    <!--
     <div class="footer">
       <div class="container-fluid limited">
         <div class="row">
@@ -345,11 +341,12 @@
         </div>
       </div>
     </div>
+    -->
     <!-- /Footer -->
 
     <!-- Copyright -->
-    <div class="copyright">
-      Copyright © 2018 Grupo GB Bravo All right reserved
+    <div class="copyright" style="bottom:0px;">
+      Copyright © 2019 Techknowzeal All right reserved
     </div>
     <!-- /Copyright -->
 

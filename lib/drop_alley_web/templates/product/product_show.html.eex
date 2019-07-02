@@ -31,7 +31,7 @@
             <td class="border-top-0" colspan="2"><h5><%= @product.name %></h5></td>
             </tr>
             <tr>
-            <td>Precio</td>
+            <td>Price</td>
             <td>
                 <ul class="list-inline mb-0">
                 <li class="list-inline-item"><span class="text-theme h5">€<%= @product.price %></span></li>
@@ -41,7 +41,7 @@
             </td>
             </tr>
             <tr>
-            <td>Disponibilidad</td>
+            <td>Availability</td>
             <td>
                 <%= if DropAlley.Store.in_stock?(@product.id) do %>
                     <span class="badge badge-success">in stock</span>
@@ -51,7 +51,7 @@
             </td>
             </tr>
             <tr>
-            <td class="align-middle">Talla</td>
+            <td class="align-middle">Size</td>
             <td>
                 <div class="row">
                 <div class="col-5 col-sm-3 col-md-6 col-lg-3 col-xl-2">
@@ -71,7 +71,7 @@
         
         <div class="col-md-4 col-sm-4" offset-col-sm-2>
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                <a href="#" id="trynbuy" data-val= <%= @product.id %> ><button type="button" class="btn btn-theme">TRY & BUY</button></a>     </div> 
+                <a href="#" id="trynbuy" data-val= <%= @product.id %> ><button type="button" class="btn btn-theme">Bid & BUY</button></a>     </div> 
             </div>  
         
         <br>
@@ -79,13 +79,10 @@
         
         <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link text-secondary active" id="desc-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Descripción</a>
+            <a class="nav-link text-secondary active" id="desc-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-secondary" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Detalle</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-secondary" id="detail-tab" data-toggle="tab" href="#sizechart" role="tab" aria-controls="detail" aria-selected="false">Guia de tallas</a>
+            <a class="nav-link text-secondary" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Details</a>
         </li>
         
         <li class="nav-item">
